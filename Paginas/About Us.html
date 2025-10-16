@@ -365,11 +365,11 @@ section.company-section * {
 
 @media (max-width: 768px) {
   section.company-section {
-    background-image: url("/components/Images/prueba1.jpg"); /* Fondo solo móvil */
-    background-repeat: repeat;          /* ✅ Que se repita */
-    background-size: auto;              /* ✅ Tamaño natural de la imagen */
-    background-position: top center;    /* Centrada arriba */
-    background-attachment: scroll;      /* Normal en móvil */
+        background-image: url('/components/Images/bgprueba1.png') !important; /* ✅ Imagen para móvil */
+        background-repeat: repeat;   /* 🔄 Repite la imagen */
+        background-size: contain;    /* Ajusta para que se repita completa */
+        background-position: center; /* Centrada */
+        background-color: #000000 !important; /* Color de respaldo */
   }
 
   section.company-section::before {
