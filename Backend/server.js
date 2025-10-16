@@ -32,7 +32,7 @@ app.use("/api/posts", postsRoutes);
 app.use("/api/posts", commentsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/contact", contactRoutes);
-app.use("/api/gallery", galleryRoutes);
+app.use("./api/gallery", galleryRoutes);
 
 // ===== Ruta raíz =====
 app.get("/", (req, res) => {
