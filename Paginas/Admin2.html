@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Galería</title>
+  <link rel="stylesheet" href="../../Estilos/Admin.css" />
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #2f3640;
+      color: #fff;
+      padding: 15px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .upload-form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .upload-form input[type="text"],
+    .upload-form input[type="file"] {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .upload-form button {
+      background: #44bd32;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .upload-form button:hover {
+      background: #4cd137;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      cursor: grab;
+      transition: transform 0.2s;
+    }
+
+    .gallery-item.dragging {
+      opacity: 0.5;
+      transform: scale(0.95);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .gallery-item .info {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .delete-btn {
+      background: #e84118;
+      color: white;
+      border: none;
+      padding: 8px;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .delete-btn:hover {
+      background: #c23616;
+    }
+
+    #saveOrderBtn {
+      display: block;
+      margin: 20px auto;
+      background: #0097e6;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #saveOrderBtn:hover {
+      background: #00a8ff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📸 Panel de Galería</h1>
+    <a href="../Admin.html" style="color:white; text-decoration:none;">⬅ Volver</a>
+  </header>
+
+  <main>
+    <!-- FORMULARIO DE SUBIDA -->
+    <section class="upload-form">
+      <h2>Subir nueva imagen</h2>
+      <form id="uploadForm" enctype="multipart/form-data">
+        <input type="text" id="title" name="title" placeholder="Título de la imagen" required />
+        <input type="file" id="image" name="image" accept="image/*" required />
+        <button type="submit">Subir imagen</button>
+      </form>
+    </section>
+
+    <!-- GALERÍA -->
+    <section>
+      <h2>Imágenes subidas</h2>
+      <div id="gallery" class="gallery-grid"></div>
+      <button id="saveOrderBtn">💾 Guardar orden</button>
+    </section>
+  </main>
+
+  <script>
+    // ============================
+    // 🧩 AUTENTICACIÓN DE ADMIN
+    // ============================
+    const tokenKey = 'api_token';
+    function getToken() { return localStorage.getItem(tokenKey); }
+    const role = localStorage.getItem("userRole");
+    if (!getToken() || role !== "admin") {
+      window.location.replace("/Paginas/Login.html");
+    }
+
+    // ============================
+    // 📸 LÓGICA DE GALERÍA
+    // ============================
+    const galleryContainer = document.getElementById("gallery");
+    const uploadForm = document.getElementById("uploadForm");
+    const saveOrderBtn = document.getElementById("saveOrderBtn");
+    let draggedItem = null;
+
+    async function loadGallery() {
+      galleryContainer.innerHTML = "<p>Cargando...</p>";
+      const res = await fetch("/api/gallery");
+      const data = await res.json();
+      if (!data.length) {
+        galleryContainer.innerHTML = "<p>No hay imágenes aún.</p>";
+        return;
+      }
+
+      galleryContainer.innerHTML = data.map(item => `
+        <div class="gallery-item" draggable="true" data-id="${item.id}">
+          <img src="${item.imageUrl}" alt="${item.title}">
+          <div class="info"><strong>${item.title}</strong></div>
+          <button class="delete-btn" onclick="deleteImage(${item.id})">Eliminar</button>
+        </div>
+      `).join("");
+
+      enableDragAndDrop();
+    }
+
+    function enableDragAndDrop() {
+      const items = document.querySelectorAll(".gallery-item");
+      items.forEach(item => {
+        item.addEventListener("dragstart", () => {
+          draggedItem = item;
+          item.classList.add("dragging");
+        });
+        item.addEventListener("dragend", () => {
+          item.classList.remove("dragging");
+          draggedItem = null;
+        });
+        item.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          const afterElement = getDragAfterElement(e.clientY);
+          if (afterElement == null) {
+            galleryContainer.appendChild(draggedItem);
+          } else {
+            galleryContainer.insertBefore(draggedItem, afterElement);
+          }
+        });
+      });
+    }
+
+    function getDragAfterElement(y) {
+      const draggableElements = [...galleryContainer.querySelectorAll(".gallery-item:not(.dragging)")];
+      return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        if (offset < 0 && offset > closest.offset) {
+          return { offset: offset, element: child };
+        } else {
+          return closest;
+        }
+      }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    saveOrderBtn.addEventListener("click", async () => {
+      const orderedIds = [...document.querySelectorAll(".gallery-item")].map(i => parseInt(i.dataset.id));
+      const res = await fetch("/api/gallery/reorder", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderedIds })
+      });
+
+      if (res.ok) {
+        alert("✅ Orden guardado correctamente");
+        loadGallery();
+      } else {
+        alert("❌ Error al guardar el orden");
+      }
+    });
+
+    uploadForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(uploadForm);
+      const res = await fetch("/api/gallery", { method: "POST", body: formData });
+      if (res.ok) {
+        uploadForm.reset();
+        loadGallery();
+      } else {
+        alert("Error al subir imagen");
+      }
+    });
+
+    async function deleteImage(id) {
+      if (confirm("¿Seguro que deseas eliminar esta imagen?")) {
+        const res = await fetch(`/api/gallery/${id}`, { method: "DELETE" });
+        if (res.ok) loadGallery();
+      }
+    }
+
+    loadGallery();
+  </script>
+</body>
+</html>

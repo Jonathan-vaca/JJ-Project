@@ -1,0 +1,178 @@
+/* Fuente */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ------------------ */
+/* Zona del logo */
+/* ------------------ */
+.logo-area {
+  background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.logo-area img {
+  max-height: 90px;
+  width: auto;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------ */
+/* Barra de navegación */
+/* ------------------ */
+.main-navigation {
+  width: 100%;
+  background: #e9e8e8;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  position: relative;
+}
+
+.main-navigation ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  padding: 15px 0;
+}
+
+/* Animación Zoom In */
+@keyframes zoomIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.main-navigation ul li {
+  opacity: 0;
+  animation: zoomIn 0.6s ease forwards;
+}
+
+.main-navigation ul li:nth-child(1) { animation-delay: 0.2s; }
+.main-navigation ul li:nth-child(2) { animation-delay: 0.4s; }
+.main-navigation ul li:nth-child(3) { animation-delay: 0.6s; }
+.main-navigation ul li:nth-child(4) { animation-delay: 0.8s; }
+.main-navigation ul li:nth-child(5) { animation-delay: 1s; }
+.main-navigation ul li:nth-child(6) { animation-delay: 1.2s; }
+
+.main-navigation a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #555;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.main-navigation a:hover,
+.main-navigation a.active {
+  color: #000;
+}
+
+.main-navigation a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: #ff0000;
+  transition: width 0.3s;
+}
+
+.main-navigation a:hover::after,
+.main-navigation a.active::after {
+  width: 100%;
+}
+
+/* ------------------ */
+/* Submenú */
+/* ------------------ */
+.has-submenu { position: relative; }
+.has-submenu .submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  list-style: none;
+  padding: 10px 0;
+}
+.has-submenu:hover .submenu { display: block; }
+.has-submenu .submenu li { padding: 5px 20px; }
+.has-submenu .submenu li a { color: #444; font-size: 13px; }
+
+/* ------------------ */
+/* HEADER SIEMPRE ARRIBA */
+/* ------------------ */
+header {
+  position: relative;     
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+.main-navigation {
+  position: relative;
+  z-index: 10000; 
+}
+
+body {
+  padding-top: 140px;  /* ajusta según la altura de logo + nav */
+}
+
+/* ------------------ */
+/* Ajustes móviles */
+/* ------------------ */
+@media (max-width: 768px) {
+  .user-info { display: none !important; } /* ocultar nombre en móvil */
+  .logout-only { display: inline-block !important; } /* mostrar solo logout */
+}
+/* ------------------ */
+/* Ajustes móviles */
+/* ------------------ */
+@media (max-width: 768px) {
+  .main-navigation ul {
+    gap: 15px;            /* menos espacio entre los enlaces */
+    padding: 10px 0;      /* un poco menos de padding */
+  }
+
+  .main-navigation a {
+    font-size: 12px;      /* 🔹 reduce el tamaño de letra */
+    letter-spacing: 0.3px;
+  }
+}
+
+/* Extra pequeño (celulares muy angostos, tipo 400px o menos) */
+@media (max-width: 480px) {
+  .main-navigation ul {
+    flex-wrap: wrap;      /* 🔹 si no caben en fila, se pasan abajo */
+    gap: 10px;
+  }
+
+  .main-navigation a {
+    font-size: 11px;      /* aún más pequeño en pantallas muy chicas */
+  }
+}
+

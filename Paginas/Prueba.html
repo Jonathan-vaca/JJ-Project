@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galería 3D con Transición</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    * {margin:0;padding:0;box-sizing:border-box;}
+    body {
+      font-family:'Poppins',sans-serif;
+      color:white;
+      overflow:hidden;
+      height:100vh;
+      position:relative;
+    }
+
+    .background {
+      position:absolute;inset:0;
+      background-size:cover;
+      background-position:center;
+      transition:transform 1.2s ease, opacity 1s ease;
+      z-index:0;
+    }
+    .overlay {
+      position:absolute;inset:0;
+      background:rgba(0,0,0,0.35);
+      z-index:1;
+    }
+
+    .progress-bar {
+      position:absolute;
+      top:0; left:0;
+      width:0%;
+      height:5px;
+      background:linear-gradient(90deg,#00c6ff,#0072ff);
+      transition:width 0.2s linear;
+      z-index:5;
+    }
+
+    .content {
+      position:relative;
+      z-index:2;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      height:100%;
+      padding:80px 100px;
+    }
+
+    .text-area {
+      max-width:40%;
+      transition:transform 0.6s ease;
+    }
+    .subtitle {font-size:18px;opacity:.9;margin-bottom:10px;}
+    .title {font-size:72px;font-weight:700;margin-bottom:20px;}
+    .description {font-size:15px;color:rgba(255,255,255,.8);margin-bottom:30px;}
+    .btn {
+      padding:12px 28px;
+      background:rgba(255,255,255,.15);
+      border:1px solid rgba(255,255,255,.4);
+      border-radius:30px;
+      color:white;text-decoration:none;
+      transition:.3s;
+    }
+    .btn:hover{background:rgba(255,255,255,.4);}
+
+    .cards {
+      display:flex;
+      flex-direction:row;
+      align-items:flex-end;
+      gap:20px;
+      transition:transform 0.6s ease;
+    }
+
+    .card {
+      width:200px;height:300px;
+      border-radius:20px;overflow:hidden;
+      background:rgba(255,255,255,.1);
+      backdrop-filter:blur(6px);
+      position:relative;
+      cursor:pointer;
+      transition:transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .card img {
+      width:100%;height:100%;object-fit:cover;
+      transition:transform 0.6s ease;
+    }
+
+    .card:hover img {
+      transform:scale(1.1);
+    }
+
+    /* ✨ Animaciones */
+    @keyframes zoomIn {
+      from { transform:scale(1); opacity:1; }
+      to { transform:scale(1.3); opacity:0; }
+    }
+
+    @keyframes slideLeft {
+      from { transform:translateX(0); opacity:1; }
+      to { transform:translateX(-220px); opacity:0; }
+    }
+
+    .zoom-out {
+      animation: zoomIn 0.7s ease forwards;
+      z-index:10;
+    }
+
+    .shift-left {
+      animation: slideLeft 0.6s ease forwards;
+    }
+
+    .navigation {
+      position:absolute;
+      bottom:50px;left:50%;
+      transform:translateX(-50%);
+      display:flex;gap:20px;
+      z-index:4;
+    }
+    .nav-btn {
+      width:45px;height:45px;border-radius:50%;
+      border:1px solid rgba(255,255,255,0.6);
+      background:rgba(255,255,255,0.1);
+      color:white;font-size:22px;cursor:pointer;
+      transition:0.3s;
+    }
+    .nav-btn:hover {background:rgba(255,255,255,0.4);}
+
+    .page-number {
+      position:absolute;bottom:60px;right:100px;
+      font-size:28px;font-weight:600;letter-spacing:2px;z-index:4;
+    }
+
+    @media(max-width:1000px){
+      .content{flex-direction:column;align-items:flex-start;padding:60px;}
+      .cards{margin-top:40px;flex-wrap:wrap;}
+      .card{width:160px;height:240px;}
+      .title{font-size:52px;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar" id="progress"></div>
+
+  <div class="background" id="bg1" style="opacity:1;"></div>
+  <div class="background" id="bg2" style="opacity:0;"></div>
+  <div class="overlay"></div>
+
+  <div class="content">
+    <div class="text-area" id="text-area">
+      <div class="subtitle" id="subtitle">Galería</div>
+      <div class="title" id="title">Cargando...</div>
+      <div class="description" id="description">
+        Esperando imágenes desde el servidor.
+      </div>
+      <a href="#" class="btn" id="view-btn">Ver más</a>
+    </div>
+
+    <div class="cards" id="cards"></div>
+  </div>
+
+  <div class="navigation">
+    <button class="nav-btn" id="prev">&#10094;</button>
+    <button class="nav-btn" id="next">&#10095;</button>
+  </div>
+
+  <div class="page-number" id="page-number">01</div>
+
+<script>
+  let images = [];
+  let current = 0;
+
+  const bg1 = document.getElementById("bg1");
+  const bg2 = document.getElementById("bg2");
+  const page = document.getElementById("page-number");
+  const progress = document.getElementById("progress");
+  const cardsContainer = document.getElementById("cards");
+  const titleEl = document.getElementById("title");
+  const descriptionEl = document.getElementById("description");
+
+  let progressInterval;
+
+  async function loadGallery() {
+    try {
+      const res = await fetch("/api/gallery");
+      const data = await res.json();
+      if (!data.length) {
+        titleEl.textContent = "Sin imágenes";
+        descriptionEl.textContent = "Aún no hay elementos en la galería.";
+        return;
+      }
+      images = data;
+      renderCards();
+      setBackground(0);
+    } catch (err) {
+      console.error("Error al cargar la galería:", err);
+      titleEl.textContent = "Error al cargar";
+    }
+  }
+
+  function renderCards() {
+    cardsContainer.innerHTML = "";
+    const visibleImages = images.filter((_, i) => i !== current);
+    visibleImages.forEach((img) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${img.imageUrl}" alt="${img.title || 'Imagen'}">
+        <div class="card-info">
+          <h3>${img.title || 'Imagen'}</h3>
+          <p>Haz clic para ver</p>
+        </div>
+      `;
+      card.addEventListener("click", () => {
+        animateToBackground(card, img);
+      });
+      cardsContainer.appendChild(card);
+    });
+  }
+
+  function animateToBackground(card, img) {
+    // ✨ Animar la tarjeta seleccionada
+    card.classList.add("zoom-out");
+
+    // ✨ Mover las demás hacia la izquierda
+    document.querySelectorAll(".card").forEach(c => {
+      if (c !== card) c.classList.add("shift-left");
+    });
+
+    setTimeout(() => {
+      const realIndex = images.indexOf(img);
+      setBackground(realIndex);
+    }, 600);
+  }
+
+  function startProgress() {
+    progress.style.width = "0%";
+    let width = 0;
+    clearInterval(progressInterval);
+    progressInterval = setInterval(() => {
+      width += 1;
+      progress.style.width = width + "%";
+      if (width >= 100) {
+        clearInterval(progressInterval);
+        changeImage("next");
+      }
+    }, 100);
+  }
+
+  function changeImage(direction) {
+    if (images.length === 0) return;
+    current = direction === "next" ? (current + 1) % images.length : (current - 1 + images.length) % images.length;
+    setBackground(current);
+  }
+
+  function setBackground(index) {
+    if (!images[index]) return;
+    const nextBg = bg1.style.opacity === "1" ? bg2 : bg1;
+    const currentBg = bg1.style.opacity === "1" ? bg1 : bg2;
+
+    nextBg.style.backgroundImage = `url('${images[index].imageUrl}')`;
+    nextBg.style.transform = "scale(1.1)";
+    nextBg.style.opacity = "1";
+    currentBg.style.opacity = "0";
+
+    setTimeout(() => {
+      nextBg.style.transform = "scale(1)";
+    }, 800);
+
+    titleEl.textContent = images[index].title || `Imagen ${index + 1}`;
+    descriptionEl.textContent = "Haz clic en otra miniatura para cambiar la vista.";
+    page.textContent = (index + 1).toString().padStart(2, "0");
+
+    current = index;
+    clearInterval(progressInterval);
+    startProgress();
+    renderCards();
+  }
+
+  document.getElementById("next").onclick = () => changeImage("next");
+  document.getElementById("prev").onclick = () => changeImage("prev");
+
+  loadGallery();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J.JR Signs - Services</title>
+  <link rel="icon" type="image/png" href="../components/Logos/logo blanco.png">
+
+  <!-- Header & Footer styles -->
+  <link rel="stylesheet" href="../header/header.css">
+  <link rel="stylesheet" href="../footer/footer.css">
+
+  <!-- Font Awesome icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+  <!-- AOS Animations -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+      color: #fff;
+    }
+
+    /* Asegurar que el placeholder no genere espacio */
+
+    header {
+      margin: 0;
+      padding: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    /* INTRO */
+    .intro {
+      background: #f4f4f4;
+      color: #000;
+      text-align: center;
+      padding: 80px 10% 60px;
+    }
+    .intro h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .intro p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* BLOQUES INTERCALADOS */
+    .service-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 80px 10%;
+      border-bottom: 1px solid #222;
+    }
+    .service-block:nth-child(even) {
+      background: #111;
+    }
+    .service-block h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+    .service-block p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .service-block img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    /* Flecha volver arriba */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #f4c542;
+      color: #000;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    .back-to-top.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header dinámico -->
+  <div id="header-placeholder"></div>
+
+  <!-- INTRO -->
+  <section class="intro" data-aos="fade-up">
+    <h1 data-aos="zoom-in">Our Services</h1>
+    <p data-aos="fade-up" data-aos-delay="200">
+      At J.JR Signs, we deliver full-service solutions for the sign and graphics industry. 
+      From design and fabrication to installation and maintenance, we ensure every project is executed with precision, durability, and visual impact.
+    </p>
+  </section>
+
+  <!-- BLOQUES INTERCALADOS -->
+
+  <section class="service-block" data-aos="fade-right">
+    <div>
+      <h2>Custom Sign Fabrication</h2>
+      <p>We specialize in designing and manufacturing tailor-made signage that aligns with your brand identity and architectural requirements. Using CNC routing, laser cutting, and precision finishing, we produce signs that are both visually striking and built to last.</p>
+    </div>
+    <div><img src="/components/Images/Custom Sign Fabrication.jpeg" alt="Custom Sign Fabrication"></div>
+  </section>
+
+  <section class="service-block" data-aos="fade-left">
+    <div><img src="/components/Images/Car Wraps.jpeg" alt="Vehicle Wraps"></div>
+    <div>
+      <h2>Vehicle Wraps & Fleet Graphics</h2>
+      <p>Our vehicle graphics division provides complete solutions for cars, trucks, vans, and fleet vehicles. From full and partial wraps to spot graphics, we use premium vinyl materials and advanced lamination techniques to ensure long-lasting, fade-resistant results.</p>
+    </div>
+  </section>
+
+  <section class="service-block" data-aos="fade-right">
+    <div>
+      <h2>Architectural & Environmental Graphics</h2>
+      <p>Enhance your interior and exterior spaces with wall murals, window films, dimensional lettering, and wayfinding systems. We create branded environments that improve customer experience and reinforce your corporate identity.</p>
+    </div>
+    <div><img src="/components/Images/Hotel.jpg" alt="Architectural Graphics"></div>
+  </section>
+
+  <section class="service-block" data-aos="fade-left">
+    <div><img src="/components/Images/iluminated signage.jpeg" alt="LED Signage"></div>
+    <div>
+      <h2>Illuminated & LED Signage</h2>
+      <p>We design and install energy-efficient illuminated signs, including LED channel letters, cabinet signs, and backlit displays. All lighting systems are engineered for maximum visibility, low maintenance, and compliance with local electrical codes.</p>
+    </div>
+  </section>
+
+  <section class="service-block" data-aos="fade-right">
+    <div>
+      <h2>Channel Letters & Dimensional Signage</h2>
+      <p>Our custom channel letters are fabricated with precision using aluminum, acrylic, and LED illumination options. We also produce non-illuminated dimensional letters and logos, available in a variety of finishes such as brushed metal, PVC, and acrylic.</p>
+    </div>
+    <div><img src="/components/Images/Levis.jpg" alt="Channel Letters"></div>
+  </section>
+
+  <section class="service-block" data-aos="fade-left">
+    <div><img src="/components/Images/Large.jpeg" alt="Large Format Printing"></div>
+    <div>
+      <h2>Large Format Printing & Banners</h2>
+      <p>From promotional banners to trade show displays, our high-resolution printing capabilities allow us to produce vibrant, durable graphics in virtually any size. We use UV-resistant inks and heavy-duty substrates suitable for both indoor and outdoor applications.</p>
+    </div>
+  </section>
+
+  <section class="service-block" data-aos="fade-right">
+    <div>
+      <h2>Monument & Pylon Signs</h2>
+      <p>We design and build free-standing monument and pylon signs that deliver maximum visibility for businesses and institutions. All structures are engineered for durability, weather resistance, and compliance with local zoning requirements.</p>
+    </div>
+    <div><img src="/components/Images/Monument HD.jpeg" alt="Pylon Signs"></div>
+  </section>
+
+  <section class="service-block" data-aos="fade-left">
+    <div><img src="/components/Images/Timberland.jpeg" alt="Installation"></div>
+    <div>
+      <h2>Installation & Maintenance</h2>
+      <p>Our certified installation team ensures your signage is safely and securely installed, whether on building facades, rooftops, or freestanding structures. We also provide scheduled maintenance, LED retrofits, and repair services to keep your signs in optimal condition.</p>
+    </div>
+  </section>
+
+  <section class="service-block" data-aos="fade-right">
+    <div>
+      <h2>Design & Project Management</h2>
+      <p>From concept development to permitting and final installation, we manage every stage of your signage project. Our in-house design team works with CAD drawings, 3D renderings, and proofing systems to guarantee accuracy and quality.</p>
+    </div>
+    <div><img src="https://source.unsplash.com/800x600/?project,design" alt="Project Management"></div>
+  </section>
+
+  <!-- Footer dinámico -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Flecha volver arriba -->
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true, offset: 100 });
+
+    // Header
+    fetch("../header/header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("header-placeholder").innerHTML = data;
+        const script = document.createElement("script");
+        script.src = "../header/header.js";
+        document.body.appendChild(script);
+      });
+
+    // Footer
+    fetch("../footer/footer.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("footer-placeholder").innerHTML = data;
+        const script = document.createElement("script");
+        script.src = "../footer/footer.js";
+        document.body.appendChild(script);
+      });
+
+    // Flecha volver arriba
+    const backToTopBtn = document.querySelector(".back-to-top");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 200) backToTopBtn.classList.add("show");
+      else backToTopBtn.classList.remove("show");
+    });
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    window.onbeforeunload = () => window.scrollTo(0,0);
+  </script>
+</body>
+</html>

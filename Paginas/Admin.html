@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Admin - J.JR Signs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/components/Logos/logo blanco.png">
+
+  <!-- Header y Footer -->
+  <link rel="stylesheet" href="/Header/header.css">
+  <link rel="stylesheet" href="/footer/footer.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+/* Fondo principal con imagen repetida (PC / tablet) */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  color: #fff;
+  background-color: #000;
+  background-image: url('/components/Images/prueba1.jpeg');
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: center;
+  position: relative;
+}
+h1, h2, h3 { text-align: center; margin: 20px 0; }
+
+/* Overlay semitransparente */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* En móviles: fondo negro sólido */
+@media screen and (max-width: 768px) {
+  body { background-image: none !important; background-color: #000 !important; }
+  body::before { display: none !important; }
+}
+
+.container { max-width: 900px; margin: 40px auto; }
+.card {
+  background: rgba(34, 34, 34, 0.7);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 32px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.card:hover { background: rgba(34, 34, 34, 0.9); transform: translateY(-4px); }
+input,textarea {
+  width:100%; padding:10px; border-radius:6px; border:1px solid #333;
+  background:#0b0b0b; color:#fff; margin:8px 0;
+}
+button.action {
+  padding:10px 14px; background:#ff4d4d; color:#fff; border:none; border-radius:6px; cursor:pointer;
+}
+button.action:hover { background:#ff1a1a; }
+
+/* Carrusel */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  margin: 12px auto;
+  max-width: 280px;
+  height: 220px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-inner { display: flex; transition: transform 0.4s ease-in-out; height: 100%; }
+.carousel-inner img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 6px; margin: auto; }
+.carousel-btn {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  background: rgba(0,0,0,0.5); color: white; border: none;
+  padding: 6px 10px; cursor: pointer; border-radius: 50%; font-size: 1rem;
+}
+.carousel-btn.prev { left: 6px; } .carousel-btn.next { right: 6px; }
+.carousel-btn:hover { background: rgba(0,0,0,0.8); }
+
+/* 🎨 Galería */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.gallery-item {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.gallery-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+.gallery-item .info { padding: 10px; font-size: 0.9rem; }
+.delete-btn {
+  background: #e84118;
+  border: none;
+  padding: 8px;
+  width: 100%;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 0 0 10px 10px;
+}
+.delete-btn:hover { background: #c23616; }
+
+/* Media queries */
+@media (max-width:720px){
+  .container { padding: 0 12px; }
+  .gallery-item img { height: 120px; }
+}
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <div id="header-placeholder"></div>
+
+  <!-- ADMIN PANEL -->
+  <main id="adminPanel" class="container">
+    <h1>Panel de Administración</h1>
+
+    <!-- Publicaciones -->
+    <section class="card">
+      <h3 id="formTitle">Crear nueva publicación</h3>
+      <form id="postForm">
+        <input type="hidden" id="editId">
+        <label>Título</label>
+        <input id="title" required maxlength="200">
+        <label>Contenido</label>
+        <textarea id="content" rows="4" maxlength="500"></textarea>
+        <label>Imágenes</label>
+        <input type="file" id="image" accept="image/*" multiple>
+        <div id="imgPreview" class="preview hidden"></div>
+        <div class="row">
+          <button type="submit" class="action">Guardar</button>
+          <button type="button" id="btnCancel" class="action hidden">Cancelar edición</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Publicaciones existentes</h2>
+      <div id="postsList"></div>
+    </section>
+
+    <!-- Galería -->
+    <section class="card">
+      <h2>Panel de Galería</h2>
+      <form id="uploadForm" enctype="multipart/form-data">
+        <input type="text" id="galleryTitle" placeholder="Título de la imagen" required>
+        <input type="file" id="galleryImage" accept="image/*" required>
+        <button type="submit" class="action">Subir imagen</button>
+      </form>
+      <div id="gallery" class="gallery-grid"></div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+
+  <script>
+    // Header y Footer
+    fetch("/Header/header.html").then(r=>r.text()).then(d=>{
+      document.getElementById("header-placeholder").innerHTML=d;
+      const s=document.createElement("script");s.src="/Header/header.js";document.body.appendChild(s);
+    });
+    fetch("/footer/footer.html").then(r=>r.text()).then(d=>{
+      document.getElementById("footer-placeholder").innerHTML=d;
+      const s=document.createElement("script");s.src="/footer/footer.js";document.body.appendChild(s);
+    });
+
+    // Autenticación
+    const API_BASE='/api/posts';
+    const tokenKey='api_token';
+    function getToken(){ return localStorage.getItem(tokenKey); }
+    function setToken(t){ if(t) localStorage.setItem(tokenKey,t); else localStorage.removeItem(tokenKey); }
+
+    const role=localStorage.getItem("userRole");
+    if(!getToken() || role!=="admin"){ window.location.replace("/Paginas/Login.html"); }
+
+    // CRUD publicaciones
+    const postForm=document.getElementById('postForm');
+    const titleEl=document.getElementById('title');
+    const contentEl=document.getElementById('content');
+    const imageEl=document.getElementById('image');
+    const imgPreview=document.getElementById('imgPreview');
+    const postsList=document.getElementById('postsList');
+    const editIdEl=document.getElementById('editId');
+    const formTitle=document.getElementById('formTitle');
+    const btnCancel=document.getElementById('btnCancel');
+
+    function authHeaders(){ const t=getToken(); return t?{ 'Authorization':'Bearer '+t }:{}; }
+
+    imageEl.addEventListener("change", e => {
+      const files = e.target.files;
+      imgPreview.innerHTML = "";
+      if (!files.length) { imgPreview.classList.add("hidden"); return; }
+      Array.from(files).forEach(f => {
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(f);
+        img.className = "preview";
+        img.style.maxWidth = "120px";
+        img.style.margin = "6px";
+        imgPreview.appendChild(img);
+      });
+      imgPreview.classList.remove("hidden");
+    });
+
+    postForm.addEventListener('submit',async e=>{
+      e.preventDefault();
+      const id=editIdEl.value;
+      const fd=new FormData();
+      fd.append('titulo',titleEl.value);
+      fd.append('contenido',contentEl.value);
+      for (const file of imageEl.files) fd.append("imagenes", file);
+      const url=id?API_BASE+'/'+id:API_BASE;
+      const opts={method:id?'PUT':'POST',body:fd,headers:authHeaders()};
+      const res=await fetch(url,opts);
+      if(!res.ok) return alert('Error al guardar');
+      resetForm();loadPosts();
+    });
+
+    async function loadPosts(){
+      postsList.innerHTML='Cargando...';
+      const res=await fetch(API_BASE);
+      const posts=await res.json();
+      postsList.innerHTML=posts.map(p=>{
+        let imgsHtml="";
+        if(p.imagenes && p.imagenes.length){
+          imgsHtml = `
+            <div class="carousel" data-index="0">
+              <div class="carousel-inner" style="width:${p.imagenes.length*100}%">
+                ${p.imagenes.map(src=>`<img src="${src}">`).join("")}
+              </div>
+              ${p.imagenes.length>1?`
+                <button class="carousel-btn prev" onclick="prevImg(this)">❮</button>
+                <button class="carousel-btn next" onclick="nextImg(this)">❯</button>
+              `:""}
+            </div>`;
+        }
+        return `<div class="card">
+          <h3>${p.titulo}</h3>
+          ${imgsHtml}
+          <p>${p.contenido||''}</p>
+          <div class="row right">
+            <button class="action" onclick="editPost(${p.id})">Editar</button>
+            <button class="action" onclick="deletePost(${p.id})">Eliminar</button>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    window.prevImg=function(btn){
+      const carousel=btn.closest('.carousel');
+      const inner=carousel.querySelector('.carousel-inner');
+      let idx=parseInt(carousel.dataset.index)||0;
+      const total=inner.children.length;
+      idx=(idx-1+total)%total;
+      carousel.dataset.index=idx;
+      inner.style.transform=`translateX(${-idx*100}%)`;
+    }
+
+    window.nextImg=function(btn){
+      const carousel=btn.closest('.carousel');
+      const inner=carousel.querySelector('.carousel-inner');
+      let idx=parseInt(carousel.dataset.index)||0;
+      const total=inner.children.length;
+      idx=(idx+1)%total;
+      carousel.dataset.index=idx;
+      inner.style.transform=`translateX(${-idx*100}%)`;
+    }
+
+    window.editPost=async function(id){
+      const res=await fetch(API_BASE+'/'+id);
+      const p=await res.json();
+      editIdEl.value=p.id;
+      titleEl.value=p.titulo;
+      contentEl.value=p.contenido;
+      imgPreview.innerHTML="";
+      if(p.imagenes && p.imagenes.length){
+        p.imagenes.forEach(src=>{
+          const img=document.createElement("img");
+          img.src=src;
+          img.className="preview";
+          img.style.maxWidth="120px";
+          img.style.margin="6px";
+          imgPreview.appendChild(img);
+        });
+        imgPreview.classList.remove("hidden");
+      } else {
+        imgPreview.classList.add("hidden");
+      }
+      formTitle.textContent='Editar publicación';
+      btnCancel.classList.remove('hidden');
+    }
+
+    window.deletePost=async function(id){
+      if(!confirm('Eliminar publicación?')) return;
+      const res=await fetch(API_BASE+'/'+id,{method:'DELETE',headers:authHeaders()});
+      if(res.ok) loadPosts(); else alert('Error eliminando');
+    }
+
+    btnCancel.addEventListener('click',resetForm);
+    function resetForm(){
+      editIdEl.value=''; titleEl.value=''; contentEl.value='';
+      imageEl.value=''; imgPreview.innerHTML='';
+      imgPreview.classList.add('hidden');
+      formTitle.textContent='Crear nueva publicación';
+      btnCancel.classList.add('hidden');
+    }
+
+    // ===============================
+    // 📸 GALERÍA
+    // ===============================
+    const galleryContainer = document.getElementById("gallery");
+    const uploadForm = document.getElementById("uploadForm");
+
+    async function loadGallery() {
+      galleryContainer.innerHTML = "<p>Cargando...</p>";
+      const res = await fetch("/api/gallery");
+      const data = await res.json();
+      if (!data.length) {
+        galleryContainer.innerHTML = "<p>No hay imágenes aún.</p>";
+        return;
+      }
+      galleryContainer.innerHTML = data.map(item => `
+        <div class="gallery-item">
+          <img src="${item.imageUrl}" alt="${item.title}">
+          <div class="info"><strong>${item.title}</strong></div>
+          <button class="delete-btn" onclick="deleteImage(${item.id})">Eliminar</button>
+        </div>
+      `).join("");
+    }
+
+    uploadForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const fd = new FormData();
+      fd.append("title", document.getElementById("galleryTitle").value);
+      fd.append("image", document.getElementById("galleryImage").files[0]);
+      const res = await fetch("/api/gallery", { method: "POST", body: fd });
+      if (res.ok) {
+        uploadForm.reset();
+        loadGallery();
+      } else alert("Error al subir imagen");
+    });
+
+    async function deleteImage(id) {
+      if (confirm("¿Seguro que deseas eliminar esta imagen?")) {
+        const res = await fetch(`/api/gallery/${id}`, { method: "DELETE" });
+        if (res.ok) loadGallery();
+      }
+    }
+
+    // Inicializar todo
+    loadPosts();
+    loadGallery();
+  </script>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J.JR Signs</title>
+    <link rel="icon" type="image/png" href="../components/Logos/logo blanco.png">
+
+    <!-- Header styles -->
+    <link rel="stylesheet" href="../header/header.css">
+<style>
+  :root{
+    --accent:#ff0000;
+    --muted:#bdbdbd;
+    --line-width:160px; /* puedes alargar o acortar las líneas */
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Poppins',system-ui,Arial;background:#0b0b0b;color:#fff}
+
+  /* HERO */
+.hero {
+  position: relative;
+  min-height: 20vh;
+  background-image: linear-gradient(180deg, rgba(11,11,11,0.35), rgba(11,11,11,0.7)), url('/mnt/data/35658221-124c-4a86-a64f-b9ed889cb086.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero .container {
+  width: 1120px;
+  max-width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 32px;
+}
+.hero-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transform: translateY(5px);
+}
+.hero-logo-img {
+  max-width: 380px;
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(0,0,0,0.3));
+  transform: translateY(5px);
+}
+.hero .title{font-size:100px;font-weight:800;letter-spacing:8px;color:rgba(255,255,255,0.85);text-transform:uppercase;margin:0;line-height:0.85}
+.hero .side{background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));backdrop-filter:blur(4px);padding:18px;border-radius:12px}
+
+/* small gallery strip */
+.strip{display:flex;gap:12px;align-items:center}
+.card-thumb{width:64px;height:100px;border-radius:8px;background-size:cover;background-position:center;flex:0 0 64px;position:relative;overflow:hidden}
+.card-thumb .label{position:absolute;left:8px;bottom:6px;font-size:11px;background:rgba(0,0,0,0.45);padding:4px 6px;border-radius:6px}
+.strip .info{flex:1;margin-left:8px}
+.cta{display:flex;gap:8px;align-items:center;margin-top:12px}
+.btn{background:var(--accent);color:#0b0b0b;padding:10px 16px;border-radius:8px;border:0;font-weight:600;cursor:pointer}
+.btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff}
+
+/* SECTION BASE */
+section{padding:0px 20px}
+.wrap{width:1120px;max-width:95%;margin:0 auto}
+
+/* TITLES WITH LINES */
+h2.section-title{
+  position:relative;
+  text-align:center;
+  font-size:28px;
+  color:#fff;
+  margin:40px 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+}
+h2.section-title::before,
+h2.section-title::after{
+  content:'';
+  display:block;
+  height:2px;
+  background:#fff;
+  width:var(--line-width);
+  flex-shrink:0;
+}
+
+/* ABOUT THE TOUR */
+.about{display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:start}
+.about .text{color:var(--muted);line-height:1.6}
+
+/* timeline with connecting lines */
+.timeline{
+  position:relative;
+  padding-left:40px;
+  border-radius:8px;
+}
+
+/* 🔹 Fondo solo en la sección Company */
+section.company-section {
+  background-image: url('/components/Images/Signs Fondo.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: Scroll;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+section.company-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+section.company-section * {
+  position: relative;
+  z-index: 1;
+}
+
+.timeline::before{content:'';position:absolute;left:18px;top:6px;bottom:6px;width:4px;background:linear-gradient(#222,#444);border-radius:4px}
+.milestone{position:relative;margin-bottom:30px;padding-left:24px;display:flex;gap:300px;align-items:center}
+.milestone::before{content:'';position:absolute;left:-6px;top:-12px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,209,102,0.06)}
+.milestone::after{content:'';position:absolute;left:5px;top:18px;height:2px;width:700px;border-radius:2px;background:#fff;opacity:0.15;}
+.milestone .meta{font-weight:600}
+.milestone img{width:320px;height:200px;object-fit:cover;border-radius:8px;margin-left:auto}
+.milestone.left{flex-direction:row-reverse}
+.milestone.left::after{left:auto;right:12px}
+.milestone.left img{margin-left:0;margin-right:auto}
+
+/* WHAT'S INCLUDED (actualizado con imágenes) */
+.included-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.included-grid .box {
+  background: rgba(0, 0, 0, 0);
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.included-grid .box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.included-grid .box:hover img {
+  transform: scale(1.05);
+}
+
+.included-grid .box.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* footer-like strip */
+.bottom-cta{display:flex;justify-content:space-between;align-items:center;padding:26px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;margin-top:24px}
+
+/* responsive */
+@media (max-width:900px){
+  .hero .container{grid-template-columns:1fr}
+  .hero .title{font-size:64px}
+  .about{grid-template-columns:1fr}
+  .timeline{padding-left:22px}
+  .included-grid{grid-template-columns:1fr}
+  .milestone::after{width:80px}
+  .milestone img{width:120px;height:80px}
+}
+.logo-title {
+  width: 140px;
+  height: auto;
+  margin-left: 20px;
+  vertical-align: middle;
+}
+
+/* ✅ FIX: elimina espacio negro arriba SOLO en esta página */
+body {
+  padding-top: 0 !important;
+}
+
+/* ✅ Ajuste compacto debajo de "About Us" */
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 300px;
+}
+
+.about .text {
+  max-width: 850px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.timeline {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.milestone {
+  margin-bottom: 100px;
+}
+
+.included-grid {
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.bottom-cta {
+  margin-top: 16px;
+}
+
+/* 🔹 Animaciones base para secciones */
+section {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: all 0.8s ease-out;
+  will-change: transform, opacity;
+}
+
+section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 🔹 Milestones: animación desde izquierda o derecha */
+.milestone {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.9s ease-out;
+  will-change: transform, opacity;
+}
+
+.milestone.left {
+  transform: translateX(-100px);
+}
+
+.milestone.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 🔹 Animación escalonada */
+.milestone {
+  transition-delay: 0.1s;
+}
+.milestone:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.milestone:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+/* ===========================
+   Animaciones para textos/títulos/cuadros
+   =========================== */
+
+/* Títulos: entran desde arriba */
+h2.section-title {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.65s cubic-bezier(.2,.9,.2,1);
+  will-change: transform, opacity;
+}
+h2.section-title.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Texto principal de Company */
+.about .text {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition: all 0.7s cubic-bezier(.2,.9,.2,1);
+  will-change: transform, opacity;
+}
+.about .text.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Cuadros de la grid: aparición en cascada */
+.included-grid .box {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: all 0.75s cubic-bezier(.2,.9,.2,1);
+  will-change: transform, opacity;
+}
+.included-grid .box:nth-child(1) { transition-delay: 0.08s; }
+.included-grid .box:nth-child(2) { transition-delay: 0.16s; }
+.included-grid .box:nth-child(3) { transition-delay: 0.24s; }
+.included-grid .box:nth-child(4) { transition-delay: 0.32s; }
+.included-grid .box:nth-child(5) { transition-delay: 0.40s; }
+.included-grid .box:nth-child(6) { transition-delay: 0.48s; }
+
+.included-grid .box.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width:900px){
+  .included-grid .box:nth-child(1) { transition-delay: 0.04s; }
+  .included-grid .box:nth-child(2) { transition-delay: 0.08s; }
+  .included-grid .box:nth-child(3) { transition-delay: 0.12s; }
+  .included-grid .box:nth-child(4) { transition-delay: 0.16s; }
+  .included-grid .box:nth-child(5) { transition-delay: 0.20s; }
+  .included-grid .box:nth-child(6) { transition-delay: 0.24s; }
+}
+section.company-section {
+  background-image: url('/components/Images/Signs Fondo.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: Scroll;
+  background-repeat: no-repeat;
+  position: relative;
+}
+/* ⚙️ CAPA OSCURA CONTROLADA */
+section.company-section {
+  background-image: url('/components/Images/Signs Fondo.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: Scroll;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+section.company-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+section.company-section * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  section.company-section {
+    background-image: url("../components/Images/Prueba1.jpg"); /* Fondo solo móvil */
+    background-repeat: repeat;          /* ✅ Que se repita */
+    background-size: auto;              /* ✅ Tamaño natural de la imagen */
+    background-position: top center;    /* Centrada arriba */
+    background-attachment: scroll;      /* Normal en móvil */
+  }
+
+  section.company-section::before {
+    background: rgba(0, 0, 0, 0.25);    /* ✅ Más transparente para dejar ver el fondo */
+  }
+    .included-grid {
+    grid-template-columns: repeat(2, 1fr); /* ✅ 2 columnas */
+    gap: 10px;
+  }
+
+  .included-grid .box img {
+    width: 100%;
+    height: auto;            /* Mantiene proporción natural */
+    object-fit: contain;     /* Evita recortes */
+    max-height: 140px;       /* ✅ Hace que se vean más pequeñas */
+  }
+  .about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 30px;
+}
+
+
+.about .text {
+  max-width: 850px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.timeline {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.milestone {
+  margin-bottom: 0px;
+}
+
+.included-grid {
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.bottom-cta {
+  margin-top: 16px;
+}
+
+  .milestone{position:relative;margin-bottom:30px;padding-left:1px;display:flex;gap:4px;align-items:center}
+
+
+}
+section{padding:0px 50px}
+.wrap{width:1120px;max-width:95%;margin:0 auto}
+.milestone img{width:320px;height:180px;object-fit:cover;border-radius:8px;margin-left:auto}
+.milestone::after{content:'';position:absolute;left:5px;top:-4px;height:2px;width:700px;border-radius:2px;background:#fff;opacity:0.15;}
+.milestone::before{content:'';position:absolute;left:-6px;top:-10px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,209,102,0.06)}
+
+
+</style>
+</head>
+<body>
+    <div id="header-placeholder"></div>  </header>
+
+  <!-- ABOUT -->
+  <section class="company-section">
+    <div class="wrap">
+      <div class="about">
+        <div>      
+          <h2 class="section-title">Company</h2>
+          <p class="text">JJR Signs has been a trusted leader in the signage industry, delivering innovative visual solutions that elevate brands and drive attention. Founded in Atlanta, Georgia, our company has proudly served businesses of all sizes with custom-designed signs that combine craftsmanship, creativity, and technology.</p>
+
+          <div style="margin-top:100px" class="timeline">
+            <div class="milestone">
+              <div>
+                <div class="meta">experience</div>
+                <div style="color:var(--muted);font-size:13px">Our expertise spans across a full range of signage services — including vehicle wraps, channel letters, monument signs, lightboxes, vinyl graphics, and custom installations. Every project is approached with precision and commitment to excellence, ensuring lasting results that reflect the quality and professionalism our clients deserve.</div>
+              </div>
+              <img src="/components/Images/JSign.png" alt="Osaka">
+            </div>
+
+            <div class="milestone left">
+              <div>
+                <div class="meta">Technology in Every Detail</div>
+                <div style="color:var(--muted);font-size:13px">At J.Jr Signs, we turn ideas into visual experiences. We design and manufacture custom signs, vehicle graphics, architectural signage, and LED solutions that stand out for their quality and precision. We combine creativity, technology, and design to strengthen each brand's visual identity and make every space communicate with impact.</div>
+              </div>
+              <img src="/components/Images/Levis.jpg" alt="Kyoto">
+            </div>
+
+            <div class="milestone">
+              <div>
+                <div class="meta">Expansion</div>
+                <div style="color:var(--muted);font-size:13px">With our expanding presence in Bogotá, Colombia, JJR Signs continues to strengthen its international footprint, offering the same high standards of design, fabrication, and installation across markets.</div>
+              </div>
+              <img src="/components/Images/Timberland.jpeg" alt="Tokyo">
+            </div>
+          </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- WHAT'S INCLUDED -->
+<h2 class="section-title" style="margin-top:36px">Some of our clients</h2>
+<div class="included-grid">
+  <div class="box"><img src="/components/Images/Timberland.1.png" alt="Custom Sign Fabrication"></div>
+  <div class="box"><img src="/components/Images/Amazon1.png" alt="Vehicle Wraps & Fleet Graphics"></div>
+  <div class="box"><img src="/components/Images/Lululemon1.png" alt="Architectural & Environmental Graphics"></div>
+  <div class="box"><img src="/components/Images/Levis1.png" alt="Illuminated & LED Signage"></div>
+  <div class="box"><img src="/components/Images/Peloton1.png" alt="Channel Letters & Dimensional Signage"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+
+  <div class="box"><img src="/components/Images/Hym1.png" alt="Large Format Printing & Banners"></div>
+</div>
+      </div>
+
+      <div class="bottom-cta">
+        <div>
+          <strong style="font-size:18px">Reserve your spot</strong>
+          <div style="color:var(--muted);font-size:13px">Small groups — book early to guarantee space.</div>
+        </div>
+        <div style="display:flex;gap:10px"><button class="btn">Book now</button><button class="btn secondary">Contact</button></div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:28px 20px;color:var(--muted);text-align:center">© 2025 Japan Tours — Replica layout</footer>
+    <script>
+        // Cargar header
+        fetch("../header/header.html")
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+                const script = document.createElement("script");
+                script.src = "../header/header.js";
+                document.body.appendChild(script);
+            });
+
+        // Cargar footer
+        fetch("../footer/footer.html")
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+                const link = document.createElement("link");
+                link.rel = "stylesheet";
+                link.href = "../footer/footer.css";
+                document.head.appendChild(link);
+                const script = document.createElement("script");
+                script.src = "../footer/footer.js";
+                document.body.appendChild(script);
+            });
+
+        // Animación secciones al aparecer
+        const sections = document.querySelectorAll("section");
+// Observador para secciones y elementos internos (milestones, títulos, texto y cuadros)
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+      // Si quieres que se observe una sola vez por elemento, lo desemparejamos:
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.18 });
+
+// Elementos a observar
+const elemsToObserve = [
+  ...document.querySelectorAll("section"),
+  ...document.querySelectorAll(".milestone"),
+  ...document.querySelectorAll("h2.section-title"),
+  ...document.querySelectorAll(".about .text"),
+  ...document.querySelectorAll(".included-grid .box")
+];
+
+// Evitar observar duplicados y registrar
+const set = new Set(elemsToObserve);
+set.forEach(el => observer.observe(el));
+
+        // Flecha volver arriba
+        const backToTopBtn = document.querySelector(".back-to-top");
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 200) {
+                backToTopBtn.classList.add("show");
+            } else {
+                backToTopBtn.classList.remove("show");
+            }
+        });
+        backToTopBtn.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        window.onbeforeunload = () => window.scrollTo(0,0);
+    </script>
+
+</body>
+</html>
