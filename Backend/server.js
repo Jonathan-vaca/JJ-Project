@@ -1,4 +1,4 @@
-// ===== Dependencias =====
+// Backend/server.js
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -11,14 +11,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// ===== Directorio raíz del proyecto =====
+const rootDir = path.join(__dirname, "../");
+
 // ===== Servir archivos estáticos =====
-// Sirve TODO lo que está fuera de /Backend (Header, Footer, JS, Paginas, etc.)
-app.use(express.static(path.join(__dirname, "..")));
+// Esto permite que Render acceda a tus carpetas fuera del backend
+app.use(express.static(rootDir));
+app.use("/header", express.static(path.join(rootDir, "header")));
+app.use("/footer", express.static(path.join(rootDir, "footer")));
+app.use("/Paginas", express.static(path.join(rootDir, "Paginas")));
+app.use("/CSS", express.static(path.join(rootDir, "CSS")));
+app.use("/JS", express.static(path.join(rootDir, "JS")));
+app.use("/components", express.static(path.join(rootDir, "components")));
+app.use("/uploads", express.static(path.join(rootDir, "uploads")));
 
-// Sirve la carpeta de uploads (para imágenes u otros archivos)
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-// ===== Rutas de la API =====
+// ===== Rutas API =====
 const postsRoutes = require("./routes/posts");
 const commentsRoutes = require("./routes/comments");
 const authRoutes = require("./routes/auth");
@@ -31,17 +38,12 @@ app.use("/api/auth", authRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/gallery", galleryRoutes);
 
-// ===== Página principal =====
+// ===== Ruta raíz =====
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Paginas/Home.html"));
+  res.sendFile(path.join(rootDir, "Paginas/Home.html"));
 });
 
-// ===== Manejo de rutas no encontradas =====
-app.use((req, res) => {
-  res.status(404).send("404 - Página no encontrada 😢");
-});
-
-// ===== Iniciar servidor =====
+// ===== Puerto =====
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
