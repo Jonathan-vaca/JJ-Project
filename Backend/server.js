@@ -27,10 +27,31 @@ app.use("/api/posts", commentsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/gallery", galleryRoutes);
+// Servir la carpeta Paginas completa
+app.use(express.static(path.join(__dirname, "/Paginas")));
+
+// Si además tienes assets globales:
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// ===== Servir archivos estáticos =====
+
+// Sirve la carpeta 'Paginas'
+app.use("/Paginas", express.static(path.join(__dirname, "../Paginas")));
+
+// Sirve la carpeta 'Header'
+app.use("/Header", express.static(path.join(__dirname, "../Header")));
+
+// Sirve la carpeta 'Footer'
+app.use("/Footer", express.static(path.join(__dirname, "../Footer")));
+
+// (si tienes uploads también)
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+
 
 // ===== Ruta raíz =====
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Paginas/Home.html"));
+  res.sendFile(path.join(__dirname, "/Paginas/Home.html"));
 });
 
 // ===== Puerto =====
