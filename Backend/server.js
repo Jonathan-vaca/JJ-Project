@@ -24,14 +24,13 @@ const commentsRoutes = require("./routes/comments");
 const authRoutes = require("./routes/auth");
 const contactRoutes = require("./routes/contact");
 const galleryRoutes = require("./routes/gallery");
+
+
+app.use("/Paginas", express.static(path.join(__dirname, "../Paginas")));
+app.use("/Header", express.static(path.join(__dirname, "../Header")));
+app.use("/Footer", express.static(path.join(__dirname, "../Footer")));
 app.use("/components", express.static(path.join(__dirname, "../components")));
-
-
-app.use("/api/posts", postsRoutes);
-app.use("/api/comments", commentsRoutes);
-app.use("/api/auth", authRoutes);
-app.use("/api/contact", contactRoutes);
-app.use("/api/gallery", galleryRoutes);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ===== Ruta raíz =====
 app.get("/", (req, res) => {
