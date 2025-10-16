@@ -1,4 +1,4 @@
-// Backend/server.js
+// ===== Backend/server.js =====
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -12,7 +12,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ===== Servir archivos estáticos =====
-app.use(express.static(path.join(__dirname, "../")));
+// Servir las carpetas del frontend (fuera de /Backend)
+app.use("/Paginas", express.static(path.join(__dirname, "../Paginas")));
+app.use("/Header", express.static(path.join(__dirname, "../Header")));
+app.use("/Footer", express.static(path.join(__dirname, "../Footer")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ===== Rutas API =====
@@ -23,31 +26,10 @@ const contactRoutes = require("./routes/contact");
 const galleryRoutes = require("./routes/gallery");
 
 app.use("/api/posts", postsRoutes);
-app.use("/api/posts", commentsRoutes);
+app.use("/api/comments", commentsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/gallery", galleryRoutes);
-// Servir la carpeta Paginas completa
-app.use(express.static(path.join(__dirname, "/Paginas")));
-
-// Si además tienes assets globales:
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-// ===== Servir archivos estáticos =====
-
-// Sirve la carpeta 'Paginas'
-app.use("/Paginas", express.static(path.join(__dirname, "../Paginas")));
-
-// Sirve la carpeta 'Header'
-app.use("/Header", express.static(path.join(__dirname, "../Header")));
-
-// Sirve la carpeta 'Footer'
-app.use("/Footer", express.static(path.join(__dirname, "../Footer")));
-
-// (si tienes uploads también)
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-
 
 // ===== Ruta raíz =====
 app.get("/", (req, res) => {
@@ -58,8 +40,7 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en: http://localhost:${PORT}`);
-  console.log(`🌐 Página principal: http://localhost:${PORT}/Paginas/Home.html`);
-  console.log(`🖼️ Galería activa en: http://localhost:${PORT}/api/gallery`);
+  console.log(`🌐 Página principal: http://localhost:${PORT}/`);
 });
 
 // ===== Manejo global de errores =====
