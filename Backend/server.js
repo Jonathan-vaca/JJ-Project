@@ -51,7 +51,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ===== Ruta raíz =====
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "/Paginas/Home.html"));
+  res.sendFile(path.join(__dirname, "../Paginas/Home.html"));
 });
 
 // ===== Puerto =====
