@@ -24,6 +24,8 @@ const commentsRoutes = require("./routes/comments");
 const authRoutes = require("./routes/auth");
 const contactRoutes = require("./routes/contact");
 const galleryRoutes = require("./routes/gallery");
+app.use("/components", express.static(path.join(__dirname, "../components")));
+
 
 app.use("/api/posts", postsRoutes);
 app.use("/api/comments", commentsRoutes);
