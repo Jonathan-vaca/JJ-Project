@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ===== Servir archivos estáticos =====
-app.use(express.static(__dirname)); // sirve todo dentro de /Backend
+app.use(express.static(path.join(__dirname, "../")));
 app.use("/Header", express.static(path.join(__dirname, "Header")));
 app.use("/Footer", express.static(path.join(__dirname, "Footer")));
 app.use("/Paginas", express.static(path.join(__dirname, "Paginas")));
@@ -35,7 +35,7 @@ app.use("/api/gallery", galleryRoutes);
 
 // ===== Ruta raíz =====
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "Paginas", "Home.html"));
+res.sendFile(path.join(__dirname, "../Paginas/Home.html"));
 });
 
 // ===== Puerto =====
