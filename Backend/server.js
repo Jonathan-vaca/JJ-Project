@@ -36,6 +36,18 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../Paginas/Home.html"));
 });
+const pool = require("./config/db");
+
+app.get("/test-db", async (req, res) => {
+  try {
+    const [rows] = await pool.query("SELECT NOW() AS time;");
+    res.json({ ok: true, time: rows[0].time });
+  } catch (err) {
+    console.error("❌ Error conectando a la DB:", err.message);
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
 
 // ===== Puerto =====
 const PORT = process.env.PORT || 3000;
