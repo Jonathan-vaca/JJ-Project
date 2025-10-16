@@ -11,11 +11,13 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ===== Servir archivos estáticos =====
-// Servir las carpetas del frontend (fuera de /Backend)
+// ===== Servir archivos estáticos (frontend) =====
 app.use("/Paginas", express.static(path.join(__dirname, "../Paginas")));
 app.use("/Header", express.static(path.join(__dirname, "../Header")));
 app.use("/Footer", express.static(path.join(__dirname, "../Footer")));
+app.use("/components", express.static(path.join(__dirname, "../components")));
+
+// ✅ Asegura servir todas las imágenes subidas del gallery
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ===== Rutas API =====
@@ -23,21 +25,22 @@ const postsRoutes = require("./routes/posts");
 const commentsRoutes = require("./routes/comments");
 const authRoutes = require("./routes/auth");
 const contactRoutes = require("./routes/contact");
-const galleryRoutes = require("./routes/gallery");
+const galleryRoutes = require("/routes/gallery");
 
-
-app.use("/Paginas", express.static(path.join(__dirname, "../Paginas")));
-app.use("/Header", express.static(path.join(__dirname, "../Header")));
-app.use("/Footer", express.static(path.join(__dirname, "../Footer")));
-app.use("/components", express.static(path.join(__dirname, "../components")));
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// ✅ Montar APIs
+app.use("/api/posts", postsRoutes);
+app.use("/api/posts", commentsRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api/gallery", galleryRoutes);
 
 // ===== Ruta raíz =====
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../Paginas/Home.html"));
 });
-const pool = require("./config/db");
 
+// ===== Verificar conexión a DB =====
+const pool = require("./db");
 app.get("/test-db", async (req, res) => {
   try {
     const [rows] = await pool.query("SELECT NOW() AS time;");
@@ -48,12 +51,12 @@ app.get("/test-db", async (req, res) => {
   }
 });
 
-
 // ===== Puerto =====
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en: http://localhost:${PORT}`);
-  console.log(`🌐 Página principal: http://localhost:${PORT}/`);
+  console.log(`🌐 Página principal: http://localhost:${PORT}/Paginas/Home.html`);
+  console.log(`🖼️ Galería activa en: http://localhost:${PORT}/api/gallery`);
 });
 
 // ===== Manejo global de errores =====
