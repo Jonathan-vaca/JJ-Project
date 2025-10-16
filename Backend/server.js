@@ -1,4 +1,3 @@
-// Backend/server.js
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -12,8 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ===== Servir archivos estáticos =====
-app.use(express.static(path.join(__dirname, "../")));
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// Esto permite acceder a Header, Footer, Paginas, etc.
+app.use(express.static(path.join(__dirname)));
 
 // ===== Rutas API =====
 const postsRoutes = require("./routes/posts");
@@ -30,15 +29,13 @@ app.use("/api/gallery", galleryRoutes);
 
 // ===== Ruta raíz =====
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Paginas/Home.html"));
+  res.sendFile(path.join(__dirname, "Paginas/Home.html"));
 });
 
 // ===== Puerto =====
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en: http://localhost:${PORT}`);
-  console.log(`🌐 Página principal: http://localhost:${PORT}/Paginas/Home.html`);
-  console.log(`🖼️ Galería activa en: http://localhost:${PORT}/api/gallery`);
+  console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
 });
 
 // ===== Manejo global de errores =====
