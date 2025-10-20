@@ -110,6 +110,67 @@
     html, body {
   overflow-x: hidden;
 }
+@media (max-width: 720px) {
+  .service-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    padding: 50px 8%;
+  }
+
+  /* 🔁 Alternar el orden cada dos secciones */
+  .service-block:nth-child(even) {
+    flex-direction: column-reverse; /* imagen arriba, texto abajo */
+  }
+
+  .service-block img {
+    width: 90%;           /* No ocupa todo el ancho, deja márgenes */
+    max-width: 450px;     /* Evita que sean demasiado grandes */
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }  .service-block h2 {
+    font-size: 1.5rem;
+  }
+
+  .service-block p {
+    font-size: 0.95rem;
+  }
+}
+
+/* 🔹 Intercalado correcto en pantallas pequeñas */
+@media (max-width: 540px) {
+  .service-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    padding: 50px 8%;
+  }
+
+  /* 🔁 Alternar el orden cada dos secciones */
+  .service-block:nth-child(even) {
+    flex-direction: column-reverse; /* imagen arriba, texto abajo */
+  }
+
+  .service-block img {
+    width: 90%;           /* No ocupa todo el ancho, deja márgenes */
+    max-width: 400px;     /* Evita que sean demasiado grandes */
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }  .service-block h2 {
+    font-size: 1.5rem;
+  }
+
+  .service-block p {
+    font-size: 0.95rem;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -149,7 +210,7 @@
       <h2>Architectural & Environmental Graphics</h2>
       <p>Enhance your interior and exterior spaces with wall murals, window films, dimensional lettering, and wayfinding systems. We create branded environments that improve customer experience and reinforce your corporate identity.</p>
     </div>
-    <div><img src="/components/Images/Hotel.jpg" alt="Architectural Graphics"></div>
+    <div><img src="/components/Images/SSE.jpeg" alt="Architectural Graphics"></div>
   </section>
 
   <section class="service-block" data-aos="fade-left">
@@ -165,7 +226,7 @@
       <h2>Channel Letters & Dimensional Signage</h2>
       <p>Our custom channel letters are fabricated with precision using aluminum, acrylic, and LED illumination options. We also produce non-illuminated dimensional letters and logos, available in a variety of finishes such as brushed metal, PVC, and acrylic.</p>
     </div>
-    <div><img src="/components/Images/Levis.jpg" alt="Channel Letters"></div>
+    <div><img src="/components/Images/Channel L.jpeg" alt="Channel Letters"></div>
   </section>
 
   <section class="service-block" data-aos="fade-left">
@@ -185,7 +246,7 @@
   </section>
 
   <section class="service-block" data-aos="fade-left">
-    <div><img src="/components/Images/Timberland.jpeg" alt="Installation"></div>
+    <div><img src="/components/Images/Installation.jpeg" alt="Installation"></div>
     <div>
       <h2>Installation & Maintenance</h2>
       <p>Our certified installation team ensures your signage is safely and securely installed, whether on building facades, rooftops, or freestanding structures. We also provide scheduled maintenance, LED retrofits, and repair services to keep your signs in optimal condition.</p>
@@ -197,7 +258,7 @@
       <h2>Design & Project Management</h2>
       <p>From concept development to permitting and final installation, we manage every stage of your signage project. Our in-house design team works with CAD drawings, 3D renderings, and proofing systems to guarantee accuracy and quality.</p>
     </div>
-    <div><img src="https://source.unsplash.com/800x600/?project,design" alt="Project Management"></div>
+    <div><img src="/components/Images/JSign.png" alt="Project Management"></div>
   </section>
 
   <!-- Footer dinámico -->
