@@ -332,15 +332,6 @@ h2.section-title.show {
   .included-grid .box:nth-child(5) { transition-delay: 0.20s; }
   .included-grid .box:nth-child(6) { transition-delay: 0.24s; }
 }
-/* ⚙️ CAPA OSCURA CONTROLADA */
-section.company-section {
-  background-image: url('/components/Images/Signs Fondo.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: Scroll;
-  background-repeat: no-repeat;
-  position: relative;
-}
 
 section.company-section::before {
   content: "";
@@ -355,7 +346,7 @@ section.company-section * {
   z-index: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 750px) {
   section.company-section {
         background-image: url('/components/Images/prueba1.jpg') !important; /* ✅ Imagen para móvil */
         background-repeat: repeat;   /* 🔄 Repite la imagen */
@@ -420,6 +411,20 @@ section{padding:0px 50px}
 .milestone img{width:320px;height:180px;object-fit:cover;border-radius:8px;margin-left:auto}
 .milestone::after{content:'';position:absolute;left:5px;top:-4px;height:2px;width:700px;border-radius:2px;background:#fff;opacity:0.15;}
 .milestone::before{content:'';position:absolute;left:-6px;top:-10px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,209,102,0.06)}
+/* 🔧 Fix visual para eliminar espacios laterales */
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* evita cualquier desplazamiento horizontal */
+  background-color: #0b0b0b;
+}
+
+
+.wrap {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
 
 </style>
