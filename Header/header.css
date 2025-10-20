@@ -175,4 +175,56 @@ body {
     font-size: 11px;      /* aún más pequeño en pantallas muy chicas */
   }
 }
+/* === Transparent version for Gallery === */
+.transparent-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: transparent !important;
+  box-shadow: none !important;
+  animation: fadeInDown 1s ease forwards;
+}
+
+.transparent-header .logo-area {
+  background: transparent !important;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.transparent-header .logo-area img {
+  height: 70px;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.4));
+  animation: zoomIn 1.2s ease forwards;
+}
+
+.transparent-header .main-navigation {
+  background: transparent !important;
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+.transparent-header .main-navigation ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.transparent-header .main-navigation a {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.transparent-header .main-navigation a:hover,
+.transparent-header .main-navigation a.active {
+  color: #ffca28;
+  transform: scale(1.05);
+}
 
