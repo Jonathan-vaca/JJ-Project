@@ -107,8 +107,10 @@
     .back-to-top.show {
       display: block;
     }
-    html, body {
+html, body {
   overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* mejora fluidez en iOS */
 }
 @media (max-width: 720px) {
   .service-block {
@@ -194,11 +196,11 @@
       <h2>Custom Sign Fabrication</h2>
       <p>We specialize in designing and manufacturing tailor-made signage that aligns with your brand identity and architectural requirements. Using CNC routing, laser cutting, and precision finishing, we produce signs that are both visually striking and built to last.</p>
     </div>
-    <div><img src="/components/Images/Custom Sign Fabrication.jpeg" alt="Custom Sign Fabrication"></div>
+    <div><img src="/components/Images/Custom Sign Fabrication.jpeg" alt="Custom Sign Fabrication"loading="lazy"></div>
   </section>
 
   <section class="service-block" data-aos="fade-left">
-    <div><img src="/components/Images/Car Wraps.jpeg" alt="Vehicle Wraps"></div>
+    <div><img src="/components/Images/Car Wraps.jpeg" alt="Vehicle Wraps"loading="lazy"></div>
     <div>
       <h2>Vehicle Wraps & Fleet Graphics</h2>
       <p>Our vehicle graphics division provides complete solutions for cars, trucks, vans, and fleet vehicles. From full and partial wraps to spot graphics, we use premium vinyl materials and advanced lamination techniques to ensure long-lasting, fade-resistant results.</p>
@@ -210,11 +212,11 @@
       <h2>Architectural & Environmental Graphics</h2>
       <p>Enhance your interior and exterior spaces with wall murals, window films, dimensional lettering, and wayfinding systems. We create branded environments that improve customer experience and reinforce your corporate identity.</p>
     </div>
-    <div><img src="/components/Images/SSE.jpeg" alt="Architectural Graphics"></div>
+    <div><img src="/components/Images/SSE.jpeg" alt="Architectural Graphics" loading="lazy"></div>
   </section>
 
   <section class="service-block" data-aos="fade-left">
-    <div><img src="/components/Images/iluminated signage.jpeg" alt="LED Signage"></div>
+    <div><img src="/components/Images/iluminated signage.jpeg" alt="LED Signage" loading="lazy"></div>
     <div>
       <h2>Illuminated & LED Signage</h2>
       <p>We design and install energy-efficient illuminated signs, including LED channel letters, cabinet signs, and backlit displays. All lighting systems are engineered for maximum visibility, low maintenance, and compliance with local electrical codes.</p>
@@ -226,11 +228,11 @@
       <h2>Channel Letters & Dimensional Signage</h2>
       <p>Our custom channel letters are fabricated with precision using aluminum, acrylic, and LED illumination options. We also produce non-illuminated dimensional letters and logos, available in a variety of finishes such as brushed metal, PVC, and acrylic.</p>
     </div>
-    <div><img src="/components/Images/Channel L.jpeg" alt="Channel Letters"></div>
+    <div><img src="/components/Images/Channel L.jpeg" alt="Channel Letters" loading="lazy"></div>
   </section>
 
   <section class="service-block" data-aos="fade-left">
-    <div><img src="/components/Images/Large.jpeg" alt="Large Format Printing"></div>
+    <div><img src="/components/Images/Large.jpeg" alt="Large Format Printing" loading="lazy"></div>
     <div>
       <h2>Large Format Printing & Banners</h2>
       <p>From promotional banners to trade show displays, our high-resolution printing capabilities allow us to produce vibrant, durable graphics in virtually any size. We use UV-resistant inks and heavy-duty substrates suitable for both indoor and outdoor applications.</p>
@@ -242,18 +244,18 @@
       <h2>Monument & Pylon Signs</h2>
       <p>We design and build free-standing monument and pylon signs that deliver maximum visibility for businesses and institutions. All structures are engineered for durability, weather resistance, and compliance with local zoning requirements.</p>
     </div>
-    <div><img src="/components/Images/Monument HD.jpeg" alt="Pylon Signs"></div>
+    <div><img src="/components/Images/Monument HD.jpeg" alt="Pylon Signs" loading="lazy"></div>
   </section>
 
   <section class="service-block" data-aos="fade-left">
-    <div><img src="/components/Images/Installation.jpeg" alt="Installation"></div>
+    <div><img src="/components/Images/Installation.jpeg" alt="Installation" loading="lazy"></div>
     <div>
       <h2>Installation & Maintenance</h2>
       <p>Our certified installation team ensures your signage is safely and securely installed, whether on building facades, rooftops, or freestanding structures. We also provide scheduled maintenance, LED retrofits, and repair services to keep your signs in optimal condition.</p>
     </div>
   </section>
 
-  <section class="service-block" data-aos="fade-right">
+  <section class="service-block" data-aos="fade-right" loading="lazy">
     <div>
       <h2>Design & Project Management</h2>
       <p>From concept development to permitting and final installation, we manage every stage of your signage project. Our in-house design team works with CAD drawings, 3D renderings, and proofing systems to guarantee accuracy and quality.</p>
@@ -272,7 +274,13 @@
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 1000, once: true, offset: 100 });
+AOS.init({
+  duration: 800,
+  once: true,
+  offset: 80,
+  throttleDelay: 200,  // ⚙️ reduce cálculos en scroll
+  debounceDelay: 200   // ⚙️ mejora rendimiento en móvil
+});
 
     // Header
     fetch("../header/header.html")
