@@ -412,6 +412,23 @@ section{padding:0px 50px}
 .milestone::after{content:'';position:absolute;left:5px;top:-4px;height:2px;width:700px;border-radius:2px;background:#fff;opacity:0.15;}
 .milestone::before{content:'';position:absolute;left:-6px;top:-10px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,209,102,0.06)}
 /* 🔧 Fix visual para eliminar espacios laterales */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #ff0000;
+      color: #ffffff;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    .back-to-top.show {
+      display: block;
+    }
+
 html, body {
   width: 100%;
   overflow-x: hidden; /* evita cualquier desplazamiento horizontal */
