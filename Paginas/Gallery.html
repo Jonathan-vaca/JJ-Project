@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>J.JR Signs</title>
+    <title>J.Jr Signs</title>
     <link rel="icon" type="image/png" href="../components/Logos/logo blanco.png">
 
 
@@ -267,10 +267,16 @@ nav ul li a.active {
     }
 
     .contact-btn.gmail img {
-      width: 34px;
-      height: 34px;
+      width: 40px;
+      height: 40px;
       filter: none;
     }
+      header.transparent-header {
+    background: rgba(70, 65, 65, 0);
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+
 
 @media (max-width: 540px) {
   :root {
@@ -328,6 +334,70 @@ nav ul li a.active {
     background-position: center center !important;
     }
     }
+    @keyframes zoomIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.main-navigation ul li {
+  opacity: 0;
+  animation: zoomIn 0.6s ease forwards;
+}
+
+.main-navigation ul li:nth-child(1) { animation-delay: 0.2s; }
+.main-navigation ul li:nth-child(2) { animation-delay: 0.4s; }
+.main-navigation ul li:nth-child(3) { animation-delay: 0.6s; }
+.main-navigation ul li:nth-child(4) { animation-delay: 0.8s; }
+.main-navigation ul li:nth-child(5) { animation-delay: 1s; }
+.main-navigation ul li:nth-child(6) { animation-delay: 1.2s; }
+.main-navigation a:hover,
+.main-navigation a.active {
+  color: #ffffff;
+}
+
+.main-navigation a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: #ff0000;
+  transition: width 0.3s;
+}
+ /* --- Animaciones de texto --- */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.place {
+  font-size: 3rem;
+  line-height: 0.9;
+  margin: 0 0 16px 0;
+  font-weight: 800;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.desc {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
      </style>
 </head>
 
@@ -335,15 +405,17 @@ nav ul li a.active {
   <!-- HEADER -->
 <header class="transparent-header">
   <div class="logo-area">
-    <img src="/components/Logos/NELogo.png" alt="J.Jr Signs Logo">
+    <img src="/components/Logos/NELogo.png" alt="Mi Logo">
   </div>
 
+  <!-- Menú de navegación -->
   <nav class="main-navigation">
     <ul>
       <li><a href="/Paginas/Home.html">Home</a></li>
       <li><a href="/Paginas/About Us.html">About Us</a></li>
-      <li><a href="/Paginas/Services.html">Services</a></li>
-      <li><a href="/Paginas/Gallery.html" class="active">Gallery</a></li>
+      <li><a href="/Paginas/Services.html">Services</a></li>    
+      <li><a href="/Paginas/Gallery.html">Gallery</a></li>
+
     </ul>
   </nav>
 </header>
@@ -355,7 +427,7 @@ nav ul li a.active {
   <div id="hero" class="hero">
     <div class="wrap">
       <div class="left">
-        <div class="region" id="regionTxt">Galería JR Signs</div>
+        <div class="region" id="regionTxt">Gallery J.Jr Signs</div>
         <h1 class="place" id="placeTxt">Proyecto 1</h1>
         <p class="desc">
           If you are interested in contacting us and requesting a personalized quote, please click one of the buttons below.
@@ -368,7 +440,7 @@ nav ul li a.active {
           </button>
 
           <button class="contact-btn gmail" id="btnEmail" title="Contact via Gmail">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Gmail Logo">
+            <img src="/components/Logos/Email.png" alt="Gmail Logo">
           </button>
         </div>
 
@@ -506,11 +578,22 @@ cardsAfter.forEach((c) => {
     clone.style.borderRadius = "0";
   });
 
-  setTimeout(() => {
-    hero.style.backgroundImage = `url('${slides[index].imageUrl}')`;
-    placeTxt.textContent = slides[index].title;
-  }, 400);
+setTimeout(() => {
+  hero.style.backgroundImage = `url('${slides[index].imageUrl}')`;
+  
+  // Reiniciar animaciones del texto
+  placeTxt.textContent = slides[index].title;
+  placeTxt.style.animation = "none";
+  void placeTxt.offsetWidth; // Forzar reflow para reiniciar animación
+  placeTxt.style.animation = "fadeUp 0.8s ease forwards";
 
+  const desc = document.querySelector(".desc");
+  if (desc) {
+    desc.style.animation = "none";
+    void desc.offsetWidth;
+    desc.style.animation = "fadeIn 1s ease forwards";
+  }
+}, 400);
   setTimeout(() => {
     clone.remove();
     cardsAfter.forEach((c) => {

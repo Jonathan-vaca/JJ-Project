@@ -7,7 +7,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>J.JR Signs - Services</title>
+  <title>J.Jr Signs - Services</title>
   <link rel="icon" type="image/png" href="../components/Logos/logo blanco.png">
 
   <!-- Header & Footer styles -->
@@ -16,9 +16,6 @@
 
   <!-- Font Awesome icons -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-
-  <!-- AOS Animations -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 
   <style>
     html, body {
@@ -30,9 +27,8 @@
       font-family: 'Poppins', sans-serif;
       background: #000;
       color: #fff;
+      overflow-x: hidden;
     }
-
-    /* Asegurar que el placeholder no genere espacio */
 
     header {
       margin: 0;
@@ -49,16 +45,24 @@
       color: #000;
       text-align: center;
       padding: 80px 10% 60px;
+      opacity: 0;
+      transform: translateY(150px);
+      transition: all 1s ease-out;
     }
-    .intro h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 20px;
+    .intro.show {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .intro p {
-      font-size: 1.1rem;
-      max-width: 800px;
-      margin: 0 auto;
+
+    .intro h1, .intro p {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s cubic-bezier(.2,.9,.2,1);
+    }
+    .intro.show h1,
+    .intro.show p {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* BLOQUES INTERCALADOS */
@@ -69,20 +73,43 @@
       align-items: center;
       padding: 80px 10%;
       border-bottom: 1px solid #222;
+      opacity: 0;
+      transition: all 1s ease-out;
     }
+
+    /* direcciones personalizadas */
+    .from-left {
+      transform: translateX(-200px);
+    }
+    .from-right {
+      transform: translateX(200px);
+    }
+    .from-bottom {
+      transform: translateY(150px);
+    }
+
+    .service-block.show {
+      opacity: 1;
+      transform: translate(0);
+    }
+
     .service-block:nth-child(even) {
       background: #111;
     }
-    .service-block h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-      text-transform: uppercase;
+
+    .service-block h2, .service-block p, .service-block img {
+      opacity: 0;
+      transition: all 1s cubic-bezier(.2,.9,.2,1);
+      transform: translateY(40px);
     }
-    .service-block p {
-      font-size: 1rem;
-      line-height: 1.6;
+
+    .service-block.show h2,
+    .service-block.show p,
+    .service-block.show img {
+      opacity: 1;
+      transform: translateY(0);
     }
+
     .service-block img {
       width: 100%;
       height: auto;
@@ -107,107 +134,85 @@
     .back-to-top.show {
       display: block;
     }
-html, body {
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch; /* mejora fluidez en iOS */
-}
-@media (max-width: 720px) {
-  .service-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 20px;
-    padding: 50px 8%;
-  }
 
-  /* 🔁 Alternar el orden cada dos secciones */
-  .service-block:nth-child(even) {
-    flex-direction: column-reverse; /* imagen arriba, texto abajo */
-  }
+    section, div, img, header, footer {
+      max-width: 100vw !important;
+      box-sizing: border-box;
+    }
 
-  .service-block img {
-    width: 90%;           /* No ocupa todo el ancho, deja márgenes */
-    max-width: 450px;     /* Evita que sean demasiado grandes */
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-  }  .service-block h2 {
-    font-size: 1.5rem;
-  }
+    * {
+      max-width: 100vw !important;
+      box-sizing: border-box !important;
+    }
 
-  .service-block p {
-    font-size: 0.95rem;
-  }
-}
+    @media (max-width: 720px) {
+      .service-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+        padding: 50px 8%;
+      }
 
-/* 🔹 Intercalado correcto en pantallas pequeñas */
-@media (max-width: 540px) {
-  .service-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 20px;
-    padding: 50px 8%;
-  }
+      .service-block:nth-child(even) {
+        flex-direction: column-reverse;
+      }
 
-  /* 🔁 Alternar el orden cada dos secciones */
-  .service-block:nth-child(even) {
-    flex-direction: column-reverse; /* imagen arriba, texto abajo */
-  }
+      .service-block img {
+        width: 90%;
+        max-width: 450px;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+      .service-block h2 {
+        font-size: 1.5rem;
+      }
 
-  .service-block img {
-    width: 90%;           /* No ocupa todo el ancho, deja márgenes */
-    max-width: 400px;     /* Evita que sean demasiado grandes */
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-  }  .service-block h2 {
-    font-size: 1.5rem;
-  }
+      .service-block p {
+        font-size: 0.95rem;
+      }
+    }
 
-  .service-block p {
-    font-size: 0.95rem;
-  }
-}
-
+    @media (max-width: 540px) {
+      .service-block img {
+        width: 90%;
+        max-width: 400px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Header dinámico -->
   <div id="header-placeholder"></div>
 
-  <!-- INTRO -->
-  <section class="intro" data-aos="fade-up">
-    <h1 data-aos="zoom-in">Our Services</h1>
-    <p data-aos="fade-up" data-aos-delay="200">
-      At J.JR Signs, we deliver full-service solutions for the sign and graphics industry. 
+  <section class="intro from-bottom">
+    <h1>Our Services</h1>
+    <p>
+      At J.Jr Signs, we deliver full-service solutions for the sign and graphics industry. 
       From design and fabrication to installation and maintenance, we ensure every project is executed with precision, durability, and visual impact.
     </p>
   </section>
 
-  <!-- BLOQUES INTERCALADOS -->
-
-  <section class="service-block" data-aos="fade-right">
+  <!-- alternando izquierda/derecha -->
+  <section class="service-block from-left">
     <div>
       <h2>Custom Sign Fabrication</h2>
       <p>We specialize in designing and manufacturing tailor-made signage that aligns with your brand identity and architectural requirements. Using CNC routing, laser cutting, and precision finishing, we produce signs that are both visually striking and built to last.</p>
     </div>
-    <div><img src="/components/Images/Custom Sign Fabrication.jpeg" alt="Custom Sign Fabrication"loading="lazy"></div>
+    <div><img src="/components/Images/Custom Sign Fabrication.jpeg" alt="Custom Sign Fabrication" loading="lazy"></div>
   </section>
 
-  <section class="service-block" data-aos="fade-left">
-    <div><img src="/components/Images/Car Wraps.jpeg" alt="Vehicle Wraps"loading="lazy"></div>
+  <section class="service-block from-right">
+    <div><img src="/components/Images/Car Wraps.jpeg" alt="Vehicle Wraps" loading="lazy"></div>
     <div>
       <h2>Vehicle Wraps & Fleet Graphics</h2>
       <p>Our vehicle graphics division provides complete solutions for cars, trucks, vans, and fleet vehicles. From full and partial wraps to spot graphics, we use premium vinyl materials and advanced lamination techniques to ensure long-lasting, fade-resistant results.</p>
     </div>
   </section>
 
-  <section class="service-block" data-aos="fade-right">
+  <section class="service-block from-left">
     <div>
       <h2>Architectural & Environmental Graphics</h2>
       <p>Enhance your interior and exterior spaces with wall murals, window films, dimensional lettering, and wayfinding systems. We create branded environments that improve customer experience and reinforce your corporate identity.</p>
@@ -215,7 +220,7 @@ html, body {
     <div><img src="/components/Images/SSE.jpeg" alt="Architectural Graphics" loading="lazy"></div>
   </section>
 
-  <section class="service-block" data-aos="fade-left">
+  <section class="service-block from-right">
     <div><img src="/components/Images/iluminated signage.jpeg" alt="LED Signage" loading="lazy"></div>
     <div>
       <h2>Illuminated & LED Signage</h2>
@@ -223,7 +228,7 @@ html, body {
     </div>
   </section>
 
-  <section class="service-block" data-aos="fade-right">
+  <section class="service-block from-left">
     <div>
       <h2>Channel Letters & Dimensional Signage</h2>
       <p>Our custom channel letters are fabricated with precision using aluminum, acrylic, and LED illumination options. We also produce non-illuminated dimensional letters and logos, available in a variety of finishes such as brushed metal, PVC, and acrylic.</p>
@@ -231,7 +236,7 @@ html, body {
     <div><img src="/components/Images/Channel L.jpeg" alt="Channel Letters" loading="lazy"></div>
   </section>
 
-  <section class="service-block" data-aos="fade-left">
+  <section class="service-block from-right">
     <div><img src="/components/Images/Large.jpeg" alt="Large Format Printing" loading="lazy"></div>
     <div>
       <h2>Large Format Printing & Banners</h2>
@@ -239,7 +244,7 @@ html, body {
     </div>
   </section>
 
-  <section class="service-block" data-aos="fade-right">
+  <section class="service-block from-left">
     <div>
       <h2>Monument & Pylon Signs</h2>
       <p>We design and build free-standing monument and pylon signs that deliver maximum visibility for businesses and institutions. All structures are engineered for durability, weather resistance, and compliance with local zoning requirements.</p>
@@ -247,7 +252,7 @@ html, body {
     <div><img src="/components/Images/Monument HD.jpeg" alt="Pylon Signs" loading="lazy"></div>
   </section>
 
-  <section class="service-block" data-aos="fade-left">
+  <section class="service-block from-right">
     <div><img src="/components/Images/Installation.jpeg" alt="Installation" loading="lazy"></div>
     <div>
       <h2>Installation & Maintenance</h2>
@@ -255,7 +260,7 @@ html, body {
     </div>
   </section>
 
-  <section class="service-block" data-aos="fade-right" loading="lazy">
+  <section class="service-block from-left">
     <div>
       <h2>Design & Project Management</h2>
       <p>From concept development to permitting and final installation, we manage every stage of your signage project. Our in-house design team works with CAD drawings, 3D renderings, and proofing systems to guarantee accuracy and quality.</p>
@@ -263,56 +268,56 @@ html, body {
     <div><img src="/components/Images/JSign.png" alt="Project Management"></div>
   </section>
 
-  <!-- Footer dinámico -->
   <div id="footer-placeholder"></div>
 
-  <!-- Flecha volver arriba -->
   <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
   </div>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-AOS.init({
-  duration: 800,
-  once: true,
-  offset: 80,
-  throttleDelay: 200,  // ⚙️ reduce cálculos en scroll
-  debounceDelay: 200   // ⚙️ mejora rendimiento en móvil
-});
-
-    // Header
-    fetch("../header/header.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("header-placeholder").innerHTML = data;
-        const script = document.createElement("script");
-        script.src = "../header/header.js";
-        document.body.appendChild(script);
-      });
-
-    // Footer
-    fetch("../footer/footer.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("footer-placeholder").innerHTML = data;
-        const script = document.createElement("script");
-        script.src = "../footer/footer.js";
-        document.body.appendChild(script);
-      });
-
-    // Flecha volver arriba
-    const backToTopBtn = document.querySelector(".back-to-top");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 200) backToTopBtn.classList.add("show");
-      else backToTopBtn.classList.remove("show");
-    });
-    backToTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+  // ---- Header & Footer ----
+  fetch("../header/header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header-placeholder").innerHTML = data;
+      const script = document.createElement("script");
+      script.src = "../header/header.js";
+      document.body.appendChild(script);
     });
 
-    window.onbeforeunload = () => window.scrollTo(0,0);
+  fetch("../footer/footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+      const script = document.createElement("script");
+      script.src = "../footer/footer.js";
+      document.body.appendChild(script);
+    });
+
+  // ---- Animaciones personalizadas ----
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.from-left, .from-right, .from-bottom, .intro, .service-block')
+    .forEach(el => observer.observe(el));
+
+  // ---- Botón "Volver arriba" ----
+  const backToTopBtn = document.querySelector(".back-to-top");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) backToTopBtn.classList.add("show");
+    else backToTopBtn.classList.remove("show");
+  });
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  window.onbeforeunload = () => window.scrollTo(0,0);
   </script>
 </body>
 </html>
