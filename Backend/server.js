@@ -38,6 +38,11 @@ app.use("/api/gallery", galleryRoutes);
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../Paginas/Home.html"));
 });
+// ===== Verificación Google Search Console =====
+app.get("/google91c027a97011579b.html", (req, res) => {
+  res.send("google-site-verification: google91c027a97011579b.html");
+});
+
 
 // ===== Verificar conexión a DB =====
 const pool = require("./db");
