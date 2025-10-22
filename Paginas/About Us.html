@@ -144,29 +144,33 @@ section.company-section * {
 /* WHAT'S INCLUDED (actualizado con imágenes) */
 .included-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0px;
   margin-top: 1px;
 }
 
+/* ✅ Ajustar tamaño visual de las imágenes de clientes */
+.included-grid .box img {
+  width: 100%;
+  height: auto;
+  max-width: 300px;   /* 🔹 tamaño máximo de cada logo */
+  max-height: 220px;  /* 🔹 altura máxima controlada */
+  object-fit: contain; /* mantiene proporción */
+  margin: 0 auto;      /* centra horizontalmente */
+  display: block;
+}
+
+/* ✅ Centrar cada caja (box) */
 .included-grid .box {
-  background: rgba(0, 0, 0, 0);
-  padding: 0;
-  border-radius: 12px;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  opacity: 0;
-  transform: translateY(28px);
+  padding: 12px;
 }
 
-.included-grid .box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
+/* ✅ Un poco de espacio vertical entre filas */
+.included-grid {
+  row-gap: 20px;
 }
 
 .included-grid .box:hover img {
@@ -322,6 +326,14 @@ h2.section-title.show {
 .included-grid .box.show {
   opacity: 1;
   transform: translateY(0);
+}
+#footer-placeholder {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  overflow: hidden;
+  background: none;
 }
 
 @media (max-width:900px){
@@ -500,6 +512,8 @@ html, body {
 
 </div>
       </div>
+      </section>
+      <div id="footer-placeholder"></div>
     <script>
         // Cargar header
         fetch("../header/header.html")
@@ -566,6 +580,10 @@ set.forEach(el => observer.observe(el));
 
         window.onbeforeunload = () => window.scrollTo(0,0);
     </script>
+<script>
+  console.log('Altura del documento:', document.body.scrollHeight);
+  console.log('Altura de la ventana:', window.innerHeight);
+</script>
 
 </body>
 </html>
