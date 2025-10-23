@@ -17,222 +17,227 @@
     <!-- Font Awesome icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
-    <style>
-        /* ------------------ FONDO PRINCIPAL ------------------ */
+<style>
+    /* ------------------ FONDO PRINCIPAL ------------------ */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Open Sans', sans-serif;
+        min-height: 100vh;
+        color: #fff;
+        background-color: #000;
+        background-repeat: repeat;   
+        background-size: contain;    
+        background-position: center;
+        position: relative;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5);
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    @media screen and (max-width: 768px) {
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Open Sans', sans-serif;
-            min-height: 100vh;
-            color: #fff;
-            background-color: #000;
-            background-repeat: repeat;   
-            background-size: contain;    
+            background-size: contain;
             background-position: center;
-            position: relative;
+            background-color: #000 !important;
         }
 
         body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            pointer-events: none;
-            z-index: -1;
+            display: none !important;
         }
+    }
 
-        @media screen and (max-width: 768px) {
-            body {
-                background-size: contain;
-                background-position: center;
-                background-color: #000 !important;
-            }
+    main {
+        max-width: 1200px;
+        margin: auto;
+        padding: 40px 20px;
+        position: relative;
+    }
 
-            body::before {
-                display: none !important;
-            }
-        }
+    section {
+        display: flex;
+        align-items: center;
+        margin: 60px 0;
+        opacity: 0;
+        transition: all 1s ease;
+    }
 
-        main {
-            max-width: 1200px;
-            margin: auto;
-            padding: 40px 20px;
-            position: relative;
-        }
+    .section-left {
+        flex-direction: row;
+        text-align: left;
+        transform: translateX(-50px);
+    }
 
-        section {
-            display: flex;
-            align-items: center;
-            margin: 60px 0;
-            opacity: 0;
-            transition: all 1s ease;
-        }
+    section.show {
+        opacity: 1;
+        transform: translateX(0);
+    }
 
-        .section-left {
-            flex-direction: row;
-            text-align: left;
-            transform: translateX(-50px);
-        }
+    /* ------------------ TEXTOS ------------------ */
+    #contact h2 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-style: italic;
+        color: #fff;
+        font-size: 36px;
+        margin-bottom: 18px;
+    }
 
-        section.show {
-            opacity: 1;
-            transform: translateX(0);
-        }
+    #contact p {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-style: italic;
+        color: #fff;
+        line-height: 1.7;
+        font-size: 17px;
+    }
 
-        /* ------------------ TEXTOS ------------------ */
-        #contact h2 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-style: italic;
-            color: #fff;
-            font-size: 36px;
-            margin-bottom: 18px;
-        }
+    /* ------------------ GRID CONTACTO + MAPA ------------------ */
+    #contact {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr; 
+        align-items: start;
+        gap: 40px;
+    }
 
-        #contact p {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-style: italic;
-            color: #fff;
-            line-height: 1.7;
-            font-size: 17px;
-        }
+    #contact-map img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 10px;
+        display: block;
+        transition: all 0.3s ease;
+    }
 
-        /* ------------------ GRID CONTACTO + MAPA ------------------ */
+    /* ------------------ FORMULARIO ------------------ */
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 500px;
+    }
+
+    input, textarea {
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: red;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 14px;
+    }
+
+    button:hover {
+        background: #b30000;
+    }
+
+    ul { 
+        list-style: none; 
+        padding: 0; 
+        margin-top: 20px; 
+        line-height: 1.8; 
+        font-size: 14px; 
+    }
+
+    li i { 
+        margin-right: 8px; 
+        color: red;
+    }
+
+    /* ------------------ MAPA VERSIÓN MÓVIL ------------------ */
+    .mapa-mobile {
+        margin: 15px auto;
+        display: none;
+        width: 100%;
+        max-width: 300px;
+        border-radius: 12px;
+        margin-top: 15px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    /* ------------------ VERSIÓN MÓVIL (≤ 768px) ------------------ */
+    @media screen and (max-width: 768px) {
         #contact {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr; 
-            align-items: start;
-            gap: 40px;
+            display: block !important; /* 1 sola columna */
+            text-align: center !important;
         }
 
-        #contact-map img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 10px;
-            display: block;
-            transition: all 0.3s ease;
+        #contact-content {
+            width: 100% !important;
+            text-align: center !important;
         }
 
-        /* ------------------ FORMULARIO ------------------ */
+        #contact-map {
+            display: none !important; /* Oculta el mapa grande */
+        }
+
+        .mapa-mobile {
+            display: block !important; /* Muestra el mapa pequeño */
+        }
+
         form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 500px;
-        }
-
-        input, textarea {
-            padding: 10px;
-            border-radius: 8px;
-            border: none;
-            outline: none;
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-        }
-
-        button {
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: red;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 14px;
-        }
-
-        button:hover {
-            background: #b30000;
-        }
-
-        ul { 
-            list-style: none; 
-            padding: 0; 
-            margin-top: 20px; 
-            line-height: 1.8; 
-            font-size: 14px; 
-        }
-
-        li i { 
-            margin-right: 8px; 
-            color: red;
-        }
-
-        /* ------------------ VERSIÓN MÓVIL (≤ 540px) ------------------ */
-        @media screen and (max-width: 540px) {
-          #contact {
-            display: block !important; /* ⚡ Forzamos 1 sola columna */
-          }
-
-          #contact-content {
-            width: 100% !important;
-            text-align: center !important;
-          }
-
-          #contact-map {
-            width: 100% !important;
-            margin-top: 25px !important;
-            display: flex;
-            justify-content: center;
-          }
-
-          #contact-map img {
-            width: 100% !important;
-            max-width: 400px !important; /* ancho máximo visual */
-            height: auto !important;
-            object-fit: contain !important;
-            border-radius: 10px !important;
-          }
-
-          #contact h2 { 
-            font-size: 26px !important; 
-            text-align: center !important; 
-          }
-
-          #contact p, 
-          #contact ul { 
-            font-size: 15px !important;
-            text-align: center !important;
-          }
-
-          form {
             width: 90% !important;
             margin: 0 auto !important;
-          }
         }
 
-        /* ------------------ FLECHA VOLVER ARRIBA ------------------ */
-        .back-to-top {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 32px;
-            color: red;
-            cursor: pointer;
-            z-index: 999;
-            display: none;
+        #contact h2 { 
+            font-size: 26px !important; 
+            text-align: center !important; 
         }
 
-        .back-to-top.show {
-            display: block;
-            opacity: 1;
+        #contact p, 
+        #contact ul { 
+            font-size: 15px !important;
+            text-align: center !important;
         }
+    }
 
-        .back-to-top i {
-            animation: bounce 1.5s infinite;
-        }
+    /* ------------------ FLECHA VOLVER ARRIBA ------------------ */
+    .back-to-top {
+        position: fixed;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 32px;
+        color: red;
+        cursor: pointer;
+        z-index: 999;
+        display: none;
+    }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-15px); }
-            60% { transform: translateY(-8px); }
-        }
-    </style>
+    .back-to-top.show {
+        display: block;
+        opacity: 1;
+    }
+
+    .back-to-top i {
+        animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-15px); }
+        60% { transform: translateY(-8px); }
+    }
+</style>
 </head>
 
 <body>
@@ -243,6 +248,8 @@
         <section id="contact" class="section-left show">
             <div id="contact-content">
                 <h2>Contact Us</h2>
+                <img src="/components/Logos/Mapa.png" alt="Mapa ubicación" class="mapa-mobile">
+
                 <p>
                     Do you have any questions or need a quote for your next project?  
                     At <strong>J.Jr Signs</strong>, we’re ready to help you bring your ideas to life.  

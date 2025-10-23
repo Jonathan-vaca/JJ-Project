@@ -516,7 +516,7 @@ html, body {
       <div id="footer-placeholder"></div>
     <script>
         // Cargar header
-        fetch("../header/header.html")
+        fetch("/Header/header.html")
             .then(res => res.text())
             .then(data => {
                 document.getElementById("header-placeholder").innerHTML = data;
