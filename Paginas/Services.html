@@ -117,35 +117,51 @@
       object-fit: cover;
     }
 
-    /* Flecha volver arriba */
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #ff0000;
-      color: #ffffff;
-      padding: 10px 15px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      transition: all 0.3s ease;
-      z-index: 1000;
-    }
+
+.back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: #ff0000;
+  color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  transition: all 0.3s ease;
+  z-index: 1000;
+
+  /* evita el desplazamiento */
+  transform: translateZ(0);
+  contain: layout;
+  will-change: transform;
+  box-sizing: content-box;
+}
     .back-to-top.show {
       display: block;
     }
 
-    section, div, img, header, footer {
-      max-width: 100vw !important;
-      box-sizing: border-box;
-    }
-
-    * {
-      max-width: 100vw !important;
-      box-sizing: border-box !important;
-    }
-
     @media (max-width: 720px) {
+      .back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: #ff0000;
+  color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  transition: all 0.3s ease;
+  z-index: 1000;
+
+  /* evita el desplazamiento */
+  transform: translateZ(0);
+  contain: layout;
+  will-change: transform;
+  box-sizing: content-box;
+}
+
       .service-block {
         display: flex;
         flex-direction: column;
@@ -153,6 +169,7 @@
         text-align: center;
         gap: 20px;
         padding: 50px 8%;
+        overflow: hidden;
       }
 
       .service-block:nth-child(even) {
@@ -181,6 +198,20 @@
         max-width: 400px;
       }
     }
+    /* --- FIX TEMPORAL para eliminar cualquier scroll lateral --- */
+html, body {
+  overflow-x: clip !important; /* mejor que hidden, evita saltos en iOS */
+}
+
+* {
+  box-sizing: border-box;
+  max-width: 100vw;
+}
+
+img, section, div {
+  overflow-x: clip;
+}
+
   </style>
 </head>
 <body>
