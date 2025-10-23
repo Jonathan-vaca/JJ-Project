@@ -33,9 +33,6 @@ app.use("/api/posts", commentsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/gallery", galleryRoutes);
-// ===== Archivos SEO =====
-app.use(express.static(path.join(__dirname, "../"))); // asegura servir sitemap y robots desde raíz
-
 
 // ===== Ruta raíz =====
 app.get("/", (req, res) => {
