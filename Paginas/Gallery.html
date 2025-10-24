@@ -279,11 +279,19 @@ nav ul li a.active {
 
 
 @media (max-width: 540px) {
-  :root {
-    --card-w: 90px;
-    --card-h: 130px;
-  }
+.place {
+  font-size: 1.5rem;
+  line-height: 0.9;
+  margin: 0 0 16px 0;
+  font-weight: 800;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+}
 
+  .desc {
+    font-size: 0.9rem;
+  }
   .hero {
     position: relative;
     height: 100vh;
@@ -293,26 +301,32 @@ nav ul li a.active {
     align-items: center;
     padding-top: 80px;
     text-align: center;
-    background-size: 180% auto; /* 🔹 más grande verticalmente */
-    background-position: center center; /* 🔹 centrada */
+    background-size: 120% auto; /* 🔹 más grande verticalmente */
+    background-position: 50% 60%; /* mueve el foco 30% desde arriba */
     background-repeat: no-repeat;
     overflow: hidden;
   }
+  :root {
+    --card-w: 90px;
+    --card-h: 130px;
+  }
+
 
   /* Ajustes de layout */
   .cards-wrapper {
     width: 100%;
-    max-width: 360px;
-    margin: 20px auto 0 auto;
-    overflow: visible !important;
-    justify-content: center;
+    max-width: 260px; /* 🔹 ajusta según el ancho que quieras */
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .cards-row {
-    margin-top: 20px;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column; /* 🔹 UNA SOLA COLUMNA */
+    align-items: center;
+    gap: 14px;
+    margin-top: 24px;
   }
 
   header.transparent-header {
@@ -382,21 +396,6 @@ nav ul li a.active {
   100% { opacity: 1; }
 }
 
-.place {
-  font-size: 3rem;
-  line-height: 0.9;
-  margin: 0 0 16px 0;
-  font-weight: 800;
-  text-transform: uppercase;
-  opacity: 0;
-  animation: fadeUp 0.8s ease forwards;
-}
-
-.desc {
-  opacity: 0;
-  animation: fadeIn 1s ease forwards;
-  animation-delay: 0.3s;
-}
 
      </style>
 </head>
@@ -570,13 +569,23 @@ cardsAfter.forEach((c) => {
     c.style.transform = "translateX(-168px)"; // 🔹 movimiento horizontal en escritorio
   }
 });
-  requestAnimationFrame(() => {
-    clone.style.left = "0";
-    clone.style.top = "0";
-    clone.style.width = "100%";
-    clone.style.height = "100%";
-    clone.style.borderRadius = "0";
-  });
+requestAnimationFrame(() => {
+clone.style.position = "fixed";
+clone.style.top = "50%";
+clone.style.left = "50%";
+clone.style.transform = "translate(-50%, -50%)";
+clone.style.width = "100%";
+clone.style.height = "85%";git add .
+git commit -m "Sirvo carpeta components para imágenes"
+git push
+clone.style.borderRadius = "0";
+
+  // 🔹 SOLO aplicar ajustes de escala/posición en pantallas ≤ 540px
+  if (window.matchMedia("(max-width: 540px)").matches) {
+    clone.style.backgroundSize = "120% auto";   // Igual que .hero en móvil
+    clone.style.backgroundPosition = "center center";
+  }
+});
 
 setTimeout(() => {
   hero.style.backgroundImage = `url('${slides[index].imageUrl}')`;
@@ -609,14 +618,24 @@ setTimeout(() => {
   }, 1100);
 }
 
-  function activateIndex(newIndex, manual = false) {
-    if (animating) return;
-    newIndex = (newIndex + slides.length) % slides.length;
-    currentIndex = newIndex;
-    cardToBackground(newIndex);
-    if (manual) restartProgressBar();
-  }
+function activateIndex(newIndex, manual = false) {
+  if (animating) return;
+  newIndex = (newIndex + slides.length) % slides.length;
+  currentIndex = newIndex;
+  cardToBackground(newIndex);
 
+  if (manual) {
+    // 🔹 Reiniciar la barra de progreso
+    restartProgressBar();
+
+    // 🔹 Reiniciar el temporizador para evitar saltos de tiempo
+    clearInterval(autoplayTimer);
+    autoplayTimer = setInterval(() => {
+      activateIndex(currentIndex + 1);
+      fillProgressBar();
+    }, autoplayInterval);
+  }
+}
   nextBtn.onclick = () => activateIndex(currentIndex + 1, true);
   prevBtn.onclick = () => activateIndex(currentIndex - 1, true);
 
