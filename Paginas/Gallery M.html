@@ -22,7 +22,7 @@
       overflow-x: hidden;
     }
 
-    /* === GALERÍA ESTILO PINTEREST === */
+    /* === GALERÍA PINTEREST STYLE === */
     .gallery-container {
       column-count: 2;
       column-gap: 12px;
@@ -31,14 +31,14 @@
 
     .gallery-item {
       position: relative;
-      width: 100%;
-      display: inline-block;
-      margin-bottom: 12px;
       break-inside: avoid;
+      margin-bottom: 12px;
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 4px 18px rgba(0,0,0,0.6);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 0.8s ease forwards;
     }
 
     .gallery-item img {
@@ -75,11 +75,22 @@
         padding-top: 80px;
       }
     }
+
+    /* === ANIMACIÓN === */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 
 <body>
-
   <!-- HEADER -->
   <div id="header-placeholder"></div>
 
@@ -90,7 +101,7 @@
   <div id="footer-placeholder"></div>
 
   <script>
-    // Cargar header
+    // === Cargar header ===
     fetch("/Header/header.html")
       .then(res => res.text())
       .then(data => {
@@ -100,7 +111,7 @@
         document.body.appendChild(script);
       });
 
-    // Cargar footer
+    // === Cargar footer ===
     fetch("../footer/footer.html")
       .then(res => res.text())
       .then(data => {
@@ -114,7 +125,7 @@
         document.body.appendChild(script);
       });
 
-    // === GALERÍA COMPLETA (instantánea) ===
+    // === GALERÍA ===
     const galleryData = [
       { imageUrl: "/components/imagenes/Avery.jpeg", title: "Avery" },
       { imageUrl: "/components/imagenes/Baskin.jpeg", title: "Baskin" },
@@ -133,6 +144,7 @@
       galleryData.forEach(item => {
         const div = document.createElement("div");
         div.classList.add("gallery-item");
+
         div.innerHTML = `
           <img src="${item.imageUrl}" alt="${item.title}">
           <div class="item-title">${item.title}</div>
