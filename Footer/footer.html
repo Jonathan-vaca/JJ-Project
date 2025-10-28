@@ -2,46 +2,46 @@
 
 <footer class="footer">
   <div class="footer-container">
-    <!-- Lado izquierdo: logo y redes sociales -->
     <div class="footer-left">
       <img src="../components/Logos/NELogo.png" alt="Logo Empresa" class="footer-logo">
       <div class="social-icons">
-        <a href="https://www.tiktok.com/@jjrsigns?_t=ZP-8zZNGR5jA7z&_r=1"><i class="fab fa-tiktok"></i></a>
-        <a href="https://www.instagram.com/valllxdxd?igsh=MTU3N3UxOWJ3MTFmOA%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/sofia-ram%C3%ADrez-7443a4383?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.tiktok.com/@jjrsigns?_t=ZP-8zZNGR5jA7z&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/valllxdxd?igsh=MTU3N3UxOWJ3MTFmOA%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/sofia-ram%C3%ADrez-7443a4383?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <p class="footer-rights">© 2025 J.JR Signs — All rights reserved.</p>
     </div>
 
-    <!-- Lado derecho: formulario de contacto -->
     <div class="footer-right">
-      <form class="contact-form">
+      <form id="footer-form" class="contact-form">
         <h3>Contact us</h3>
 
         <div class="input-group">
-          <input type="text" required>
+          <input type="text" name="name" required>
           <label>Name</label>
         </div>
 
         <div class="input-group">
-          <input type="email" required>
+          <input type="email" name="email" required>
           <label>Email</label>
         </div>
 
         <div class="input-group">
-          <input type="text" required>
+          <input type="text" name="subject" required>
           <label>Subject</label>
         </div>
 
         <div class="input-group">
-          <textarea rows="4" required></textarea>
+          <textarea name="message" rows="4" required></textarea>
           <label>Message</label>
         </div>
 
         <button type="submit" class="btn-send">
           <i class="fas fa-paper-plane"></i> Send
         </button>
+        <p id="footer-status" style="margin-top:10px; font-weight:bold; text-align:center;"></p>
       </form>
     </div>
   </div>
 </footer>
+<script src="/Footer/footer.js"></script>

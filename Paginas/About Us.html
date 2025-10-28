@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="../components/Logos/logo blanco.png">
 
     <!-- Header styles -->
-    <link rel="stylesheet" href="../header/header.css">
+    <link rel="stylesheet" href="/Header/header.css">
 <style>
   :root{
     --accent:#ff0000;
@@ -526,18 +526,43 @@ html, body {
             });
 
         // Cargar footer
+// Cargar footer
         fetch("../footer/footer.html")
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById("footer-placeholder").innerHTML = data;
-                const link = document.createElement("link");
-                link.rel = "stylesheet";
-                link.href = "../footer/footer.css";
-                document.head.appendChild(link);
-                const script = document.createElement("script");
-                script.src = "../footer/footer.js";
-                document.body.appendChild(script);
-            });
+  .then(res => res.text())
+  .then(data => {
+    const placeholder = document.getElementById("footer-placeholder");
+    placeholder.innerHTML = data;
+
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "../Footer/footer.css";
+    document.head.appendChild(link);
+
+    // Esperar al siguiente frame
+    requestAnimationFrame(() => {
+      const script = document.createElement("script");
+      script.src = "../Footer/footer.js";
+      document.body.appendChild(script);
+    });
+
+    // 🔹 Esperar un poco para que se inserte el contenido del footer
+    setTimeout(() => {
+      const backToTopBtn = document.querySelector(".back-to-top");
+      if (!backToTopBtn) return;
+
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 200) {
+          backToTopBtn.classList.add("show");
+        } else {
+          backToTopBtn.classList.remove("show");
+        }
+      });
+      backToTopBtn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }, 500);
+  })
+  .catch(err => console.error("Error cargando footer:", err))
 
         // Animación secciones al aparecer
         const sections = document.querySelectorAll("section");
@@ -564,21 +589,6 @@ const elemsToObserve = [
 // Evitar observar duplicados y registrar
 const set = new Set(elemsToObserve);
 set.forEach(el => observer.observe(el));
-
-        // Flecha volver arriba
-        const backToTopBtn = document.querySelector(".back-to-top");
-        window.addEventListener("scroll", function () {
-            if (window.scrollY > 200) {
-                backToTopBtn.classList.add("show");
-            } else {
-                backToTopBtn.classList.remove("show");
-            }
-        });
-        backToTopBtn.addEventListener("click", function () {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-
-        window.onbeforeunload = () => window.scrollTo(0,0);
     </script>
 <script>
   console.log('Altura del documento:', document.body.scrollHeight);
