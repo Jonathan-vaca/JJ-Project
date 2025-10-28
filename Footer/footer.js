@@ -1,6 +1,10 @@
-document.addEventListener("DOMContentLoaded", function () {
+// Footer/footer.js
+
+function initFooterForm() {
   const form = document.getElementById("footer-form");
   const statusText = document.getElementById("footer-status");
+
+  if (!form || !statusText) return; // Si aún no existe el footer, salir.
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault(); // Evita recargar o redirigir
@@ -32,4 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error(error);
     }
   });
-});
+}
+
+// 1️⃣ Si el footer está directamente en la página (como en footer.html)
+document.addEventListener("DOMContentLoaded", initFooterForm);
+
+// 2️⃣ Si el footer se carga dinámicamente (como en About Us.html)
+window.initFooterForm = initFooterForm;

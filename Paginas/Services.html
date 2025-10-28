@@ -316,15 +316,26 @@ img, section, div {
       document.body.appendChild(script);
     });
 
-  fetch("../footer/footer.html")
-    .then(res => res.text())
-    .then(data => {
+// Cargar footer
+fetch("../footer/footer.html")
+  .then(res => res.text())
+  .then(data => {
       document.getElementById("footer-placeholder").innerHTML = data;
+
+      // Agregar CSS del footer
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "../footer/footer.css";
+      document.head.appendChild(link);
+
+      // Agregar JS del footer y ejecutar cuando cargue
       const script = document.createElement("script");
       script.src = "../footer/footer.js";
+      script.onload = () => {
+        if (typeof initFooterForm === "function") initFooterForm();
+      };
       document.body.appendChild(script);
-    });
-
+  });
   // ---- Animaciones personalizadas ----
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {

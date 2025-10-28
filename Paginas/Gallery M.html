@@ -283,18 +283,26 @@
         document.body.appendChild(script);
       });
 
-    fetch("../footer/footer.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("footer-placeholder").innerHTML = data;
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = "../footer/footer.css";
-        document.head.appendChild(link);
-        const script = document.createElement("script");
-        script.src = "../footer/footer.js";
-        document.body.appendChild(script);
-      });
+// Cargar footer
+fetch("../footer/footer.html")
+  .then(res => res.text())
+  .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+
+      // Agregar CSS del footer
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "../footer/footer.css";
+      document.head.appendChild(link);
+
+      // Agregar JS del footer y ejecutar cuando cargue
+      const script = document.createElement("script");
+      script.src = "../footer/footer.js";
+      script.onload = () => {
+        if (typeof initFooterForm === "function") initFooterForm();
+      };
+      document.body.appendChild(script);
+  });
 
     const phoneNumber = "14702757046";
     const emailAddress = "Jchaparrovaca@gmail.com";
