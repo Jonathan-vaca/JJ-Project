@@ -3,105 +3,277 @@
 <head>
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family:Bebas+Neue&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery M | J.Jr Signs</title>
   <link rel="icon" type="image/png" href="../components/Logos/logo blanco.png">
 
-  <!-- Header styles -->
   <link rel="stylesheet" href="../header/header.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
-  <style>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    overflow-x: hidden;
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: center;
+    position: relative;
+  }
+
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 65vh;
+    background: linear-gradient(180deg, #111111 0%, #0a0a0a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    animation: fadeUp 1s ease forwards;
+  }
+
+  .hero-content h1 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+    opacity: 0.9;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+
+  .contact-btns {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 14px;
+  }
+
+  .contact-btn {
+    background: #25d366;
+    border: none;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .contact-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255,255,255,0.4);
+  }
+
+  .contact-btn img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
+  }
+
+  .contact-btn.gmail {
+    background: #ffffff;
+  }
+
+  .contact-btn.gmail img {
+    width: 36px;
+    height: 36px;
+    filter: none;
+  }
+
+  .gallery-container {
+    column-count: 2;
+    column-gap: 12px;
+    padding: 60px 12px 90px;
+    animation: fadeUp 1s ease forwards;
+  }
+
+  .gallery-item {
+    position: relative;
+    break-inside: avoid;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.6);
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1s ease forwards;
+    cursor: pointer;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 14px;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .item-title {
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    right: 10px;
+    font-weight: 600;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+    font-size: 14px;
+    color: #fff;
+  }
+
+  /* === POPUP === */
+  .contact-popup {
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.9);
+    padding: 20px;
+    border-radius: 16px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  .contact-popup.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .contact-popup .contact-btn {
+    width: 46px;
+    height: 46px;
+  }
+
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+.back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: #ff0000;
+  color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  transform: translateZ(0);
+  contain: layout;
+  will-change: transform;
+  box-sizing: content-box;
+}
+
+.back-to-top.show {
+  display: block;
+}
+
+  @media (max-width: 540px) {
     body {
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      color: #fff;
-      font-family: "Poppins", sans-serif;
-      overflow-x: hidden;
+      background: linear-gradient(180deg, #000000 50%, #000000 0%) !important;
     }
 
-    /* === GALERÍA PINTEREST STYLE === */
+  .back-to-top {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 10px 15px;
+  }
+
     .gallery-container {
       column-count: 2;
-      column-gap: 12px;
-      padding: 90px 12px 80px;
+      padding-top: 40px;
     }
 
-    .gallery-item {
-      position: relative;
-      break-inside: avoid;
-      margin-bottom: 12px;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.6);
-      opacity: 0;
-      transform: translateY(40px);
-      animation: fadeUp 0.8s ease forwards;
+    .hero {
+      height: 40vh;
+      background: linear-gradient(180deg, #808080 0%, #0a0a0a 100%) !important;
     }
 
-    .gallery-item img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
-      border-radius: 14px;
-      transition: transform 0.3s ease;
+    .hero-content h1 {
+      font-size: 2.3rem;
     }
-
-    .gallery-item:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-
-    .item-title {
-      position: absolute;
-      bottom: 8px;
-      left: 10px;
-      right: 10px;
-      font-weight: 600;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
-      font-size: 14px;
-      color: #fff;
-    }
-
-    @media (max-width: 480px) {
-      .gallery-container {
-        column-count: 2;
-        padding-top: 80px;
-      }
-    }
-
-    /* === ANIMACIÓN === */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
-  <!-- HEADER -->
   <div id="header-placeholder"></div>
 
-  <!-- GALERÍA -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Our Gallery</h1>
+      <p>If you are interested in contacting us and requesting a personalized quote, please click one of the buttons below.</p>
+      <div class="contact-btns">
+        <button class="contact-btn" id="btnWhatsapp" title="Contact via WhatsApp">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp Logo">
+        </button>
+        <button class="contact-btn gmail" id="btnEmail" title="Contact via Gmail">
+          <img src="/components/Logos/Email.png" alt="Gmail Logo">
+        </button>
+      </div>
+    </div>
+  </section>
+
   <div class="gallery-container" id="gallery"></div>
 
-  <!-- FOOTER -->
+  <!-- POPUP -->
+  <div class="contact-popup" id="contactPopup">
+    <button class="contact-btn" id="popupWhatsapp">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp">
+    </button>
+    <button class="contact-btn gmail" id="popupEmail">
+      <img src="/components/Logos/Email.png" alt="Email">
+    </button>
+  </div>
+
   <div id="footer-placeholder"></div>
 
   <script>
-    // === Cargar header ===
     fetch("/Header/header.html")
       .then(res => res.text())
       .then(data => {
@@ -111,7 +283,6 @@
         document.body.appendChild(script);
       });
 
-    // === Cargar footer ===
     fetch("../footer/footer.html")
       .then(res => res.text())
       .then(data => {
@@ -125,7 +296,20 @@
         document.body.appendChild(script);
       });
 
-    // === GALERÍA ===
+    const phoneNumber = "14702757046";
+    const emailAddress = "Jchaparrovaca@gmail.com";
+    const message = encodeURIComponent("Hello, I would like to quote a personalized service.");
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("btnWhatsapp").addEventListener("click", () => {
+        window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+      });
+
+      document.getElementById("btnEmail").addEventListener("click", () => {
+        window.location.href = `mailto:${emailAddress}?subject=Service%20Quote%20Request&body=${message}`;
+      });
+    });
+
     const galleryData = [
       { imageUrl: "/components/imagenes/Avery.jpeg", title: "Avery" },
       { imageUrl: "/components/imagenes/Baskin.jpeg", title: "Baskin" },
@@ -139,21 +323,55 @@
     ];
 
     const galleryContainer = document.getElementById("gallery");
+    const popup = document.getElementById("contactPopup");
 
     function renderGallery() {
       galleryData.forEach(item => {
         const div = document.createElement("div");
         div.classList.add("gallery-item");
-
         div.innerHTML = `
           <img src="${item.imageUrl}" alt="${item.title}">
           <div class="item-title">${item.title}</div>
         `;
+        div.addEventListener("click", () => showPopup());
         galleryContainer.appendChild(div);
       });
     }
 
+    function showPopup() {
+      popup.classList.add("active");
+      setTimeout(() => popup.classList.remove("active"), 2000);
+    }
+
+    document.getElementById("popupWhatsapp").addEventListener("click", () => {
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+    });
+
+    document.getElementById("popupEmail").addEventListener("click", () => {
+      window.location.href = `mailto:${emailAddress}?subject=Service%20Quote%20Request&body=${message}`;
+    });
+
     document.addEventListener("DOMContentLoaded", renderGallery);
+  </script>  <div class="back-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+  <script>
+    const backToTopBtn = document.querySelector(".back-to-top");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 200) {
+    backToTopBtn.classList.add("show");
+  } else {
+    backToTopBtn.classList.remove("show");
+  }
+});
+
+backToTopBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
   </script>
+
+
 </body>
 </html>
