@@ -336,6 +336,43 @@ h2.section-title.show {
   background: none;
 }
 
+section{padding:0px 50px}
+.wrap{width:1120px;max-width:95%;margin:0 auto}
+.milestone img{width:320px;height:180px;object-fit:cover;border-radius:8px;margin-left:auto}
+.milestone::after{content:'';position:absolute;left:5px;top:-4px;height:2px;width:700px;border-radius:2px;background:#fff;opacity:0.15;}
+.milestone::before{content:'';position:absolute;left:-6px;top:-10px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,209,102,0.06)}
+/* 🔧 Fix visual para eliminar espacios laterales */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #ff0000;
+      color: #ffffff;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    .back-to-top.show {
+      display: block;
+    }
+
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* evita cualquier desplazamiento horizontal */
+  background-color: #0b0b0b;
+}
+
+
+.wrap {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 @media (max-width:900px){
   .included-grid .box:nth-child(1) { transition-delay: 0.04s; }
   .included-grid .box:nth-child(2) { transition-delay: 0.08s; }
@@ -358,7 +395,17 @@ section.company-section * {
   z-index: 1;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 540px) {
+    .milestone img{width:150px;height:110px;object-fit:cover;border-radius:8px;margin-left:auto}
+  .company-section .about .text,
+  .company-section .milestone div {
+    max-width: 90%;           /* 🔹 evita que el texto se salga del borde */
+    margin: 0 auto;           /* 🔹 centra el contenido */
+    text-align: center;       /* 🔹 mejora legibilidad en pantallas pequeñas */
+    overflow-wrap: break-word;/* 🔹 rompe palabras largas */
+    line-height: 1.5;         /* 🔹 mejora la lectura */
+    font-size: 14px;          /* 🔹 texto un poco más compacto */
+  }
   section.company-section {
         background-image: url('/components/Images/prueba1.jpg') !important; /* ✅ Imagen para móvil */
         background-repeat: repeat;   /* 🔄 Repite la imagen */
@@ -416,44 +463,7 @@ section.company-section * {
 
   .milestone{position:relative;margin-bottom:30px;padding-left:1px;display:flex;gap:4px;align-items:center}
 
-
-}
-section{padding:0px 50px}
-.wrap{width:1120px;max-width:95%;margin:0 auto}
-.milestone img{width:320px;height:180px;object-fit:cover;border-radius:8px;margin-left:auto}
-.milestone::after{content:'';position:absolute;left:5px;top:-4px;height:2px;width:700px;border-radius:2px;background:#fff;opacity:0.15;}
-.milestone::before{content:'';position:absolute;left:-6px;top:-10px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,209,102,0.06)}
-/* 🔧 Fix visual para eliminar espacios laterales */
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #ff0000;
-      color: #ffffff;
-      padding: 10px 15px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      transition: all 0.3s ease;
-      z-index: 1000;
-    }
-    .back-to-top.show {
-      display: block;
-    }
-
-html, body {
-  width: 100%;
-  overflow-x: hidden; /* evita cualquier desplazamiento horizontal */
-  background-color: #0b0b0b;
-}
-
-
-.wrap {
-  width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+ }
 
 
 </style>
