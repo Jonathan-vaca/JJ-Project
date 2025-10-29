@@ -462,6 +462,110 @@ section.company-section * {
   .milestone{position:relative;margin-bottom:30px;padding-left:1px;display:flex;gap:4px;align-items:center}
 
  }
+@media (max-width: 420px) {
+
+    .milestone div {
+    max-width: 90%;           /* 🔹 evita que el texto se salga del borde */
+    margin: 0 auto;           /* 🔹 centra el contenido */
+    text-align: center;       /* 🔹 mejora legibilidad en pantallas pequeñas */
+    overflow-wrap: break-word;/* 🔹 rompe palabras largas */
+    line-height: 1.5;         /* 🔹 mejora la lectura */
+    font-size: 14px;          /* 🔹 texto un poco más compacto */
+  }
+.milestone {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra el conjunto horizontalmente */
+  gap: 0 !important;       /* ❌ Sin espacio entre texto e imagen */
+}
+
+.milestone.left {
+  flex-direction: row-reverse; /* Imagen a la izquierda, texto a la derecha */
+}
+.milestone img {
+  width: 120px !important;    /* 🔹 tamaño uniforme */
+  height: auto;
+  margin: 0 !important;       /* ❌ elimina margen automático */
+  display: block;
+}
+  .milestone-content {
+    max-width: 10%; /* 🔹 evita que el texto empuje demasiado la imagen */
+  }
+
+  .company-section .about .text{
+    max-width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    font-size: 13px;
+  }
+  .company-section {
+  margin: 0 !important;
+  }.milestone > div {
+  max-width: 45% !important;
+  padding: 0 10px !important;   /* 👉 espacio igual en ambos lados */
+  margin: 0 !important;
+  line-height: 1.4;
+}
+.milestone > div h3,
+.milestone > div p {
+  margin: 0 !important;       /* ❌ elimina el margen de los textos */
+  padding: 0 !important;      /* ❌ elimina padding interno de los textos */
+}.milestone img {
+    width: 160 !important;     /* 🔹 tamaño equilibrado de imagen */
+    height: auto;
+    flex-shrink: 0;
+  }
+  section.company-section {
+    background-image: url('/components/Images/prueba1.jpg') !important;
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: #000000 !important;
+  }
+
+  section.company-section::before {
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  .about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .about .text {
+    max-width: 90%;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .timeline {
+    margin-top: 6px;
+    margin-bottom: 16px;
+  }
+
+
+  .included-grid {
+    grid-template-columns: repeat(2, 1fr); /* ✅ 2 columnas */
+    gap: 8px; /* 🔹 separa ligeramente las columnas */
+    margin-top: 10px;
+  }
+
+  .included-grid .box img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 100px; /* 🔹 tamaño adecuado para móviles */
+  }
+  .bottom-cta {
+    margin-top: 14px;
+  }
+}
+
 
 /* ✅ Ajuste especial para iPhone con notch (iPhone X en adelante) */
 @supports (padding: max(0px)) {
