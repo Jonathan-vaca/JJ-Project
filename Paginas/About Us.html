@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
     <title>J.Jr Signs</title>
     <link rel="icon" type="image/png" href="../components/Logos/logo blanco.png">
 
@@ -203,9 +204,6 @@ section.company-section * {
 }
 
 /* ✅ FIX: elimina espacio negro arriba SOLO en esta página */
-body {
-  padding-top: 0 !important;
-}
 
 /* ✅ Ajuste compacto debajo de "About Us" */
 .about {
@@ -465,6 +463,24 @@ section.company-section * {
 
  }
 
+/* ✅ Ajuste especial para iPhone con notch (iPhone X en adelante) */
+@supports (padding: max(0px)) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* ✅ Asegura que los contenedores principales no queden pegados arriba */
+.company-section,
+.wrap,
+.about,
+.hero {
+  padding-top: max(20px, env(safe-area-inset-top));
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
 
 </style>
 </head>
