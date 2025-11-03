@@ -405,12 +405,14 @@ section.company-section * {
     font-size: 14px;          /* 🔹 texto un poco más compacto */
   }
   section.company-section {
-        background-image: url('/components/Images/prueba1.jpg') !important; /* ✅ Imagen para móvil */
-        background-repeat: repeat;   /* 🔄 Repite la imagen */
-        background-size: contain;    /* Ajusta para que se repita completa */
-        background-position: center; /* Centrada */
-        background-color: #000000 !important; /* Color de respaldo */
-  }
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), /* capa oscura */
+    url('/components/fonts/ppoo.jpg') !important;
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: #000 !important;
+}
 
   section.company-section::before {
     background: rgba(0, 0, 0, 0.25);    /* ✅ Más transparente para dejar ver el fondo */
