@@ -520,11 +520,13 @@ section.company-section * {
     flex-shrink: 0;
   }
   section.company-section {
-    background-image: url('/components/fonts/ppoo.jpg') !important;
-    background-repeat: repeat;
-    background-size: contain;
-    background-position: center;
-    background-color: #000000 !important;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), /* capa oscura */
+    url('/components/fonts/ppoo.jpg') !important;
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: #000 !important;
   }
 
   section.company-section::before {
