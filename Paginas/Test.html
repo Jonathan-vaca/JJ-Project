@@ -4,8 +4,6 @@
 
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&display=swap" rel="stylesheet">
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,10 +11,8 @@
 <title>J.Jr Signs</title>
 <link rel="icon" type="image/png" href="../components/Logos/logo blanco.png">
 
-<!-- Header CSS -->
 <link rel="stylesheet" href="../header/header.css">
 
-<!-- Font Awesome -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
 <style>
@@ -78,7 +74,7 @@ padding:80px 10%;
 text-align:center;
 color:white;
 font-size:36px;
-margin-bottom:50px;
+margin-bottom:60px;
 letter-spacing:3px;
 font-family:'Poppins',sans-serif;
 font-style:italic;
@@ -86,68 +82,127 @@ font-style:italic;
 
 .gallery-grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
+grid-template-columns:repeat(2,1fr);
+gap:50px;
 }
+
+/* ===== CARD ===== */
 
 .gallery-card{
-position:relative;
+background:#00000000;
+border-radius:10px;
 overflow:hidden;
-border-radius:6px;
-cursor:pointer;
+transition:transform .3s;
 }
 
-.gallery-card img{
+/* ===== IMAGENES ===== */
+
+.preview-main img{
 width:100%;
-height:100%;
+height:260px;
 object-fit:cover;
 display:block;
 transition:transform .4s ease;
 }
 
-.gallery-card:hover img{
-transform:scale(1.1);
+.preview-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+padding:10px;
 }
 
+.preview-row img{
+width:100%;
+height:140px;
+object-fit:cover;
+display:block;
+transition:transform .4s ease;
+}
+
+/* hover imagen */
+
+.gallery-card img:hover{
+transform:scale(1.05) translateY(-4px);
+}
+
+/* ===== OVERLAY ===== */
+
 .overlay{
-position:absolute;
-bottom:0;
-left:0;
-right:0;
-padding:25px;
-background:linear-gradient(transparent, rgba(0,0,0,0.9));
-color:white;
+padding:15px 25px 25px 25px;
+text-align:center;
+background:#00000000;
 }
 
 .overlay h3{
-font-size:18px;
-margin-bottom:12px;
+font-size:20px;
+margin-bottom:10px;
 }
+
+/* ===== BOTON NEON BASE ===== */
 
 .overlay button{
-background:#c1121f;
-border:none;
-padding:10px 18px;
-color:white;
+background:transparent;
+padding:10px 28px;
 font-size:12px;
-letter-spacing:1px;
+letter-spacing:2px;
 cursor:pointer;
-transition:background .3s;
+border-radius:4px;
+transition:all .3s ease;
 }
 
-.overlay button:hover{
-background:#e63946;
+/* ===== NEON 1 ROJO ===== */
+
+.neon-red button{
+color:#ff2a2a;
+border:2px solid #ff2a2a;
+box-shadow:0 0 8px #ff2a2a;
+}
+
+.neon-red button:hover{
+background:#ff2a2a;
+color:black;
+box-shadow:
+0 0 10px #ff2a2a,
+0 0 20px #ff2a2a,
+0 0 40px #ff2a2a;
+}
+
+/* ===== NEON 2 BLANCO ===== */
+
+.neon-white button{
+color:white;
+border:2px solid white;
+box-shadow:0 0 8px white;
+}
+
+.neon-white button:hover{
+background:white;
+color:black;
+box-shadow:
+0 0 10px white,
+0 0 25px white;
+}
+
+/* ===== NEON 3 NEGRO/ROJO ===== */
+
+.neon-dark button{
+color:white;
+border:2px solid #ff2a2a;
+box-shadow:0 0 8px #ff2a2a inset;
+}
+
+.neon-dark button:hover{
+background:black;
+color:#ff2a2a;
+box-shadow:
+0 0 10px #ff2a2a,
+0 0 25px #ff2a2a;
 }
 
 /* ===== RESPONSIVE ===== */
 
-@media(max-width:1000px){
-.gallery-grid{
-grid-template-columns:repeat(2,1fr);
-}
-}
-
-@media(max-width:600px){
+@media(max-width:900px){
 .gallery-grid{
 grid-template-columns:1fr;
 }
@@ -179,65 +234,140 @@ display:block;
 <!-- HEADER -->
 <div id="header-placeholder"></div>
 
-
-<!-- GALERIA -->
-
 <section class="gallery-section">
 
 <h2 class="gallery-title">GALLERY</h2>
 
 <div class="gallery-grid">
 
-<div class="gallery-card">
-<img src="https://picsum.photos/600/400?1">
+
+<!-- CATEGORY 1 -->
+
+<div class="gallery-card neon-red">
+
+<div class="preview-main">
+<img src="https://picsum.photos/800/500?1">
+</div>
+
+<div class="preview-row">
+<img src="https://picsum.photos/400/300?2">
+<img src="https://picsum.photos/400/300?3">
+</div>
+
 <div class="overlay">
 <h3>CUSTOM SIGN FABRICATION</h3>
 <button>VIEW GALLERY</button>
 </div>
+
 </div>
 
-<div class="gallery-card">
-<img src="https://picsum.photos/600/400?2">
+
+<!-- CATEGORY 2 -->
+
+<div class="gallery-card neon-white">
+
+<div class="preview-main">
+<img src="https://picsum.photos/800/500?4">
+</div>
+
+<div class="preview-row">
+<img src="https://picsum.photos/400/300?5">
+<img src="https://picsum.photos/400/300?6">
+</div>
+
 <div class="overlay">
-<h3>VEHICLE WRAPS</h3>
+<h3>VEHICLE WRAPS & FLEET GRAPHICS</h3>
 <button>VIEW GALLERY</button>
 </div>
+
 </div>
 
-<div class="gallery-card">
-<img src="https://picsum.photos/600/400?3">
-<div class="overlay">
-<h3>CHANNEL LETTERS</h3>
-<button>VIEW GALLERY</button>
-</div>
+
+<!-- CATEGORY 3 -->
+
+<div class="gallery-card neon-dark">
+
+<div class="preview-main">
+<img src="https://picsum.photos/800/500?7">
 </div>
 
-<div class="gallery-card">
-<img src="https://picsum.photos/600/400?4">
-<div class="overlay">
-<h3>LARGE FORMAT PRINTING</h3>
-<button>VIEW GALLERY</button>
-</div>
+<div class="preview-row">
+<img src="https://picsum.photos/400/300?8">
+<img src="https://picsum.photos/400/300?9">
 </div>
 
-<div class="gallery-card">
-<img src="https://picsum.photos/600/400?5">
 <div class="overlay">
 <h3>ARCHITECTURAL GRAPHICS</h3>
 <button>VIEW GALLERY</button>
 </div>
+
 </div>
 
-<div class="gallery-card">
-<img src="https://picsum.photos/600/400?6">
+
+<!-- CATEGORY 4 -->
+
+<div class="gallery-card neon-red">
+
+<div class="preview-main">
+<img src="https://picsum.photos/800/500?10">
+</div>
+
+<div class="preview-row">
+<img src="https://picsum.photos/400/300?11">
+<img src="https://picsum.photos/400/300?12">
+</div>
+
 <div class="overlay">
-<h3>MONUMENT & PYLON SIGNS</h3>
+<h3>ILLUMINATED & LED SIGNAGE</h3>
 <button>VIEW GALLERY</button>
 </div>
+
+</div>
+
+
+<!-- CATEGORY 5 -->
+
+<div class="gallery-card neon-white">
+
+<div class="preview-main">
+<img src="https://picsum.photos/800/500?13">
+</div>
+
+<div class="preview-row">
+<img src="https://picsum.photos/400/300?14">
+<img src="https://picsum.photos/400/300?15">
+</div>
+
+<div class="overlay">
+<h3>CHANNEL LETTERS</h3>
+<button>VIEW GALLERY</button>
 </div>
 
 </div>
 
+
+<!-- CATEGORY 6 -->
+
+<div class="gallery-card neon-dark">
+
+<div class="preview-main">
+<img src="https://picsum.photos/800/500?16">
+</div>
+
+<div class="preview-row">
+<img src="https://picsum.photos/400/300?17">
+<img src="https://picsum.photos/400/300?18">
+</div>
+
+<div class="overlay">
+<h3>LARGE FORMAT PRINTING</h3>
+<button>VIEW GALLERY</button>
+</div>
+
+</div>
+
+
+</div>
 </section>
 
 
@@ -253,7 +383,7 @@ display:block;
 
 <script>
 
-/* ===== HEADER ===== */
+/* HEADER */
 
 fetch("/Header/header.html")
 .then(res=>res.text())
@@ -265,7 +395,7 @@ script.src="../header/header.js"
 document.body.appendChild(script)
 })
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 
 fetch("../footer/footer.html")
 .then(res=>res.text())
@@ -289,7 +419,7 @@ document.body.appendChild(script)
 
 })
 
-/* ===== BOTON VOLVER ARRIBA ===== */
+/* BOTON ARRIBA */
 
 const backToTopBtn=document.querySelector(".back-to-top")
 
