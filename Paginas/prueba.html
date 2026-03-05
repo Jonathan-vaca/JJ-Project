@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&display=swap" rel="stylesheet">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>J.Jr Signs</title>
+<link rel="icon" type="image/png" href="../components/Logos/logo blanco.png">
+
+<!-- Header CSS -->
+<link rel="stylesheet" href="../header/header.css">
+
+<!-- Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+<style>
+
+/* ===== MISMO FONDO ===== */
+
+body{
+margin:0;
+padding:0;
+font-family:'Open Sans',sans-serif;
+min-height:100vh;
+color:#fff;
+background-color:#000;
+background-image:url('/components/Images/Signs Fondo.jpeg');
+background-repeat:repeat;
+background-size:contain;
+background-position:center;
+position:relative;
+}
+
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+pointer-events:none;
+z-index:-1;
+}
+
+@media screen and (max-width:768px){
+
+body{
+background-image:
+linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
+url('/components/fonts/10.jpeg') !important;
+
+background-repeat:repeat;
+background-size:contain;
+background-position:center;
+background-color:#000 !important;
+}
+
+body::before{
+display:none !important;
+}
+
+}
+
+/* ===== GALERIA ===== */
+
+.gallery-section{
+padding:80px 10%;
+}
+
+.gallery-title{
+text-align:center;
+color:white;
+font-size:36px;
+margin-bottom:50px;
+letter-spacing:3px;
+font-family:'Poppins',sans-serif;
+font-style:italic;
+}
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.gallery-card{
+position:relative;
+overflow:hidden;
+border-radius:6px;
+cursor:pointer;
+}
+
+.gallery-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+transition:transform .4s ease;
+}
+
+.gallery-card:hover img{
+transform:scale(1.1);
+}
+
+.overlay{
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+padding:25px;
+background:linear-gradient(transparent, rgba(0,0,0,0.9));
+color:white;
+}
+
+.overlay h3{
+font-size:18px;
+margin-bottom:12px;
+}
+
+.overlay button{
+background:#c1121f;
+border:none;
+padding:10px 18px;
+color:white;
+font-size:12px;
+letter-spacing:1px;
+cursor:pointer;
+transition:background .3s;
+}
+
+.overlay button:hover{
+background:#e63946;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:1000px){
+.gallery-grid{
+grid-template-columns:repeat(2,1fr);
+}
+}
+
+@media(max-width:600px){
+.gallery-grid{
+grid-template-columns:1fr;
+}
+}
+
+/* ===== FLECHA ===== */
+
+.back-to-top{
+position:fixed;
+right:20px;
+top:50%;
+transform:translateY(-50%);
+font-size:32px;
+color:red;
+cursor:pointer;
+z-index:999;
+display:none;
+}
+
+.back-to-top.show{
+display:block;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div id="header-placeholder"></div>
+
+
+<!-- GALERIA -->
+
+<section class="gallery-section">
+
+<h2 class="gallery-title">GALLERY</h2>
+
+<div class="gallery-grid">
+
+<div class="gallery-card">
+<img src="https://picsum.photos/600/400?1">
+<div class="overlay">
+<h3>CUSTOM SIGN FABRICATION</h3>
+<button>VIEW GALLERY</button>
+</div>
+</div>
+
+<div class="gallery-card">
+<img src="https://picsum.photos/600/400?2">
+<div class="overlay">
+<h3>VEHICLE WRAPS</h3>
+<button>VIEW GALLERY</button>
+</div>
+</div>
+
+<div class="gallery-card">
+<img src="https://picsum.photos/600/400?3">
+<div class="overlay">
+<h3>CHANNEL LETTERS</h3>
+<button>VIEW GALLERY</button>
+</div>
+</div>
+
+<div class="gallery-card">
+<img src="https://picsum.photos/600/400?4">
+<div class="overlay">
+<h3>LARGE FORMAT PRINTING</h3>
+<button>VIEW GALLERY</button>
+</div>
+</div>
+
+<div class="gallery-card">
+<img src="https://picsum.photos/600/400?5">
+<div class="overlay">
+<h3>ARCHITECTURAL GRAPHICS</h3>
+<button>VIEW GALLERY</button>
+</div>
+</div>
+
+<div class="gallery-card">
+<img src="https://picsum.photos/600/400?6">
+<div class="overlay">
+<h3>MONUMENT & PYLON SIGNS</h3>
+<button>VIEW GALLERY</button>
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+
+
+<!-- FLECHA -->
+<div class="back-to-top">
+<i class="fa fa-arrow-up"></i>
+</div>
+
+
+<script>
+
+/* ===== HEADER ===== */
+
+fetch("/Header/header.html")
+.then(res=>res.text())
+.then(data=>{
+document.getElementById("header-placeholder").innerHTML=data
+
+const script=document.createElement("script")
+script.src="../header/header.js"
+document.body.appendChild(script)
+})
+
+/* ===== FOOTER ===== */
+
+fetch("../footer/footer.html")
+.then(res=>res.text())
+.then(data=>{
+
+document.getElementById("footer-placeholder").innerHTML=data
+
+const link=document.createElement("link")
+link.rel="stylesheet"
+link.href="../footer/footer.css"
+document.head.appendChild(link)
+
+const script=document.createElement("script")
+script.src="../footer/footer.js"
+
+script.onload=()=>{
+if(typeof initFooterForm==="function") initFooterForm()
+}
+
+document.body.appendChild(script)
+
+})
+
+/* ===== BOTON VOLVER ARRIBA ===== */
+
+const backToTopBtn=document.querySelector(".back-to-top")
+
+window.addEventListener("scroll",function(){
+
+if(window.scrollY>200){
+backToTopBtn.classList.add("show")
+}else{
+backToTopBtn.classList.remove("show")
+}
+
+})
+
+backToTopBtn.addEventListener("click",function(){
+window.scrollTo({top:0,behavior:"smooth"})
+})
+
+window.onbeforeunload=()=>window.scrollTo(0,0)
+
+</script>
+
+</body>
+</html>
