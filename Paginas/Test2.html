@@ -28,23 +28,22 @@ background-image:url('/components/Images/bp.jpg');
 background-repeat:repeat;
 background-size:contain;
 background-position:center;
-}
 
-/* 🔥 SOLUCIÓN HEADER FIX */
-#header-placeholder{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-z-index:1000;
-}
-
-/* para que el contenido no quede debajo del header */
-body{
+/* 🔥 ESPACIO PARA HEADER FIJO */
 padding-top:80px;
 }
 
-/* ===== HERO ===== */
+/* 🔥 HEADER FIJO */
+#header-placeholder{
+width:100%;
+position:fixed;
+top:0;
+left:0;
+z-index:9999;
+background:#000;
+}
+
+/* HERO */
 
 .hero{
 height:90vh;
@@ -81,7 +80,7 @@ background:#ff2a2a;
 color:black;
 }
 
-/* ===== SECTION ===== */
+/* SECTION */
 
 .section{
 padding:100px 10%;
@@ -89,11 +88,11 @@ max-width:1400px;
 margin:auto;
 }
 
-/* ===== SERVICES ===== */
+/* SERVICES */
 
 .services{
 display:grid;
-grid-template-columns:repeat(4,1fr);
+grid-template-columns:repeat(3,1fr);
 gap:30px;
 }
 
@@ -117,7 +116,7 @@ margin-bottom:15px;
 color:#ff2a2a;
 }
 
-/* 🔥 DESCRIPCIÓN HOVER */
+/* HOVER DESC */
 .service-card .desc{
 position:absolute;
 bottom:0;
@@ -134,7 +133,7 @@ font-size:13px;
 transform:translateY(0);
 }
 
-/* ===== GALLERY ===== */
+/* GALLERY */
 
 .gallery{
 display:grid;
@@ -159,7 +158,6 @@ transition:.3s;
 transform:scale(1.05);
 }
 
-/* 🔥 OVERLAY GALERÍA */
 .gallery-item .overlay{
 position:absolute;
 bottom:0;
@@ -176,7 +174,7 @@ font-size:14px;
 transform:translateY(0);
 }
 
-/* ===== CTA ===== */
+/* CTA */
 
 .cta{
 text-align:center;
@@ -197,38 +195,80 @@ color:black;
 cursor:pointer;
 }
 
-/* ===== FOOTER SPACE FIX ===== */
-
+/* SPACER */
 .spacer{
 height:80px;
 }
 
-/* ===== RESPONSIVE ===== */
+/* RESPONSIVE BASE */
 
 @media(max-width:1000px){
-
-.services{
-grid-template-columns:1fr 1fr;
-}
-
-.gallery{
-grid-template-columns:1fr 1fr;
-}
-
-.hero h1{
-font-size:32px;
-}
-
+.services{grid-template-columns:1fr 1fr;}
+.gallery{grid-template-columns:1fr 1fr;}
+.hero h1{font-size:32px;}
 }
 
 @media(max-width:600px){
+.services{grid-template-columns:1fr;}
+.gallery{grid-template-columns:1fr;}
+}
+
+/* ===== MOBILE PRO ===== */
+
+@media(max-width:768px){
+
+body{
+padding-top:70px;
+}
+
+.hero{
+height:70vh;
+padding:40px 20px;
+}
+
+.hero h1{
+font-size:28px;
+letter-spacing:1px;
+}
+
+.hero p{
+font-size:14px;
+}
+
+.section{
+padding:60px 20px;
+}
 
 .services{
 grid-template-columns:1fr;
+gap:20px;
+}
+
+.service-card{
+padding:25px 20px;
 }
 
 .gallery{
 grid-template-columns:1fr;
+gap:15px;
+}
+
+.gallery-item img{
+height:220px;
+}
+
+.cta{
+padding:60px 20px;
+}
+
+.cta h2{
+font-size:22px;
+}
+
+.hero button,
+.cta button{
+width:100%;
+max-width:300px;
 }
 
 }
@@ -257,66 +297,111 @@ grid-template-columns:1fr;
   <div class="services">
 
     <div class="service-card">
-      <i class="fa fa-lightbulb"></i>
-      <h3>LED SIGNS</h3>
-      <p class="desc">High-impact illuminated signage for day and night visibility.</p>
+      <i class="fa fa-industry"></i>
+      <h3>CUSTOM SIGN FABRICATION</h3>
+      <p class="desc">Tailor-made signage using CNC routing, laser cutting and premium finishes.</p>
     </div>
 
     <div class="service-card">
       <i class="fa fa-car"></i>
-      <h3>VEHICLE WRAPS</h3>
-      <p class="desc">Transform vehicles into mobile advertising machines.</p>
+      <h3>VEHICLE WRAPS & FLEET GRAPHICS</h3>
+      <p class="desc">Full and partial wraps using premium vinyl for long-lasting branding.</p>
     </div>
 
     <div class="service-card">
       <i class="fa fa-building"></i>
-      <h3>STORE SIGNS</h3>
-      <p class="desc">Custom storefront signs designed to attract customers.</p>
+      <h3>ARCHITECTURAL GRAPHICS</h3>
+      <p class="desc">Wall murals, window films and environmental branding solutions.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa fa-lightbulb"></i>
+      <h3>ILLUMINATED & LED SIGNAGE</h3>
+      <p class="desc">Energy-efficient illuminated signs for maximum visibility.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa fa-font"></i>
+      <h3>CHANNEL LETTERS</h3>
+      <p class="desc">Dimensional letters with acrylic, aluminum and LED options.</p>
     </div>
 
     <div class="service-card">
       <i class="fa fa-print"></i>
-      <h3>PRINTING</h3>
-      <p class="desc">High-quality large format printing solutions.</p>
+      <h3>LARGE FORMAT PRINTING</h3>
+      <p class="desc">High-resolution prints for banners and large-scale graphics.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa fa-road"></i>
+      <h3>MONUMENT & PYLON SIGNS</h3>
+      <p class="desc">Freestanding signage engineered for durability and impact.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa fa-tools"></i>
+      <h3>INSTALLATION & MAINTENANCE</h3>
+      <p class="desc">Professional installation, repairs and maintenance services.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa fa-drafting-compass"></i>
+      <h3>DESIGN & PROJECT MANAGEMENT</h3>
+      <p class="desc">From concept to installation with full project control.</p>
     </div>
 
   </div>
 </section>
 
-<!-- GALLERY -->
+<!-- PROJECTS -->
 <section class="section">
   <h2 style="text-align:center;margin-bottom:50px;">PROJECTS</h2>
 
   <div class="gallery">
 
     <div class="gallery-item">
-      <img src="https://picsum.photos/600/400?1">
-      <div class="overlay">LED Sign Installation</div>
+      <img src="/components/Images/Custom Sign Fabrication.jpeg">
+      <div class="overlay">Custom Sign Fabrication</div>
     </div>
 
     <div class="gallery-item">
-      <img src="https://picsum.photos/600/400?2">
-      <div class="overlay">Vehicle Wrap Project</div>
+      <img src="/components/Images/Car Wraps.jpeg">
+      <div class="overlay">Vehicle Wraps & Fleet Graphics</div>
     </div>
 
     <div class="gallery-item">
-      <img src="https://picsum.photos/600/400?3">
-      <div class="overlay">Storefront Branding</div>
+      <img src="/components/Images/SSE.jpeg">
+      <div class="overlay">Architectural Graphics</div>
     </div>
 
     <div class="gallery-item">
-      <img src="https://picsum.photos/600/400?4">
-      <div class="overlay">Architectural Signage</div>
+      <img src="/components/Images/iluminated signage.jpeg">
+      <div class="overlay">Illuminated & LED Signage</div>
     </div>
 
     <div class="gallery-item">
-      <img src="https://picsum.photos/600/400?5">
-      <div class="overlay">LED Channel Letters</div>
+      <img src="/components/Images/Channel L.jpeg">
+      <div class="overlay">Channel Letters</div>
     </div>
 
     <div class="gallery-item">
-      <img src="https://picsum.photos/600/400?6">
+      <img src="/components/Images/Large.jpeg">
       <div class="overlay">Large Format Printing</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="/components/Images/Monument HD.jpeg">
+      <div class="overlay">Monument & Pylon Signs</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="/components/Images/Installation.jpeg">
+      <div class="overlay">Installation & Maintenance</div>
+    </div>
+
+    <div class="gallery-item">
+      <img src="/components/Images/JSign.png">
+      <div class="overlay">Design & Project Management</div>
     </div>
 
   </div>
@@ -336,10 +421,11 @@ grid-template-columns:1fr;
 <script>
 
 /* HEADER */
-fetch("/Header/header.html")
+fetch("../header/header.html")
 .then(res=>res.text())
 .then(data=>{
 document.getElementById("header-placeholder").innerHTML=data
+
 const script=document.createElement("script")
 script.src="../header/header.js"
 document.body.appendChild(script)
