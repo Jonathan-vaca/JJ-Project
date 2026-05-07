@@ -36,7 +36,6 @@ body{
     background-size:contain;
     background-position:center;
     color:#fff;
-
     overflow-x:hidden;
 }
 
@@ -70,14 +69,19 @@ body::before{
     align-items:center;
 
     background:
-    linear-gradient(
-        to right,
-        rgba(0,0,0,.88) 0%,
-        rgba(0,0,0,.65) 40%,
-        rgba(0,0,0,.45) 100%
-    ),
-    url('/components/Images/banner.png');
-
+linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 75%,
+    rgba(0,0,0,.55) 88%,
+    rgba(0,0,0,.88) 100%
+),
+linear-gradient(
+    to right,
+    rgba(0,0,0,.88) 0%,
+    rgba(0,0,0,.65) 40%,
+    rgba(0,0,0,.45) 100%
+),
+url('/components/Images/banner.png');
     background-size:cover;
     background-repeat:no-repeat;
     background-position:center top 0px;
@@ -272,6 +276,184 @@ body::before{
     color:#ff3a3a;
 }
 
+/* =====================================
+   SERVICES PREVIEW
+===================================== */
+
+.services-preview{
+
+    width:100%;
+
+    padding:80px 5%;
+
+    position:relative;
+
+    background:
+linear-gradient(
+    to bottom,
+    rgba(0,0,0,.88) 0%,
+    rgba(0,0,0,.55) 12%,
+    rgba(0,0,0,.78) 25%,
+    rgba(0,0,0,.82) 100%
+),
+url('/components/Images/bp.png');
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    overflow:hidden;
+}
+/* titulo */
+
+.services-top-title{
+
+    text-align:center;
+
+    margin-bottom:45px;
+}
+
+.services-top-title span{
+
+    color:#ff1e1e;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    display:block;
+
+    margin-bottom:10px;
+}
+
+.services-top-title h2{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+}
+
+/* grid */
+
+.services-preview-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+}
+
+/* cards */
+
+.preview-card{
+
+    background:#0b0b0b;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    padding:11px 13px;
+
+    text-align:center;
+
+    transition:.35s ease;
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-height:170px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+/* hover */
+
+.preview-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:rgba(255,0,0,.4);
+
+    background:#111;
+}
+
+/* glow */
+
+.preview-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:3px;
+
+    background:#ff1e1e;
+
+    transform:scaleX(0);
+
+    transition:.4s ease;
+}
+
+.preview-card:hover::before{
+
+    transform:scaleX(1);
+}
+
+/* icon */
+
+.preview-card i{
+
+    font-size:42px;
+
+    color:#ff1e1e;
+
+    margin-bottom:25px;
+
+    transition:.3s ease;
+}
+
+.preview-card:hover i{
+
+    transform:scale(1.1);
+}
+
+/* title */
+
+.preview-card h3{
+
+    font-size:18px;
+
+    margin-bottom:15px;
+
+    font-weight:700;
+
+    line-height:1.4;
+}
+
+/* desc */
+
+.preview-card p{
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    color:#bdbdbd;
+}
+
 /* ===== MAIN ===== */
 main{
     margin:0;
@@ -329,6 +511,16 @@ main{
 }
 
 /* ===== RESPONSIVE ===== */
+
+@media(max-width:1200px){
+
+.services-preview-grid{
+
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
 @media(max-width:1100px){
 
     .hero{
@@ -386,6 +578,28 @@ main{
         justify-content:center;
 
         gap:25px;
+    }
+
+    .services-preview{
+
+        padding:70px 20px;
+    }
+
+    .services-top-title h2{
+
+        font-size:30px;
+    }
+
+    .services-preview-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .preview-card{
+
+        padding:35px 25px;
+
+        min-height:auto;
     }
 }
 
@@ -466,6 +680,141 @@ main{
                 <span>GALLERY</span>
 
             </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===== SERVICES PREVIEW ===== -->
+
+<section class="services-preview">
+
+    <div class="services-top-title">
+
+        <span>SERVICIOS</span>
+
+        <h2>LO QUE HACEMOS</h2>
+
+    </div>
+
+    <div class="services-preview-grid">
+
+        <div class="preview-card">
+
+            <i class="fa fa-industry"></i>
+
+            <h3>CUSTOM SIGN FABRICATION</h3>
+
+            <p>
+                Tailor-made signage using CNC routing,
+                laser cutting and premium finishes.
+            </p>
+
+        </div>
+
+        <div class="preview-card">
+
+            <i class="fa fa-car"></i>
+
+            <h3>VEHICLE WRAPS & FLEET GRAPHICS</h3>
+
+            <p>
+                Full and partial wraps using premium
+                vinyl for long-lasting branding.
+            </p>
+
+        </div>
+
+        <div class="preview-card">
+
+            <i class="fa fa-building"></i>
+
+            <h3>ARCHITECTURAL GRAPHICS</h3>
+
+            <p>
+                Wall murals, window films and
+                environmental branding solutions.
+            </p>
+
+        </div>
+
+        <div class="preview-card">
+
+            <i class="fa fa-lightbulb"></i>
+
+            <h3>ILLUMINATED & LED SIGNAGE</h3>
+
+            <p>
+                Energy-efficient illuminated signs
+                for maximum visibility.
+            </p>
+
+        </div>
+
+        <div class="preview-card">
+
+            <i class="fa fa-font"></i>
+
+            <h3>CHANNEL LETTERS</h3>
+
+            <p>
+                Dimensional letters with acrylic,
+                aluminum and LED options.
+            </p>
+
+        </div>
+
+        <div class="preview-card">
+
+            <i class="fa fa-print"></i>
+
+            <h3>LARGE FORMAT PRINTING</h3>
+
+            <p>
+                High-resolution prints for banners
+                and large-scale graphics.
+            </p>
+
+        </div>
+
+        <div class="preview-card">
+
+            <i class="fa fa-road"></i>
+
+            <h3>MONUMENT & PYLON SIGNS</h3>
+
+            <p>
+                Freestanding signage engineered
+                for durability and impact.
+            </p>
+
+        </div>
+
+        <div class="preview-card">
+
+            <i class="fa fa-tools"></i>
+
+            <h3>INSTALLATION & MAINTENANCE</h3>
+
+            <p>
+                Professional installation,
+                repairs and maintenance services.
+            </p>
+
+        </div>
+
+        <div class="preview-card">
+
+            <i class="fa fa-drafting-compass"></i>
+
+            <h3>DESIGN & PROJECT MANAGEMENT</h3>
+
+            <p>
+                From concept to installation
+                with full project control.
+            </p>
 
         </div>
 
