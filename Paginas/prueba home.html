@@ -90,6 +90,7 @@ body::before{
 
     overflow:hidden;
 }
+
 /* ===== CONTENIDO ===== */
 .hero-content{
     width:90%;
@@ -187,6 +188,88 @@ body::before{
     background:#fff;
     color:#000;
     transform:translateY(-3px);
+}
+
+/* ===== ICONOS HERO ===== */
+.hero-icons{
+
+    display:flex;
+
+    gap:55px;
+
+    margin-top:70px;
+
+    flex-wrap:wrap;
+}
+
+/* item */
+.hero-icon-card{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    gap:18px;
+
+    cursor:pointer;
+}
+
+/* contenedor SOLO del icono */
+.hero-icon-image{
+
+    width:95px;
+    height:95px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    transition:.3s ease;
+}
+
+/* hover SOLO en icono */
+.hero-icon-card:hover .hero-icon-image{
+
+    background:rgba(255,0,0,.12);
+
+    box-shadow:
+    0 0 15px rgba(255,0,0,.35),
+    0 0 35px rgba(255,0,0,.15);
+
+    transform:scale(1.08);
+}
+
+/* imagen */
+.hero-icon-image img{
+
+    width:178px;
+    height:178px;
+
+    object-fit:contain;
+}
+
+/* texto */
+.hero-icon-card span{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
+    color:#fff;
+
+    text-align:center;
+
+    transition:.3s ease;
+}
+
+/* hover texto */
+.hero-icon-card:hover span{
+
+    color:#ff3a3a;
 }
 
 /* ===== MAIN ===== */
@@ -297,6 +380,13 @@ main{
     .btn{
         width:100%;
     }
+
+    .hero-icons{
+
+        justify-content:center;
+
+        gap:25px;
+    }
 }
 
 </style>
@@ -331,6 +421,51 @@ main{
             <button class="btn btn-outline">
                 VER SERVICIOS
             </button>
+
+        </div>
+
+        <!-- ===== ICONOS ===== -->
+        <div class="hero-icons">
+
+            <div class="hero-icon-card">
+
+                <div class="hero-icon-image">
+                    <img src="/components/Images/au.png" alt="About Us">
+                </div>
+
+                <span>ABOUT US</span>
+
+            </div>
+
+            <div class="hero-icon-card">
+
+                <div class="hero-icon-image">
+                    <img src="/components/Images/s.png" alt="Services">
+                </div>
+
+                <span>SERVICES</span>
+
+            </div>
+
+            <div class="hero-icon-card">
+
+                <div class="hero-icon-image">
+                    <img src="/components/Images/cu.png" alt="Contact Us">
+                </div>
+
+                <span>CONTACT US</span>
+
+            </div>
+
+            <div class="hero-icon-card">
+
+                <div class="hero-icon-image">
+                    <img src="/components/Images/glr.png" alt="Gallery">
+                </div>
+
+                <span>GALLERY</span>
+
+            </div>
 
         </div>
 
