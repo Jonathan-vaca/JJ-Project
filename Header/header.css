@@ -107,7 +107,10 @@
 /* ------------------ */
 /* Submenú */
 /* ------------------ */
-.has-submenu { position: relative; }
+.has-submenu {
+  position: relative;
+}
+
 .has-submenu .submenu {
   display: none;
   position: absolute;
@@ -118,66 +121,84 @@
   list-style: none;
   padding: 10px 0;
 }
-.has-submenu:hover .submenu { display: block; }
-.has-submenu .submenu li { padding: 5px 20px; }
-.has-submenu .submenu li a { color: #444; font-size: 13px; }
+
+.has-submenu:hover .submenu {
+  display: block;
+}
+
+.has-submenu .submenu li {
+  padding: 5px 20px;
+}
+
+.has-submenu .submenu li a {
+  color: #444;
+  font-size: 13px;
+}
 
 /* ------------------ */
-/* HEADER SIEMPRE ARRIBA */
+/* HEADER NORMAL ARRIBA */
 /* ------------------ */
 header {
-  position: relative;     
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   z-index: 9999;
 }
 
 .main-navigation {
   position: relative;
-  z-index: 10000; 
+  z-index: 10000;
 }
 
 body {
-  padding-top: 140px;  /* ajusta según la altura de logo + nav */
+  padding-top: 0;
 }
 
 /* ------------------ */
 /* Ajustes móviles */
 /* ------------------ */
 @media (max-width: 768px) {
-  .user-info { display: none !important; } /* ocultar nombre en móvil */
-  .logout-only { display: inline-block !important; } /* mostrar solo logout */
+
+  .user-info {
+    display: none !important;
+  }
+
+  .logout-only {
+    display: inline-block !important;
+  }
 }
+
 /* ------------------ */
 /* Ajustes móviles */
 /* ------------------ */
 @media (max-width: 768px) {
+
   .main-navigation ul {
-    gap: 15px;            /* menos espacio entre los enlaces */
-    padding: 10px 0;      /* un poco menos de padding */
+    gap: 15px;
+    padding: 10px 0;
   }
 
   .main-navigation a {
-    font-size: 12px;      /* 🔹 reduce el tamaño de letra */
+    font-size: 12px;
     letter-spacing: 0.3px;
   }
 }
 
-/* Extra pequeño (celulares muy angostos, tipo 400px o menos) */
+/* Extra pequeño */
 @media (max-width: 480px) {
+
   .main-navigation ul {
-    flex-wrap: wrap;      /* 🔹 si no caben en fila, se pasan abajo */
+    flex-wrap: wrap;
     gap: 10px;
   }
 
   .main-navigation a {
-    font-size: 11px;      /* aún más pequeño en pantallas muy chicas */
+    font-size: 11px;
   }
 }
+
 /* === Transparent version for Gallery === */
 .transparent-header {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -227,6 +248,7 @@ body {
   color: #ffca28;
   transform: scale(1.05);
 }
+
 /* ============================= */
 /* BOTÓN DE IDIOMA */
 /* ============================= */
@@ -255,4 +277,3 @@ body {
 .transparent-header .lang-switch img {
   box-shadow: 0 2px 10px rgba(0,0,0,0.7);
 }
-
