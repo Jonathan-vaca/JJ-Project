@@ -60,11 +60,8 @@ body::before{
 
 /* ===== HERO ===== */
 .hero{
-
     min-height:100vh;
-
     width:100%;
-
     display:flex;
     align-items:center;
 
@@ -92,7 +89,6 @@ url('/components/Images/banner.png');
     padding-bottom:80px;
 
     position:relative;
-
     overflow:hidden;
 }
 
@@ -104,47 +100,125 @@ url('/components/Images/banner.png');
     z-index:2;
 }
 
+/* ===== ANIMACIONES ===== */
+
+.fade-up{
+    opacity:0;
+    transform:translateY(60px);
+    animation:fadeUp 1s ease forwards;
+}
+
+.fade-left{
+    opacity:0;
+    transform:translateX(-80px);
+    animation:fadeLeft 1s ease forwards;
+}
+
+.fade-right{
+    opacity:0;
+    transform:translateX(80px);
+    animation:fadeRight 1s ease forwards;
+}
+
+.zoom-in{
+    opacity:0;
+    transform:scale(.7);
+    animation:zoomIn .9s ease forwards;
+}
+
+.float-animation{
+    animation:floaty 3s ease-in-out infinite;
+}
+
+.delay-1{
+    animation-delay:.2s;
+}
+
+.delay-2{
+    animation-delay:.4s;
+}
+
+.delay-3{
+    animation-delay:.6s;
+}
+
+.delay-4{
+    animation-delay:.8s;
+}
+
+.delay-5{
+    animation-delay:1s;
+}
+
+@keyframes fadeUp{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeLeft{
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+@keyframes fadeRight{
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+@keyframes zoomIn{
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes floaty{
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
 /* ===== TITULO ===== */
 .hero h1{
-
     font-size:48px;
     line-height:1.05;
-
     font-weight:700;
-
     max-width:500px;
-
     margin-bottom:30px;
-
     letter-spacing:1px;
 }
 
 /* linea roja */
 .hero h1::before{
-
     content:"";
     display:block;
-
     width:120px;
     height:5px;
-
     background:#ff1e1e;
-
     margin-bottom:25px;
-
     border-radius:20px;
 }
 
 /* ===== TEXTO ===== */
 .hero p{
-
     color:#d8d8d8;
-
     max-width:500px;
-
     font-size:17px;
     line-height:1.7;
-
     margin-bottom:45px;
 }
 
@@ -156,18 +230,12 @@ url('/components/Images/banner.png');
 
 /* boton base */
 .btn{
-
     padding:12px 34px;
-
     border-radius:8px;
-
     border:none;
-
     cursor:pointer;
-
     font-size:17px;
     font-weight:600;
-
     transition:.3s ease;
 }
 
@@ -179,7 +247,7 @@ url('/components/Images/banner.png');
 
 .btn-primary:hover{
     background:#d10000;
-    transform:translateY(-3px);
+    transform:translateY(-3px) scale(1.03);
 }
 
 /* transparente */
@@ -192,38 +260,29 @@ url('/components/Images/banner.png');
 .btn-outline:hover{
     background:#fff;
     color:#000;
-    transform:translateY(-3px);
+    transform:translateY(-3px) scale(1.03);
 }
 
 /* ===== ICONOS HERO ===== */
 .hero-icons{
-
     display:flex;
-
     gap:55px;
-
     margin-top:70px;
-
     flex-wrap:wrap;
 }
 
 /* item */
 .hero-icon-card{
-
     display:flex;
     flex-direction:column;
     align-items:center;
-
     gap:18px;
-
     cursor:pointer;
-
     position:relative;
-
     -webkit-tap-highlight-color:transparent;
 }
 
-/* quitar azul mobile */
+/* elimina azul mobile */
 .hero-icon-card,
 .hero-icon-card *{
     outline:none;
@@ -235,24 +294,19 @@ url('/components/Images/banner.png');
     outline:none;
 }
 
-/* icono */
+/* contenedor SOLO del icono */
 .hero-icon-image{
-
     width:95px;
     height:95px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     border-radius:50%;
-
     transition:.35s ease;
 }
 
-/* hover */
+/* hover SOLO icono */
 .hero-icon-card:hover .hero-icon-image{
-
     background:rgba(255,0,0,.12);
 
     box-shadow:
@@ -262,9 +316,8 @@ url('/components/Images/banner.png');
     transform:scale(1.08);
 }
 
-/* activo */
+/* ACTIVO */
 .hero-icon-card.active .hero-icon-image{
-
     background:rgba(255,0,0,.14);
 
     box-shadow:
@@ -276,59 +329,46 @@ url('/components/Images/banner.png');
 
 /* imagen */
 .hero-icon-image img{
-
     width:178px;
     height:178px;
-
     object-fit:contain;
-
     pointer-events:none;
 }
 
 /* texto */
 .hero-icon-card span{
-
     font-size:14px;
-
     font-weight:600;
-
     letter-spacing:1px;
-
     color:#fff;
-
     text-align:center;
-
     transition:.3s ease;
 }
 
 /* hover texto */
 .hero-icon-card:hover span{
-
     color:#ff3a3a;
 }
 
 /* activo texto */
 .hero-icon-card.active span{
-
     color:#ff3a3a;
 }
 
-/* ===== INFO DESPLEGABLE ===== */
+/* ===== HERO INFO BOX ===== */
 
 .hero-info{
+    width:100%;
+    max-width:220px;
+    margin-top:18px;
 
-    width:220px;
+    background:rgba(15,15,15,.92);
 
-    background:
-    linear-gradient(
-        180deg,
-        rgba(18,18,18,.96) 0%,
-        rgba(8,8,8,.96) 100%
-    );
+    border:1px solid rgba(255,0,0,.35);
 
-    border:1px solid rgba(255,0,0,.22);
+    border-radius:18px;
 
-    border-radius:22px;
+    padding:0 18px;
 
     overflow:hidden;
 
@@ -336,86 +376,60 @@ url('/components/Images/banner.png');
 
     opacity:0;
 
-    padding:0 18px;
-
-    transform:translateY(-12px);
+    transform:translateY(-10px);
 
     transition:
     max-height .45s ease,
     opacity .35s ease,
     transform .35s ease,
-    padding .35s ease,
-    margin-top .35s ease;
-
-    margin-top:0;
+    padding .35s ease;
 
     box-shadow:
-    0 0 25px rgba(255,0,0,.12);
+    0 0 20px rgba(255,0,0,.12);
 
     position:relative;
 }
 
-/* piquito */
+/* pico arriba */
 .hero-info::before{
-
     content:"";
-
     position:absolute;
-
     top:-10px;
     left:50%;
-
-    transform:translateX(-50%) rotate(45deg);
-
+    transform:translateX(-50%);
     width:20px;
     height:20px;
 
-    background:#111;
+    background:rgba(15,15,15,.95);
 
-    border-left:1px solid rgba(255,0,0,.22);
-    border-top:1px solid rgba(255,0,0,.22);
+    border-left:1px solid rgba(255,0,0,.35);
+    border-top:1px solid rgba(255,0,0,.35);
+
+    rotate:45deg;
 }
 
-/* mostrar SOLO al click */
+/* activo */
 .hero-icon-card.active .hero-info{
-
     max-height:220px;
-
     opacity:1;
-
-    padding:22px 18px;
-
     transform:translateY(0);
-
-    margin-top:10px;
+    padding:20px 18px;
 }
 
-/* titulo */
 .hero-info h4{
-
-    color:#ff3131;
-
+    color:#ff2d2d;
     font-size:15px;
-
-    letter-spacing:2px;
-
-    margin-bottom:12px;
-
+    margin-bottom:10px;
     text-align:center;
+    letter-spacing:1px;
 }
 
-/* texto */
 .hero-info p{
-
-    color:#d5d5d5;
-
-    font-size:13px;
-
-    line-height:1.8;
-
-    text-align:center;
-
     margin:0;
+    font-size:13px;
+    line-height:1.6;
+    color:#d7d7d7;
+    text-align:center;
 }
 
 /* =====================================
@@ -423,11 +437,8 @@ url('/components/Images/banner.png');
 ===================================== */
 
 .services-preview{
-
     width:100%;
-
     padding:80px 5%;
-
     position:relative;
 
     background:
@@ -441,62 +452,41 @@ linear-gradient(
 url('/components/Images/bp.png');
 
     background-size:cover;
-
     background-position:center;
-
     background-repeat:no-repeat;
-
     overflow:hidden;
 }
 
 /* titulo */
-
 .services-top-title{
-
     text-align:center;
-
     margin-bottom:45px;
 }
 
 .services-top-title span{
-
     color:#ff1e1e;
-
     font-size:13px;
-
     font-weight:700;
-
     letter-spacing:2px;
-
     display:block;
-
     margin-bottom:10px;
 }
 
 .services-top-title h2{
-
     font-size:42px;
-
     font-weight:700;
-
     letter-spacing:1px;
 }
 
 /* grid */
-
 .services-preview-grid{
-
     display:grid;
-
     grid-template-columns:repeat(3,1fr);
-
     gap:25px;
 }
 
 /* cards */
-
 .preview-card{
-
     background:#0b0b0b;
 
     border:1px solid rgba(255,255,255,.05);
@@ -520,10 +510,8 @@ url('/components/Images/bp.png');
 }
 
 /* hover */
-
 .preview-card:hover{
-
-    transform:translateY(-8px);
+    transform:translateY(-8px) scale(1.02);
 
     border-color:rgba(255,0,0,.4);
 
@@ -531,70 +519,46 @@ url('/components/Images/bp.png');
 }
 
 /* glow */
-
 .preview-card::before{
-
     content:"";
-
     position:absolute;
-
     top:0;
     left:0;
-
     width:100%;
     height:3px;
-
     background:#ff1e1e;
-
     transform:scaleX(0);
-
     transition:.4s ease;
 }
 
 .preview-card:hover::before{
-
     transform:scaleX(1);
 }
 
 /* icon */
-
 .preview-card i{
-
     font-size:42px;
-
     color:#ff1e1e;
-
     margin-bottom:25px;
-
     transition:.3s ease;
 }
 
 .preview-card:hover i{
-
-    transform:scale(1.1);
+    transform:scale(1.15) rotate(5deg);
 }
 
 /* title */
-
 .preview-card h3{
-
     font-size:18px;
-
     margin-bottom:15px;
-
     font-weight:700;
-
     line-height:1.4;
 }
 
 /* desc */
-
 .preview-card p{
-
     font-size:14px;
-
     line-height:1.7;
-
     color:#bdbdbd;
 }
 
@@ -612,22 +576,14 @@ main{
 
 /* ===== BOTON SUBIR ===== */
 .back-to-top{
-
     position:fixed;
-
     right:20px;
     top:50%;
-
     transform:translateY(-50%);
-
     font-size:32px;
-
     color:#ff1e1e;
-
     cursor:pointer;
-
     z-index:999;
-
     display:none;
 }
 
@@ -640,7 +596,6 @@ main{
 }
 
 @keyframes bounce{
-
     0%,20%,50%,80%,100%{
         transform:translateY(0);
     }
@@ -659,7 +614,6 @@ main{
 @media(max-width:1200px){
 
 .services-preview-grid{
-
     grid-template-columns:repeat(2,1fr);
 }
 
@@ -668,10 +622,8 @@ main{
 @media(max-width:1100px){
 
     .hero{
-
         background-size:cover;
         background-position:center;
-
         padding-top:150px;
     }
 
@@ -683,7 +635,6 @@ main{
 @media(max-width:768px){
 
     .hero{
-
         min-height:auto;
 
         padding-top:140px;
@@ -704,21 +655,16 @@ url('/components/Images/bt.png');
     }
 
     .hero h1{
-
         font-size:42px;
-
         max-width:100%;
     }
 
     .hero p{
-
         font-size:17px;
-
         max-width:100%;
     }
 
     .hero-buttons{
-
         flex-direction:column;
         align-items:flex-start;
     }
@@ -728,29 +674,23 @@ url('/components/Images/bt.png');
     }
 
     .hero-icons{
-
         justify-content:center;
-
         gap:25px;
     }
 
     .hero-info{
-
-        width:170px;
+        max-width:160px;
     }
 
     .hero-info h4{
-
         font-size:13px;
     }
 
     .hero-info p{
-
         font-size:12px;
     }
 
     .services-preview{
-
         background:
 linear-gradient(
     to bottom,
@@ -767,24 +707,19 @@ url('/components/Images/pa.png');
     }
 
     .services-preview{
-
         padding:70px 20px;
     }
 
     .services-top-title h2{
-
         font-size:30px;
     }
 
     .services-preview-grid{
-
         grid-template-columns:1fr;
     }
 
     .preview-card{
-
         padding:35px 25px;
-
         min-height:auto;
     }
 }
@@ -802,17 +737,17 @@ url('/components/Images/pa.png');
 
     <div class="hero-content">
 
-        <h1>
+        <h1 class="fade-left">
             SEÑALIZACIÓN QUE
             IMPULSA TU MARCA
         </h1>
 
-        <p>
+        <p class="fade-right delay-1">
             Creamos soluciones visuales que comunican,
             destacan y dejan huella.
         </p>
 
-        <div class="hero-buttons">
+        <div class="hero-buttons fade-up delay-2">
 
             <button class="btn btn-primary">
                 COTIZAR AHORA
@@ -827,10 +762,10 @@ url('/components/Images/pa.png');
         <!-- ===== ICONOS ===== -->
         <div class="hero-icons">
 
-            <!-- ABOUT -->
-            <div class="hero-icon-card">
+            <!-- ABOUT US -->
+            <div class="hero-icon-card zoom-in delay-1">
 
-                <div class="hero-icon-image">
+                <div class="hero-icon-image float-animation">
                     <img src="/components/Images/au.png" alt="About Us">
                 </div>
 
@@ -851,9 +786,9 @@ url('/components/Images/pa.png');
             </div>
 
             <!-- SERVICES -->
-            <div class="hero-icon-card">
+            <div class="hero-icon-card zoom-in delay-2">
 
-                <div class="hero-icon-image">
+                <div class="hero-icon-image float-animation">
                     <img src="/components/Images/s.png" alt="Services">
                 </div>
 
@@ -874,9 +809,9 @@ url('/components/Images/pa.png');
             </div>
 
             <!-- CONTACT -->
-            <div class="hero-icon-card">
+            <div class="hero-icon-card zoom-in delay-3">
 
-                <div class="hero-icon-image">
+                <div class="hero-icon-image float-animation">
                     <img src="/components/Images/cu.png" alt="Contact Us">
                 </div>
 
@@ -897,9 +832,9 @@ url('/components/Images/pa.png');
             </div>
 
             <!-- GALLERY -->
-            <div class="hero-icon-card">
+            <div class="hero-icon-card zoom-in delay-4">
 
-                <div class="hero-icon-image">
+                <div class="hero-icon-image float-animation">
                     <img src="/components/Images/glr.png" alt="Gallery">
                 </div>
 
@@ -927,9 +862,9 @@ url('/components/Images/pa.png');
 
 <!-- ===== SERVICES PREVIEW ===== -->
 
-<section class="services-preview">
+<section class="services-preview fade-up">
 
-    <div class="services-top-title">
+    <div class="services-top-title fade-up">
 
         <span>SERVICIOS</span>
 
@@ -939,121 +874,85 @@ url('/components/Images/pa.png');
 
     <div class="services-preview-grid">
 
-        <div class="preview-card">
-
+        <div class="preview-card fade-up delay-1">
             <i class="fa fa-industry"></i>
-
             <h3>CUSTOM SIGN FABRICATION</h3>
-
             <p>
                 Tailor-made signage using CNC routing,
                 laser cutting and premium finishes.
             </p>
-
         </div>
 
-        <div class="preview-card">
-
+        <div class="preview-card fade-up delay-2">
             <i class="fa fa-car"></i>
-
             <h3>VEHICLE WRAPS & FLEET GRAPHICS</h3>
-
             <p>
                 Full and partial wraps using premium
                 vinyl for long-lasting branding.
             </p>
-
         </div>
 
-        <div class="preview-card">
-
+        <div class="preview-card fade-up delay-3">
             <i class="fa fa-building"></i>
-
             <h3>ARCHITECTURAL GRAPHICS</h3>
-
             <p>
                 Wall murals, window films and
                 environmental branding solutions.
             </p>
-
         </div>
 
-        <div class="preview-card">
-
+        <div class="preview-card fade-up delay-1">
             <i class="fa fa-lightbulb"></i>
-
             <h3>ILLUMINATED & LED SIGNAGE</h3>
-
             <p>
                 Energy-efficient illuminated signs
                 for maximum visibility.
             </p>
-
         </div>
 
-        <div class="preview-card">
-
+        <div class="preview-card fade-up delay-2">
             <i class="fa fa-font"></i>
-
             <h3>CHANNEL LETTERS</h3>
-
             <p>
                 Dimensional letters with acrylic,
                 aluminum and LED options.
             </p>
-
         </div>
 
-        <div class="preview-card">
-
+        <div class="preview-card fade-up delay-3">
             <i class="fa fa-print"></i>
-
             <h3>LARGE FORMAT PRINTING</h3>
-
             <p>
                 High-resolution prints for banners
                 and large-scale graphics.
             </p>
-
         </div>
 
-        <div class="preview-card">
-
+        <div class="preview-card fade-up delay-1">
             <i class="fa fa-road"></i>
-
             <h3>MONUMENT & PYLON SIGNS</h3>
-
             <p>
                 Freestanding signage engineered
                 for durability and impact.
             </p>
-
         </div>
 
-        <div class="preview-card">
-
+        <div class="preview-card fade-up delay-2">
             <i class="fa fa-tools"></i>
-
             <h3>INSTALLATION & MAINTENANCE</h3>
-
             <p>
                 Professional installation,
                 repairs and maintenance services.
             </p>
-
         </div>
 
-        <div class="preview-card">
-
+        <div class="preview-card fade-up delay-3">
             <i class="fa fa-drafting-compass"></i>
-
             <h3>DESIGN & PROJECT MANAGEMENT</h3>
-
             <p>
                 From concept to installation
                 with full project control.
             </p>
-
         </div>
 
     </div>
