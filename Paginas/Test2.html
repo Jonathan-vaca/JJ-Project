@@ -1,453 +1,531 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | Landscaping & Outdoor Design</title>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-<title>J.Jr Signs</title>
-<link rel="icon" type="image/png" href="../components/Logos/logo blanco.png">
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0f1110;
+      color: white;
+      overflow-x: hidden;
+    }
 
-<link rel="stylesheet" href="../header/header.css">
+    img {
+      width: 100%;
+      display: block;
+    }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-<style>
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      background: rgba(0,0,0,0.35);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
 
-/* ===== BASE ===== */
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
 
-body{
-margin:0;
-font-family:'Open Sans',sans-serif;
-color:#fff;
-background-color:#000;
-background-image:url('/components/Images/bp.jpg');
-background-repeat:repeat;
-background-size:contain;
-background-position:center;
+    .logo span {
+      color: #9FE870;
+    }
 
-/* 🔥 ESPACIO PARA HEADER FIJO */
-padding-top:80px;
-}
+    .nav-links {
+      display: flex;
+      gap: 35px;
+    }
 
-/* 🔥 HEADER FIJO */
-#header-placeholder{
-width:100%;
-position:fixed;
-top:0;
-left:0;
-z-index:9999;
-background:#000;
-}
+    .nav-links a {
+      font-size: 0.95rem;
+      transition: 0.3s ease;
+      position: relative;
+    }
 
-/* HERO */
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: #9FE870;
+      transition: 0.3s ease;
+    }
 
-.hero{
-height:90vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:20px;
-background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6));
-}
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
-.hero h1{
-font-size:50px;
-letter-spacing:3px;
-}
+    .quote-btn {
+      padding: 12px 24px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #9FE870, #68b63e);
+      color: black;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
 
-.hero p{
-margin:20px 0;
-font-size:18px;
-opacity:.8;
-}
+    .quote-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(159,232,112,0.35);
+    }
 
-.hero button{
-padding:14px 30px;
-border:2px solid #ff2a2a;
-background:transparent;
-color:#ff2a2a;
-cursor:pointer;
-transition:.3s;
-}
+    /* HERO */
+    .hero {
+      height: 60vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
 
-.hero button:hover{
-background:#ff2a2a;
-color:black;
-}
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+      url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1974&auto=format&fit=crop') center/cover;
+      transform: scale(1.05);
+    }
 
-/* SECTION */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+      padding: 0 20px;
+    }
 
-.section{
-padding:100px 10%;
-max-width:1400px;
-margin:auto;
-}
+    .hero-subtitle {
+      color: #9FE870;
+      letter-spacing: 3px;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
 
-/* SERVICES */
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 7rem);
+      line-height: 0.95;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
 
-.services{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px;
-}
+    .hero p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
 
-.service-card{
-border:1px solid rgba(255,255,255,.1);
-padding:30px;
-text-align:center;
-transition:.3s;
-position:relative;
-overflow:hidden;
-}
+    /* FILTERS */
+    .filters {
+      padding: 50px 7% 20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
 
-.service-card:hover{
-transform:translateY(-8px);
-border-color:#ff2a2a;
-}
+    .filter-btn {
+      padding: 12px 24px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #171917;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s ease;
+      font-weight: 500;
+    }
 
-.service-card i{
-font-size:30px;
-margin-bottom:15px;
-color:#ff2a2a;
-}
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: linear-gradient(135deg, #9FE870, #68b63e);
+      color: black;
+      border-color: transparent;
+    }
 
-/* HOVER DESC */
-.service-card .desc{
-position:absolute;
-bottom:0;
-left:0;
-width:100%;
-padding:20px;
-background:rgba(0,0,0,0.9);
-transform:translateY(100%);
-transition:.4s;
-font-size:13px;
-}
+    /* GALLERY */
+    .gallery {
+      padding: 40px 7% 100px;
+    }
 
-.service-card:hover .desc{
-transform:translateY(0);
-}
+    .gallery-grid {
+      columns: 4 280px;
+      column-gap: 20px;
+    }
 
-/* GALLERY */
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      margin-bottom: 20px;
+      break-inside: avoid;
+      cursor: pointer;
+      background: #181a19;
+    }
 
-.gallery{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-}
+    .gallery-item img {
+      transition: transform 0.6s ease;
+      border-radius: 24px;
+    }
 
-.gallery-item{
-position:relative;
-overflow:hidden;
-}
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
 
-.gallery-item img{
-width:100%;
-height:250px;
-object-fit:cover;
-display:block;
-transition:.3s;
-}
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.15));
+      opacity: 0;
+      transition: 0.4s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 30px;
+    }
 
-.gallery-item:hover img{
-transform:scale(1.05);
-}
+    .gallery-item:hover .overlay {
+      opacity: 1;
+    }
 
-.gallery-item .overlay{
-position:absolute;
-bottom:0;
-left:0;
-width:100%;
-padding:15px;
-background:rgba(0,0,0,0.8);
-transform:translateY(100%);
-transition:.4s;
-font-size:14px;
-}
+    .overlay-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
 
-.gallery-item:hover .overlay{
-transform:translateY(0);
-}
+    .overlay-content p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
 
-/* CTA */
+    /* CTA */
+    .cta {
+      padding: 100px 7%;
+      text-align: center;
+      background: linear-gradient(135deg, #141714, #0c0d0c);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
 
-.cta{
-text-align:center;
-padding:80px 20px;
-background:rgba(255,42,42,.1);
-}
+    .cta h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
 
-.cta h2{
-font-size:32px;
-margin-bottom:20px;
-}
+    .cta p {
+      max-width: 700px;
+      margin: auto;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.8;
+      margin-bottom: 35px;
+    }
 
-.cta button{
-padding:14px 30px;
-border:none;
-background:#ff2a2a;
-color:black;
-cursor:pointer;
-}
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-/* SPACER */
-.spacer{
-height:80px;
-}
+    .primary-btn,
+    .secondary-btn {
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
 
-/* RESPONSIVE BASE */
+    .primary-btn {
+      background: linear-gradient(135deg, #9FE870, #68b63e);
+      color: black;
+    }
 
-@media(max-width:1000px){
-.services{grid-template-columns:1fr 1fr;}
-.gallery{grid-template-columns:1fr 1fr;}
-.hero h1{font-size:32px;}
-}
+    .primary-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(159,232,112,0.3);
+    }
 
-@media(max-width:600px){
-.services{grid-template-columns:1fr;}
-.gallery{grid-template-columns:1fr;}
-}
+    .secondary-btn {
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.04);
+    }
 
-/* ===== MOBILE PRO ===== */
+    .secondary-btn:hover {
+      background: rgba(255,255,255,0.08);
+    }
 
-@media(max-width:768px){
+    /* FOOTER */
+    footer {
+      padding: 35px 7%;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      background: #0c0d0c;
+    }
 
-body{
-padding-top:70px;
-}
+    footer p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+    }
 
-.hero{
-height:70vh;
-padding:40px 20px;
-}
+    .socials {
+      display: flex;
+      gap: 18px;
+    }
 
-.hero h1{
-font-size:28px;
-letter-spacing:1px;
-}
+    .socials a {
+      color: rgba(255,255,255,0.7);
+      transition: 0.3s ease;
+    }
 
-.hero p{
-font-size:14px;
-}
+    .socials a:hover {
+      color: #9FE870;
+    }
 
-.section{
-padding:60px 20px;
-}
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
 
-.services{
-grid-template-columns:1fr;
-gap:20px;
-}
+      .hero {
+        height: 55vh;
+      }
 
-.service-card{
-padding:25px 20px;
-}
+      .overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
+      }
+    }
 
-.gallery{
-grid-template-columns:1fr;
-gap:15px;
-}
+    @media (max-width: 600px) {
+      .navbar {
+        padding: 18px 5%;
+      }
 
-.gallery-item img{
-height:220px;
-}
+      .quote-btn {
+        padding: 10px 18px;
+        font-size: 0.85rem;
+      }
 
-.cta{
-padding:60px 20px;
-}
+      .hero p,
+      .cta p {
+        font-size: 0.95rem;
+      }
 
-.cta h2{
-font-size:22px;
-}
+      .gallery {
+        padding: 30px 5% 70px;
+      }
 
-.hero button,
-.cta button{
-width:100%;
-max-width:300px;
-}
+      .filters {
+        padding: 40px 5% 10px;
+      }
 
-}
+      .filter-btn {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+      }
 
-</style>
+      .overlay {
+        padding: 20px;
+      }
+
+      footer {
+        padding: 25px 5%;
+        text-align: center;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
-<div id="header-placeholder"></div>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">Green<span>Scape</span></div>
 
-<!-- HERO -->
-<section class="hero">
-  <div>
-    <h1>Custom Signs That Stand Out</h1>
-    <p>Design • Fabrication • Installation</p>
-    <button>GET A QUOTE</button>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="section">
-  <h2 style="text-align:center;margin-bottom:50px;">SERVICES</h2>
-
-  <div class="services">
-
-    <div class="service-card">
-      <i class="fa fa-industry"></i>
-      <h3>CUSTOM SIGN FABRICATION</h3>
-      <p class="desc">Tailor-made signage using CNC routing, laser cutting and premium finishes.</p>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">Gallery</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
     </div>
 
-    <div class="service-card">
-      <i class="fa fa-car"></i>
-      <h3>VEHICLE WRAPS & FLEET GRAPHICS</h3>
-      <p class="desc">Full and partial wraps using premium vinyl for long-lasting branding.</p>
+    <a href="#" class="quote-btn">Get Quote</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-subtitle">Our Latest Projects</div>
+      <h1>Outdoor Spaces That Inspire</h1>
+      <p>
+        Explore a curated collection of modern landscaping, hardscape,
+        outdoor living, and premium garden transformations.
+      </p>
     </div>
+  </section>
 
-    <div class="service-card">
-      <i class="fa fa-building"></i>
-      <h3>ARCHITECTURAL GRAPHICS</h3>
-      <p class="desc">Wall murals, window films and environmental branding solutions.</p>
+  <!-- FILTERS -->
+  <section class="filters">
+    <button class="filter-btn active">All Projects</button>
+    <button class="filter-btn">Landscaping</button>
+    <button class="filter-btn">Pools</button>
+    <button class="filter-btn">Patios</button>
+    <button class="filter-btn">Lighting</button>
+    <button class="filter-btn">Outdoor Living</button>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="gallery-grid">
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop" alt="Project">
+        <div class="overlay">
+          <div class="overlay-content">
+            <h3>Modern Backyard</h3>
+            <p>Luxury outdoor design with premium greenery and lighting.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop" alt="Project">
+        <div class="overlay">
+          <div class="overlay-content">
+            <h3>Elegant Patio</h3>
+            <p>Custom stone patio built for comfort and entertainment.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200&auto=format&fit=crop" alt="Project">
+        <div class="overlay">
+          <div class="overlay-content">
+            <h3>Garden Lighting</h3>
+            <p>Warm outdoor lighting that enhances every evening.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1200&auto=format&fit=crop" alt="Project">
+        <div class="overlay">
+          <div class="overlay-content">
+            <h3>Outdoor Lounge</h3>
+            <p>Relaxing firepit area designed for modern living.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=1200&auto=format&fit=crop" alt="Project">
+        <div class="overlay">
+          <div class="overlay-content">
+            <h3>Minimalist Garden</h3>
+            <p>Clean lines, natural textures, and elegant finishes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop" alt="Project">
+        <div class="overlay">
+          <div class="overlay-content">
+            <h3>Poolside Design</h3>
+            <p>Resort-style poolscape with integrated landscape design.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Project">
+        <div class="overlay">
+          <div class="overlay-content">
+            <h3>Luxury Entrance</h3>
+            <p>Premium curb appeal with modern hardscape details.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop" alt="Project">
+        <div class="overlay">
+          <div class="overlay-content">
+            <h3>Natural Retreat</h3>
+            <p>Beautiful outdoor environment inspired by nature.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </section>
 
-    <div class="service-card">
-      <i class="fa fa-lightbulb"></i>
-      <h3>ILLUMINATED & LED SIGNAGE</h3>
-      <p class="desc">Energy-efficient illuminated signs for maximum visibility.</p>
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Ready To Transform Your Space?</h2>
+    <p>
+      Let us design and build an outdoor environment that reflects your
+      lifestyle with elegance, quality, and timeless design.
+    </p>
+
+    <div class="cta-buttons">
+      <a href="#" class="primary-btn">Request A Quote</a>
+      <a href="#" class="secondary-btn">View Services</a>
     </div>
+  </section>
 
-    <div class="service-card">
-      <i class="fa fa-font"></i>
-      <h3>CHANNEL LETTERS</h3>
-      <p class="desc">Dimensional letters with acrylic, aluminum and LED options.</p>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 GreenScape Landscaping. All rights reserved.</p>
+
+    <div class="socials">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">Pinterest</a>
     </div>
-
-    <div class="service-card">
-      <i class="fa fa-print"></i>
-      <h3>LARGE FORMAT PRINTING</h3>
-      <p class="desc">High-resolution prints for banners and large-scale graphics.</p>
-    </div>
-
-    <div class="service-card">
-      <i class="fa fa-road"></i>
-      <h3>MONUMENT & PYLON SIGNS</h3>
-      <p class="desc">Freestanding signage engineered for durability and impact.</p>
-    </div>
-
-    <div class="service-card">
-      <i class="fa fa-tools"></i>
-      <h3>INSTALLATION & MAINTENANCE</h3>
-      <p class="desc">Professional installation, repairs and maintenance services.</p>
-    </div>
-
-    <div class="service-card">
-      <i class="fa fa-drafting-compass"></i>
-      <h3>DESIGN & PROJECT MANAGEMENT</h3>
-      <p class="desc">From concept to installation with full project control.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section class="section">
-  <h2 style="text-align:center;margin-bottom:50px;">PROJECTS</h2>
-
-  <div class="gallery">
-
-    <div class="gallery-item">
-      <img src="/components/Images/Custom Sign Fabrication.jpeg">
-      <div class="overlay">Custom Sign Fabrication</div>
-    </div>
-
-    <div class="gallery-item">
-      <img src="/components/Images/Car Wraps.jpeg">
-      <div class="overlay">Vehicle Wraps & Fleet Graphics</div>
-    </div>
-
-    <div class="gallery-item">
-      <img src="/components/Images/SSE.jpeg">
-      <div class="overlay">Architectural Graphics</div>
-    </div>
-
-    <div class="gallery-item">
-      <img src="/components/Images/iluminated signage.jpeg">
-      <div class="overlay">Illuminated & LED Signage</div>
-    </div>
-
-    <div class="gallery-item">
-      <img src="/components/Images/Channel L.jpeg">
-      <div class="overlay">Channel Letters</div>
-    </div>
-
-    <div class="gallery-item">
-      <img src="/components/Images/Large.jpeg">
-      <div class="overlay">Large Format Printing</div>
-    </div>
-
-    <div class="gallery-item">
-      <img src="/components/Images/Monument HD.jpeg">
-      <div class="overlay">Monument & Pylon Signs</div>
-    </div>
-
-    <div class="gallery-item">
-      <img src="/components/Images/Installation.jpeg">
-      <div class="overlay">Installation & Maintenance</div>
-    </div>
-
-    <div class="gallery-item">
-      <img src="/components/Images/JSign.png">
-      <div class="overlay">Design & Project Management</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta">
-  <h2>Ready to start your project?</h2>
-  <button>CONTACT US</button>
-</section>
-
-<div class="spacer"></div>
-
-<!-- FOOTER -->
-<div id="footer-placeholder"></div>
-
-<script>
-
-/* HEADER */
-fetch("../header/header.html")
-.then(res=>res.text())
-.then(data=>{
-document.getElementById("header-placeholder").innerHTML=data
-
-const script=document.createElement("script")
-script.src="../header/header.js"
-document.body.appendChild(script)
-})
-
-/* FOOTER */
-fetch("../footer/footer.html")
-.then(res=>res.text())
-.then(data=>{
-document.getElementById("footer-placeholder").innerHTML=data
-
-const link=document.createElement("link")
-link.rel="stylesheet"
-link.href="../footer/footer.css"
-document.head.appendChild(link)
-
-const script=document.createElement("script")
-script.src="../footer/footer.js"
-document.body.appendChild(script)
-})
-
-</script>
+  </footer>
 
 </body>
 </html>

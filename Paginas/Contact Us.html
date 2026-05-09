@@ -1,397 +1,567 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>J.Jr Signs</title>
+
+    <title>Contact Us | J.Jr Signs</title>
+
+    <!-- Icon -->
     <link rel="icon" type="image/png" href="../components/Logos/logo blanco.png">
 
-    <!-- Header styles -->
+    <!-- HEADER CSS -->
     <link rel="stylesheet" href="../header/header.css">
 
-    <!-- Font Awesome icons -->
+    <!-- Font Awesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
 <style>
-    /* ------------------ FONDO PRINCIPAL ------------------ */
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Open Sans', sans-serif;
-        min-height: 100vh;
-        color: #fff;
-        background-color: #000000; /* Fondo base */
-        background-repeat: no-repeat;   
-        background-size: cover;    
-        background-position: top -575px center; /* 🔥 mueve el fondo hacia arriba */
-        position: relative;
- }
-        /* Overlay semitransparente sobre el fondo (PC / tablet) */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            pointer-events: none;
-            z-index: -1;
-        }
-@media screen and (max-width: 768px) {
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Open Sans', sans-serif;
-        min-height: 100vh;
-        color: #fff;
-        background-color: #000000; /* Fondo base */
-        background-repeat: no-repeat;   
-        background-size: cover;    
-        background-position: top -420px center; /* 🔥 mueve el fondo hacia arriba */
-        position: relative;
-    }
 
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0,0,0,0.5);
-        pointer-events: none;
-        z-index: -1;
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.background-glow{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background:
+    radial-gradient(circle at top left, rgba(255,0,0,0.18), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255,0,0,0.15), transparent 25%),
+    #050505;
+}
+
+.grid-overlay{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size:40px 40px;
+    mask-image:linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.2));
+}
+
+/* =========================
+   HERO
+========================= */
+
+.contact-hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px 20px 80px;
+}
+
+.contact-container{
+    width:100%;
+    max-width:1300px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+/* =========================
+   LEFT SIDE
+========================= */
+
+.contact-info{
+    animation:fadeLeft 1s ease;
+}
+
+.contact-tag{
+    display:inline-block;
+    padding:8px 18px;
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:40px;
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:25px;
+    background:rgba(255,255,255,0.03);
+    backdrop-filter:blur(8px);
+}
+
+.contact-title{
+    font-size:72px;
+    line-height:1;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+.contact-title span{
+    color:red;
+}
+
+.contact-description{
+    font-size:17px;
+    color:#cfcfcf;
+    line-height:1.9;
+    max-width:580px;
+    margin-bottom:40px;
+}
+
+/* =========================
+   CONTACT CARDS
+========================= */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.info-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:24px;
+    padding:25px;
+    transition:0.35s ease;
+    backdrop-filter:blur(10px);
+}
+
+.info-card:hover{
+    transform:translateY(-8px);
+    border-color:red;
+    box-shadow:0 0 30px rgba(255,0,0,0.18);
+}
+
+.info-card i{
+    font-size:24px;
+    margin-bottom:15px;
+    color:red;
+}
+
+.info-card h3{
+    font-size:17px;
+    margin-bottom:10px;
+}
+
+.info-card p{
+    color:#d4d4d4;
+    font-size:14px;
+    line-height:1.7;
+}
+
+/* =========================
+   RIGHT SIDE / FORM
+========================= */
+
+.form-wrapper{
+    position:relative;
+    animation:fadeRight 1s ease;
+}
+
+.form-glow{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:red;
+    filter:blur(120px);
+    opacity:0.12;
+    z-index:-1;
+}
+
+.contact-form-box{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:32px;
+    padding:45px;
+    backdrop-filter:blur(16px);
+}
+
+.form-title{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.form-subtitle{
+    color:#bdbdbd;
+    margin-bottom:30px;
+    line-height:1.8;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group input,
+.input-group textarea{
+    width:100%;
+    background:#0f0f0f;
+    border:1px solid rgba(255,255,255,0.08);
+    padding:16px 18px;
+    border-radius:16px;
+    color:white;
+    font-size:15px;
+    transition:0.3s ease;
+    font-family:'Poppins',sans-serif;
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+    border-color:red;
+    outline:none;
+    box-shadow:0 0 15px rgba(255,0,0,0.2);
+}
+
+textarea{
+    resize:none;
+    min-height:140px;
+}
+
+.send-btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(135deg,#ff0000,#9f0000);
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.35s ease;
+}
+
+.send-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(255,0,0,0.35);
+}
+
+/* =========================
+   MAP
+========================= */
+
+.map-section{
+    padding:0 20px 100px;
+}
+
+.map-box{
+    max-width:1000px;
+    margin:auto;
+    border-radius:30px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.08);
+    background:#050505;
+}
+.map-box img{
+    width:100%;
+    display:block;
+    object-fit:contain;
+}
+
+/* =========================
+   FLOATING BUTTON
+========================= */
+
+.floating-contact{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:red;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    color:white;
+    box-shadow:0 0 25px rgba(255,0,0,0.4);
+    cursor:pointer;
+    z-index:999;
+    transition:0.3s ease;
+}
+
+.floating-contact:hover{
+    transform:scale(1.1);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeLeft{
+    from{
+        opacity:0;
+        transform:translateX(-60px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
     }
 }
 
-    main {
-        max-width: 1200px;
-        margin: auto;
-        padding: 40px 20px;
-        position: relative;
+@keyframes fadeRight{
+    from{
+        opacity:0;
+        transform:translateX(60px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:950px){
+
+    .contact-container{
+        grid-template-columns:1fr;
     }
 
-    section {
-        display: flex;
-        align-items: center;
-        margin: 60px 0;
-        opacity: 0;
-        transition: all 1s ease;
+    .contact-title{
+        font-size:52px;
+        text-align:center;
     }
 
-    .section-left {
-        flex-direction: row;
-        text-align: left;
-        transform: translateX(-50px);
+    .contact-description{
+        text-align:center;
+        margin:auto auto 40px;
     }
 
-    section.show {
-        opacity: 1;
-        transform: translateX(0);
+    .contact-tag{
+        display:table;
+        margin:0 auto 25px;
     }
 
-    /* ------------------ TEXTOS ------------------ */
-    #contact h2 {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        font-style: italic;
-        color: #fff;
-        font-size: 36px;
-        margin-bottom: 18px;
+    .info-grid{
+        grid-template-columns:1fr;
     }
 
-    #contact p {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        font-style: italic;
-        color: #fff;
-        line-height: 1.7;
-        font-size: 17px;
+    .contact-info{
+        text-align:center;
     }
 
-    /* ------------------ GRID CONTACTO + MAPA ------------------ */
-    #contact {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr; 
-        align-items: start;
-        gap: 40px;
+    .map-box img{
+        height:320px;
+    }
+}
+
+@media(max-width:600px){
+
+    .contact-hero{
+        padding-top:20px;
     }
 
-    #contact-map img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        border-radius: 10px;
-        display: block;
-        transition: all 0.3s ease;
+    .contact-title{
+        font-size:42px;
     }
 
-    /* ------------------ FORMULARIO ------------------ */
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        max-width: 500px;
+    .contact-form-box{
+        padding:28px;
+        border-radius:24px;
     }
 
-    input, textarea {
-        padding: 10px;
-        border-radius: 8px;
-        border: none;
-        outline: none;
-        font-family: 'Poppins', sans-serif;
-        font-size: 14px;
+    .form-title{
+        font-size:24px;
     }
 
-    button {
-        padding: 12px;
-        border: none;
-        border-radius: 8px;
-        background: red;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
-        font-size: 14px;
+    .contact-description{
+        font-size:15px;
     }
 
-    button:hover {
-        background: #b30000;
+    .info-card{
+        padding:22px;
     }
 
-    main ul { 
-        list-style: none; 
-        padding: 0; 
-        margin-top: 20px; 
-        line-height: 1.8; 
-        font-size: 14px; 
+    .floating-contact{
+        width:55px;
+        height:55px;
+        font-size:20px;
     }
+}
 
-    li i { 
-        margin-right: 8px; 
-        color: red;
-    }
-
-    /* ------------------ MAPA VERSIÓN MÓVIL ------------------ */
-    .mapa-mobile {
-        margin: 15px auto;
-        display: none;
-        width: 100%;
-        max-width: 300px;
-        border-radius: 12px;
-        margin-top: 15px;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0);
-    }
-
-    /* ------------------ VERSIÓN MÓVIL (≤ 768px) ------------------ */
-    @media screen and (max-width: 768px) {
-        #contact {
-            display: block !important; 
-            text-align: center !important;
-        }
-
-        #contact-content {
-            width: 100% !important;
-            text-align: center !important;
-        }
-
-        #contact-map {
-            display: none !important;
-        }
-
-        .mapa-mobile {
-            display: block !important;
-        }
-
-        form {
-            width: 90% !important;
-            margin: 0 auto !important;
-        }
-
-        #contact h2 { 
-            font-size: 26px !important; 
-            text-align: center !important; 
-        }
-
-        #contact p, 
-        #contact ul { 
-            font-size: 15px !important;
-            text-align: center !important;
-        }
-    }
-
-    /* ------------------ FLECHA VOLVER ARRIBA ------------------ */
-    .back-to-top {
-        position: fixed;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 32px;
-        color: red;
-        cursor: pointer;
-        z-index: 999;
-        display: none;
-    }
-
-    .back-to-top.show {
-        display: block;
-        opacity: 1;
-    }
-
-    .back-to-top i {
-        animation: bounce 1.5s infinite;
-    }
-
-    @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-        40% { transform: translateY(-15px); }
-        60% { transform: translateY(-8px); }
-    }
 </style>
+
 </head>
 
 <body>
 
-    <!-- Header -->
-    <div id="header-placeholder"></div>
+<!-- HEADER -->
+<div id="header-placeholder"></div>
 
-    <!-- Sección principal añadida -->
-    <main>
-        <section id="contact" class="section-left show">
-            <div id="contact-content">
-                <h2>Contact Us</h2>
-                <img src="/components/Logos/Mapa.png" alt="Mapa ubicación" class="mapa-mobile">
+<!-- BACKGROUND -->
+<div class="background-glow"></div>
+<div class="grid-overlay"></div>
 
-                <p>
-                    Do you have any questions or need a quote for your next project?  
-                    At <strong>J.Jr Signs</strong>, we’re ready to help you bring your ideas to life.  
-                    You can contact us directly through the following means:
+<!-- HERO -->
+<section class="contact-hero">
+
+    <div class="contact-container">
+
+        <!-- LEFT -->
+        <div class="contact-info">
+
+            <div class="contact-tag">
+                LET'S CREATE SOMETHING AMAZING
+            </div>
+
+            <h1 class="contact-title">
+                Contact <span>Us</span>
+            </h1>
+
+            <p class="contact-description">
+                Have a project in mind or need a custom sign for your business?
+                Our team is ready to help you transform your ideas into
+                high-impact visual experiences.
+            </p>
+
+            <div class="info-grid">
+
+                <div class="info-card">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>+1 (470) 275-7046</p>
+                </div>
+
+                <div class="info-card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>info@jjrsigns.com</p>
+                </div>
+
+                <div class="info-card">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>Address</h3>
+                    <p>1234 Peachtree St, Atlanta, GA</p>
+                </div>
+
+                <div class="info-card">
+                    <i class="fa-solid fa-clock"></i>
+                    <h3>Working Hours</h3>
+                    <p>Mon - Fri | 8:00 AM - 6:00 PM</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="form-wrapper">
+
+            <div class="form-glow"></div>
+
+            <div class="contact-form-box">
+
+                <h2 class="form-title">
+                    Send us a message
+                </h2>
+
+                <p class="form-subtitle">
+                    Fill out the form below and we’ll get back to you as soon as possible.
                 </p>
 
-                <ul>
-                    <li><i class="fa fa-phone"></i> +1 (678) 555-0123</li>
-                    <li><i class="fa fa-envelope"></i> info@jjrsigns.com</li>
-                    <li><i class="fa fa-map-marker-alt"></i> 1234 Peachtree St, Atlanta, GA</li>
-                </ul>
-
-                <p style="margin-top:25px;">Or send us a direct message using the form below:</p>
-
                 <form id="contact-form">
-                    <input type="text" name="name" placeholder="Your Name" required />
-                    <input type="email" name="email" placeholder="Your Email" required />
-                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                    <button id="send-btn" type="button">Send Message</button>
+
+                    <div class="input-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="text" placeholder="Subject">
+                    </div>
+
+                    <div class="input-group">
+                        <textarea placeholder="Tell us about your project..."></textarea>
+                    </div>
+
+                    <button class="send-btn">
+                        Send Message
+                    </button>
+
                 </form>
 
-                <p id="form-status" style="margin-top:10px; color:#00ff00; font-weight:bold;"></p>
             </div>
 
-            <div id="contact-map">
-                <img src="/components/Logos/Mapa.png" alt="Our Location Map">
-            </div>
-        </section>
-    </main>
+        </div>
 
-    <!-- Footer -->
-    <div id="footer-placeholder"></div>
-
-    <!-- Flecha volver arriba -->
-    <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
     </div>
 
-    <!-- Scripts combinados -->
-    <script>
-        // Cargar header
-        fetch("/Header/header.html")
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById("header-placeholder").innerHTML = data;
-                const script = document.createElement("script");
-                script.src = "../header/header.js";
-                document.body.appendChild(script);
-            });
+</section>
 
-        // Cargar footer
-// Cargar footer
+<!-- MAP -->
+<section class="map-section">
+
+    <div class="map-box">
+        <img src="/components/Images/mapa.png" alt="Map">
+    </div>
+
+</section>
+
+<!-- FLOATING BUTTON -->
+<div class="floating-contact">
+    <i class="fa-solid fa-paper-plane"></i>
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+
+<script>
+
+/* HEADER */
+fetch("/header/header.html")
+.then(res => res.text())
+.then(data => {
+    document.getElementById("header-placeholder").innerHTML = data;
+
+    const script = document.createElement("script");
+    script.src = "../header/header.js";
+    document.body.appendChild(script);
+});
+
+/* FOOTER */
 fetch("../footer/footer.html")
-  .then(res => res.text())
-  .then(data => {
-      document.getElementById("footer-placeholder").innerHTML = data;
+.then(res => res.text())
+.then(data => {
 
-      // Agregar CSS del footer
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = "../footer/footer.css";
-      document.head.appendChild(link);
+    document.getElementById("footer-placeholder").innerHTML = data;
 
-      // Agregar JS del footer y ejecutar cuando cargue
-      const script = document.createElement("script");
-      script.src = "../footer/footer.js";
-      script.onload = () => {
-        if (typeof initFooterForm === "function") initFooterForm();
-      };
-      document.body.appendChild(script);
-  });
-        // Animación secciones
-        const sections = document.querySelectorAll("section");
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add("show");
-            });
-        }, { threshold: 0.2 });
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "../footer/footer.css";
+    document.head.appendChild(link);
 
-        sections.forEach(sec => observer.observe(sec));
+    const script = document.createElement("script");
+    script.src = "../footer/footer.js";
+    document.body.appendChild(script);
+});
 
-        // Flecha volver arriba
-        const backToTopBtn = document.querySelector(".back-to-top");
-        window.addEventListener("scroll", function () {
-            if (window.scrollY > 200) backToTopBtn.classList.add("show");
-            else backToTopBtn.classList.remove("show");
-        });
-        backToTopBtn.addEventListener("click", () => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-
-        window.onbeforeunload = () => window.scrollTo(0,0);
-    </script>
-
-    <script>
-        // Envío del formulario (Formspree)
-        document.addEventListener("DOMContentLoaded", () => {
-            const form = document.getElementById("contact-form");
-            const status = document.getElementById("form-status");
-            const sendBtn = document.getElementById("send-btn");
-
-            sendBtn.addEventListener("click", async () => {
-                const data = new FormData(form);
-                status.textContent = "Sending...";
-                status.style.color = "#ff4444";
-
-                try {
-                    const response = await fetch("https://formspree.io/f/xeopazjd", {
-                        method: "POST",
-                        body: data,
-                        headers: { "Accept": "application/json" }
-                    });
-
-                    if (response.ok) {
-                        status.textContent = "✅ Your message has been sent successfully!";
-                        status.style.color = "#00ff00";
-                        form.reset();
-                    } else {
-                        status.textContent = "⚠️ There was an error. Please try again.";
-                        status.style.color = "orange";
-                    }
-                } catch (error) {
-                    status.textContent = "❌ Network error. Please try again later.";
-                    status.style.color = "red";
-                }
-            });
-        });
-    </script>
+</script>
 
 </body>
 </html>
