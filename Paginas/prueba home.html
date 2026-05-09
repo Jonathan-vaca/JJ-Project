@@ -92,7 +92,7 @@ url('/components/Images/banner.png');
     overflow:hidden;
 }
 
-/* ===== CONTENIDO ===== */
+/* ===== CONTENT ===== */
 .hero-content{
     width:90%;
     max-width:1200px;
@@ -100,7 +100,7 @@ url('/components/Images/banner.png');
     z-index:2;
 }
 
-/* ===== ANIMACIONES ===== */
+/* ===== ANIMATIONS ===== */
 
 .fade-up{
     opacity:0;
@@ -192,7 +192,7 @@ url('/components/Images/banner.png');
     }
 }
 
-/* ===== TITULO ===== */
+/* ===== TITLE ===== */
 .hero h1{
     font-size:48px;
     line-height:1.05;
@@ -202,7 +202,7 @@ url('/components/Images/banner.png');
     letter-spacing:1px;
 }
 
-/* linea roja */
+/* red line */
 .hero h1::before{
     content:"";
     display:block;
@@ -213,7 +213,7 @@ url('/components/Images/banner.png');
     border-radius:20px;
 }
 
-/* ===== TEXTO ===== */
+/* ===== TEXT ===== */
 .hero p{
     color:#d8d8d8;
     max-width:500px;
@@ -222,13 +222,13 @@ url('/components/Images/banner.png');
     margin-bottom:45px;
 }
 
-/* ===== BOTONES ===== */
+/* ===== BUTTONS ===== */
 .hero-buttons{
     display:flex;
     gap:20px;
 }
 
-/* boton base */
+/* button base */
 .btn{
     padding:12px 34px;
     border-radius:8px;
@@ -239,7 +239,7 @@ url('/components/Images/banner.png');
     transition:.3s ease;
 }
 
-/* rojo */
+/* red */
 .btn-primary{
     background:#ff1e1e;
     color:#fff;
@@ -250,7 +250,7 @@ url('/components/Images/banner.png');
     transform:translateY(-3px) scale(1.03);
 }
 
-/* transparente */
+/* transparent */
 .btn-outline{
     background:transparent;
     border:1px solid rgba(255,255,255,.8);
@@ -263,7 +263,7 @@ url('/components/Images/banner.png');
     transform:translateY(-3px) scale(1.03);
 }
 
-/* ===== ICONOS HERO ===== */
+/* ===== HERO ICONS ===== */
 .hero-icons{
     display:flex;
     gap:55px;
@@ -282,7 +282,7 @@ url('/components/Images/banner.png');
     -webkit-tap-highlight-color:transparent;
 }
 
-/* elimina azul mobile */
+/* remove blue tap */
 .hero-icon-card,
 .hero-icon-card *{
     outline:none;
@@ -294,7 +294,7 @@ url('/components/Images/banner.png');
     outline:none;
 }
 
-/* contenedor SOLO del icono */
+/* icon container */
 .hero-icon-image{
     width:95px;
     height:95px;
@@ -305,7 +305,7 @@ url('/components/Images/banner.png');
     transition:.35s ease;
 }
 
-/* hover SOLO icono */
+/* hover */
 .hero-icon-card:hover .hero-icon-image{
     background:rgba(255,0,0,.12);
 
@@ -316,7 +316,7 @@ url('/components/Images/banner.png');
     transform:scale(1.08);
 }
 
-/* ACTIVO */
+/* active */
 .hero-icon-card.active .hero-icon-image{
     background:rgba(255,0,0,.14);
 
@@ -327,7 +327,7 @@ url('/components/Images/banner.png');
     transform:scale(1.08);
 }
 
-/* imagen */
+/* image */
 .hero-icon-image img{
     width:178px;
     height:178px;
@@ -335,7 +335,7 @@ url('/components/Images/banner.png');
     pointer-events:none;
 }
 
-/* texto */
+/* text */
 .hero-icon-card span{
     font-size:14px;
     font-weight:600;
@@ -345,12 +345,12 @@ url('/components/Images/banner.png');
     transition:.3s ease;
 }
 
-/* hover texto */
+/* hover text */
 .hero-icon-card:hover span{
     color:#ff3a3a;
 }
 
-/* activo texto */
+/* active text */
 .hero-icon-card.active span{
     color:#ff3a3a;
 }
@@ -390,7 +390,7 @@ url('/components/Images/banner.png');
     position:relative;
 }
 
-/* pico arriba */
+/* top arrow */
 .hero-info::before{
     content:"";
     position:absolute;
@@ -408,7 +408,7 @@ url('/components/Images/banner.png');
     rotate:45deg;
 }
 
-/* activo */
+/* active */
 .hero-icon-card.active .hero-info{
     max-height:220px;
     opacity:1;
@@ -432,9 +432,7 @@ url('/components/Images/banner.png');
     text-align:center;
 }
 
-/* =====================================
-   SERVICES PREVIEW
-===================================== */
+/* ===== SERVICES ===== */
 
 .services-preview{
     width:100%;
@@ -457,7 +455,7 @@ url('/components/Images/bp.png');
     overflow:hidden;
 }
 
-/* titulo */
+/* title */
 .services-top-title{
     text-align:center;
     margin-bottom:45px;
@@ -562,6 +560,37 @@ url('/components/Images/bp.png');
     color:#bdbdbd;
 }
 
+/* ===== LANGUAGE BUTTON ===== */
+
+.language-toggle{
+    position:fixed;
+    left:20px;
+    bottom:20px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#ff1e1e;
+    border:none;
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+    0 0 20px rgba(255,0,0,.35);
+
+    transition:.3s ease;
+}
+
+.language-toggle:hover{
+    transform:scale(1.08);
+    background:#d10000;
+}
+
 /* ===== MAIN ===== */
 main{
     margin:0;
@@ -574,7 +603,7 @@ main{
     padding:0;
 }
 
-/* ===== BOTON SUBIR ===== */
+/* ===== BACK TO TOP ===== */
 .back-to-top{
     position:fixed;
     right:20px;
@@ -722,6 +751,14 @@ url('/components/Images/pa.png');
         padding:35px 25px;
         min-height:auto;
     }
+
+    .language-toggle{
+        width:52px;
+        height:52px;
+        font-size:20px;
+        left:15px;
+        bottom:15px;
+    }
 }
 
 </style>
@@ -737,48 +774,47 @@ url('/components/Images/pa.png');
 
     <div class="hero-content">
 
-        <h1 class="fade-left">
-            SEÑALIZACIÓN QUE
-            IMPULSA TU MARCA
+        <h1 class="fade-left" id="heroTitle">
+            SIGNAGE THAT
+            DRIVES YOUR BRAND
         </h1>
 
-        <p class="fade-right delay-1">
-            Creamos soluciones visuales que comunican,
-            destacan y dejan huella.
+        <p class="fade-right delay-1" id="heroText">
+            We create visual solutions that communicate,
+            stand out and leave a lasting impression.
         </p>
 
         <div class="hero-buttons fade-up delay-2">
 
-            <button class="btn btn-primary">
-                COTIZAR AHORA
+            <button class="btn btn-primary" id="quoteBtn">
+                GET A QUOTE
             </button>
 
-            <button class="btn btn-outline">
-                VER SERVICIOS
+            <button class="btn btn-outline" id="servicesBtn">
+                VIEW SERVICES
             </button>
 
         </div>
 
-        <!-- ===== ICONOS ===== -->
+        <!-- ICONS -->
         <div class="hero-icons">
 
-            <!-- ABOUT US -->
+            <!-- ABOUT -->
             <div class="hero-icon-card zoom-in delay-1">
 
                 <div class="hero-icon-image float-animation">
-                    <img src="/components/Images/au.png" alt="About Us">
+                    <img src="/components/Images/au.png" alt="About">
                 </div>
 
-                <span>ABOUT US</span>
+                <span id="aboutSpan">ABOUT US</span>
 
                 <div class="hero-info">
 
-                    <h4>ABOUT US</h4>
+                    <h4 id="aboutTitle">ABOUT US</h4>
 
-                    <p>
-                        Professional signage solutions
-                        designed to elevate your brand
-                        and create visual impact.
+                    <p id="aboutText">
+                        Professional signage solutions designed
+                        to elevate your brand and create impact.
                     </p>
 
                 </div>
@@ -792,16 +828,15 @@ url('/components/Images/pa.png');
                     <img src="/components/Images/s.png" alt="Services">
                 </div>
 
-                <span>SERVICES</span>
+                <span id="servicesSpan">SERVICES</span>
 
                 <div class="hero-info">
 
-                    <h4>SERVICES</h4>
+                    <h4 id="servicesTitle">SERVICES</h4>
 
-                    <p>
+                    <p id="servicesText">
                         Custom fabrication, LED signs,
-                        wraps, architectural graphics
-                        and large format printing.
+                        wraps and large format printing.
                     </p>
 
                 </div>
@@ -812,19 +847,18 @@ url('/components/Images/pa.png');
             <div class="hero-icon-card zoom-in delay-3">
 
                 <div class="hero-icon-image float-animation">
-                    <img src="/components/Images/cu.png" alt="Contact Us">
+                    <img src="/components/Images/cu.png" alt="Contact">
                 </div>
 
-                <span>CONTACT US</span>
+                <span id="contactSpan">CONTACT US</span>
 
                 <div class="hero-info">
 
-                    <h4>CONTACT US</h4>
+                    <h4 id="contactTitle">CONTACT US</h4>
 
-                    <p>
-                        Reach out for quotes,
-                        consultations and project
-                        planning with our team.
+                    <p id="contactText">
+                        Reach out for quotes, consultations
+                        and project planning.
                     </p>
 
                 </div>
@@ -838,16 +872,15 @@ url('/components/Images/pa.png');
                     <img src="/components/Images/glr.png" alt="Gallery">
                 </div>
 
-                <span>GALLERY</span>
+                <span id="gallerySpan">GALLERY</span>
 
                 <div class="hero-info">
 
-                    <h4>GALLERY</h4>
+                    <h4 id="galleryTitle">GALLERY</h4>
 
-                    <p>
-                        Explore recent signage,
-                        branding and installation
-                        projects completed for clients.
+                    <p id="galleryText">
+                        Explore our latest signage and
+                        branding projects.
                     </p>
 
                 </div>
@@ -860,15 +893,14 @@ url('/components/Images/pa.png');
 
 </section>
 
-<!-- ===== SERVICES PREVIEW ===== -->
-
+<!-- SERVICES -->
 <section class="services-preview fade-up">
 
     <div class="services-top-title fade-up">
 
-        <span>SERVICIOS</span>
+        <span id="servicesMiniTitle">SERVICES</span>
 
-        <h2>LO QUE HACEMOS</h2>
+        <h2 id="servicesMainTitle">WHAT WE DO</h2>
 
     </div>
 
@@ -928,33 +960,6 @@ url('/components/Images/pa.png');
             </p>
         </div>
 
-        <div class="preview-card fade-up delay-1">
-            <i class="fa fa-road"></i>
-            <h3>MONUMENT & PYLON SIGNS</h3>
-            <p>
-                Freestanding signage engineered
-                for durability and impact.
-            </p>
-        </div>
-
-        <div class="preview-card fade-up delay-2">
-            <i class="fa fa-tools"></i>
-            <h3>INSTALLATION & MAINTENANCE</h3>
-            <p>
-                Professional installation,
-                repairs and maintenance services.
-            </p>
-        </div>
-
-        <div class="preview-card fade-up delay-3">
-            <i class="fa fa-drafting-compass"></i>
-            <h3>DESIGN & PROJECT MANAGEMENT</h3>
-            <p>
-                From concept to installation
-                with full project control.
-            </p>
-        </div>
-
     </div>
 
 </section>
@@ -965,10 +970,15 @@ url('/components/Images/pa.png');
 <!-- FOOTER -->
 <div id="footer-placeholder"></div>
 
-<!-- BOTÓN -->
+<!-- BACK TO TOP -->
 <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
 </div>
+
+<!-- LANGUAGE BUTTON -->
+<button class="language-toggle" id="languageToggle">
+    <i class="fa fa-language"></i>
+</button>
 
 <script>
 
@@ -1007,7 +1017,8 @@ fetch("../footer/footer.html")
     document.body.appendChild(script);
 });
 
-/* ===== BOTON SCROLL ===== */
+/* ===== BACK TO TOP ===== */
+
 const backToTopBtn = document.querySelector(".back-to-top");
 
 window.addEventListener("scroll", function(){
@@ -1048,6 +1059,132 @@ heroCards.forEach(card => {
             card.classList.add("active");
         }
     });
+});
+
+/* ===== LANGUAGE TOGGLE ===== */
+
+let currentLanguage = "en";
+
+const languageButton = document.getElementById("languageToggle");
+
+languageButton.addEventListener("click", () => {
+
+    if(currentLanguage === "en"){
+
+        currentLanguage = "es";
+
+        document.getElementById("heroTitle").innerHTML =
+        "SEÑALIZACIÓN QUE<br>IMPULSA TU MARCA";
+
+        document.getElementById("heroText").innerHTML =
+        "Creamos soluciones visuales que comunican, destacan y dejan huella.";
+
+        document.getElementById("quoteBtn").innerHTML =
+        "COTIZAR AHORA";
+
+        document.getElementById("servicesBtn").innerHTML =
+        "VER SERVICIOS";
+
+        document.getElementById("aboutSpan").innerHTML =
+        "NOSOTROS";
+
+        document.getElementById("servicesSpan").innerHTML =
+        "SERVICIOS";
+
+        document.getElementById("contactSpan").innerHTML =
+        "CONTACTO";
+
+        document.getElementById("gallerySpan").innerHTML =
+        "GALERÍA";
+
+        document.getElementById("aboutTitle").innerHTML =
+        "NOSOTROS";
+
+        document.getElementById("aboutText").innerHTML =
+        "Soluciones profesionales de señalización para elevar tu marca.";
+
+        document.getElementById("servicesTitle").innerHTML =
+        "SERVICIOS";
+
+        document.getElementById("servicesText").innerHTML =
+        "Fabricación personalizada, letreros LED y gran formato.";
+
+        document.getElementById("contactTitle").innerHTML =
+        "CONTACTO";
+
+        document.getElementById("contactText").innerHTML =
+        "Contáctanos para cotizaciones y planeación de proyectos.";
+
+        document.getElementById("galleryTitle").innerHTML =
+        "GALERÍA";
+
+        document.getElementById("galleryText").innerHTML =
+        "Explora nuestros proyectos recientes de branding y señalización.";
+
+        document.getElementById("servicesMiniTitle").innerHTML =
+        "SERVICIOS";
+
+        document.getElementById("servicesMainTitle").innerHTML =
+        "LO QUE HACEMOS";
+
+    }else{
+
+        currentLanguage = "en";
+
+        document.getElementById("heroTitle").innerHTML =
+        "SIGNAGE THAT<br>DRIVES YOUR BRAND";
+
+        document.getElementById("heroText").innerHTML =
+        "We create visual solutions that communicate, stand out and leave a lasting impression.";
+
+        document.getElementById("quoteBtn").innerHTML =
+        "GET A QUOTE";
+
+        document.getElementById("servicesBtn").innerHTML =
+        "VIEW SERVICES";
+
+        document.getElementById("aboutSpan").innerHTML =
+        "ABOUT US";
+
+        document.getElementById("servicesSpan").innerHTML =
+        "SERVICES";
+
+        document.getElementById("contactSpan").innerHTML =
+        "CONTACT US";
+
+        document.getElementById("gallerySpan").innerHTML =
+        "GALLERY";
+
+        document.getElementById("aboutTitle").innerHTML =
+        "ABOUT US";
+
+        document.getElementById("aboutText").innerHTML =
+        "Professional signage solutions designed to elevate your brand and create impact.";
+
+        document.getElementById("servicesTitle").innerHTML =
+        "SERVICES";
+
+        document.getElementById("servicesText").innerHTML =
+        "Custom fabrication, LED signs, wraps and large format printing.";
+
+        document.getElementById("contactTitle").innerHTML =
+        "CONTACT US";
+
+        document.getElementById("contactText").innerHTML =
+        "Reach out for quotes, consultations and project planning.";
+
+        document.getElementById("galleryTitle").innerHTML =
+        "GALLERY";
+
+        document.getElementById("galleryText").innerHTML =
+        "Explore our latest signage and branding projects.";
+
+        document.getElementById("servicesMiniTitle").innerHTML =
+        "SERVICES";
+
+        document.getElementById("servicesMainTitle").innerHTML =
+        "WHAT WE DO";
+    }
 });
 
 </script>
