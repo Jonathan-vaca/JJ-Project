@@ -219,9 +219,23 @@ url('/components/Images/banner.png');
     cursor:pointer;
 
     position:relative;
+
+    -webkit-tap-highlight-color:transparent;
 }
 
-/* contenedor SOLO del icono */
+/* quitar azul mobile */
+.hero-icon-card,
+.hero-icon-card *{
+    outline:none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+.hero-icon-card:focus,
+.hero-icon-card:active{
+    outline:none;
+}
+
+/* icono */
 .hero-icon-image{
 
     width:95px;
@@ -233,10 +247,10 @@ url('/components/Images/banner.png');
 
     border-radius:50%;
 
-    transition:.3s ease;
+    transition:.35s ease;
 }
 
-/* hover SOLO en icono */
+/* hover */
 .hero-icon-card:hover .hero-icon-image{
 
     background:rgba(255,0,0,.12);
@@ -248,6 +262,18 @@ url('/components/Images/banner.png');
     transform:scale(1.08);
 }
 
+/* activo */
+.hero-icon-card.active .hero-icon-image{
+
+    background:rgba(255,0,0,.14);
+
+    box-shadow:
+    0 0 18px rgba(255,0,0,.45),
+    0 0 40px rgba(255,0,0,.18);
+
+    transform:scale(1.08);
+}
+
 /* imagen */
 .hero-icon-image img{
 
@@ -255,6 +281,8 @@ url('/components/Images/banner.png');
     height:178px;
 
     object-fit:contain;
+
+    pointer-events:none;
 }
 
 /* texto */
@@ -279,23 +307,28 @@ url('/components/Images/banner.png');
     color:#ff3a3a;
 }
 
-/* ===== HERO INFO BOX ===== */
+/* activo texto */
+.hero-icon-card.active span{
+
+    color:#ff3a3a;
+}
+
+/* ===== INFO DESPLEGABLE ===== */
 
 .hero-info{
 
-    width:100%;
+    width:220px;
 
-    max-width:220px;
+    background:
+    linear-gradient(
+        180deg,
+        rgba(18,18,18,.96) 0%,
+        rgba(8,8,8,.96) 100%
+    );
 
-    margin-top:18px;
+    border:1px solid rgba(255,0,0,.22);
 
-    background:rgba(15,15,15,.92);
-
-    border:1px solid rgba(255,0,0,.35);
-
-    border-radius:18px;
-
-    padding:0 18px;
+    border-radius:22px;
 
     overflow:hidden;
 
@@ -303,22 +336,26 @@ url('/components/Images/banner.png');
 
     opacity:0;
 
-    transform:translateY(-10px);
+    padding:0 18px;
+
+    transform:translateY(-12px);
 
     transition:
     max-height .45s ease,
     opacity .35s ease,
     transform .35s ease,
-    padding .35s ease;
+    padding .35s ease,
+    margin-top .35s ease;
+
+    margin-top:0;
 
     box-shadow:
-    0 0 20px rgba(255,0,0,.12);
+    0 0 25px rgba(255,0,0,.12);
 
     position:relative;
 }
 
-/* pico arriba */
-
+/* piquito */
 .hero-info::before{
 
     content:"";
@@ -328,56 +365,57 @@ url('/components/Images/banner.png');
     top:-10px;
     left:50%;
 
-    transform:translateX(-50%);
+    transform:translateX(-50%) rotate(45deg);
 
     width:20px;
     height:20px;
 
-    background:rgba(15,15,15,.95);
+    background:#111;
 
-    border-left:1px solid rgba(255,0,0,.35);
-    border-top:1px solid rgba(255,0,0,.35);
-
-    rotate:45deg;
+    border-left:1px solid rgba(255,0,0,.22);
+    border-top:1px solid rgba(255,0,0,.22);
 }
 
-/* activo */
-
+/* mostrar SOLO al click */
 .hero-icon-card.active .hero-info{
 
     max-height:220px;
 
     opacity:1;
 
+    padding:22px 18px;
+
     transform:translateY(0);
 
-    padding:20px 18px;
+    margin-top:10px;
 }
 
+/* titulo */
 .hero-info h4{
 
-    color:#ff2d2d;
+    color:#ff3131;
 
     font-size:15px;
 
-    margin-bottom:10px;
+    letter-spacing:2px;
+
+    margin-bottom:12px;
 
     text-align:center;
-
-    letter-spacing:1px;
 }
 
+/* texto */
 .hero-info p{
 
-    margin:0;
+    color:#d5d5d5;
 
     font-size:13px;
 
-    line-height:1.6;
-
-    color:#d7d7d7;
+    line-height:1.8;
 
     text-align:center;
+
+    margin:0;
 }
 
 /* =====================================
@@ -698,7 +736,7 @@ url('/components/Images/bt.png');
 
     .hero-info{
 
-        max-width:160px;
+        width:170px;
     }
 
     .hero-info h4{
@@ -789,7 +827,7 @@ url('/components/Images/pa.png');
         <!-- ===== ICONOS ===== -->
         <div class="hero-icons">
 
-            <!-- ABOUT US -->
+            <!-- ABOUT -->
             <div class="hero-icon-card">
 
                 <div class="hero-icon-image">
@@ -813,7 +851,7 @@ url('/components/Images/pa.png');
             </div>
 
             <!-- SERVICES -->
-            <div class="hero-icon-card active">
+            <div class="hero-icon-card">
 
                 <div class="hero-icon-image">
                     <img src="/components/Images/s.png" alt="Services">
