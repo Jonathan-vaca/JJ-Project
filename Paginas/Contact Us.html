@@ -271,6 +271,7 @@ textarea{
     border:1px solid rgba(255,255,255,0.08);
     background:#050505;
 }
+
 .map-box img{
     width:100%;
     display:block;
@@ -302,6 +303,39 @@ textarea{
 
 .floating-contact:hover{
     transform:scale(1.1);
+}
+
+/* =========================
+   LANGUAGE BUTTON
+========================= */
+
+.language-toggle{
+    position:fixed;
+    left:20px;
+    bottom:20px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#ff1e1e;
+    border:none;
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+    0 0 20px rgba(255,0,0,.35);
+
+    transition:.3s ease;
+}
+
+.language-toggle:hover{
+    transform:scale(1.08);
+    background:#d10000;
 }
 
 /* =========================
@@ -400,6 +434,14 @@ textarea{
         height:55px;
         font-size:20px;
     }
+
+    .language-toggle{
+        width:52px;
+        height:52px;
+        font-size:20px;
+        left:15px;
+        bottom:15px;
+    }
 }
 
 </style>
@@ -423,15 +465,15 @@ textarea{
         <!-- LEFT -->
         <div class="contact-info">
 
-            <div class="contact-tag">
+            <div class="contact-tag" id="contactTag">
                 LET'S CREATE SOMETHING AMAZING
             </div>
 
-            <h1 class="contact-title">
+            <h1 class="contact-title" id="contactTitle">
                 Contact <span>Us</span>
             </h1>
 
-            <p class="contact-description">
+            <p class="contact-description" id="contactDescription">
                 Have a project in mind or need a custom sign for your business?
                 Our team is ready to help you transform your ideas into
                 high-impact visual experiences.
@@ -441,26 +483,26 @@ textarea{
 
                 <div class="info-card">
                     <i class="fa-solid fa-phone"></i>
-                    <h3>Phone</h3>
+                    <h3 id="phoneTitle">Phone</h3>
                     <p>+1 (470) 275-7046</p>
                 </div>
 
                 <div class="info-card">
                     <i class="fa-solid fa-envelope"></i>
-                    <h3>Email</h3>
+                    <h3 id="emailTitle">Email</h3>
                     <p>info@jjrsigns.com</p>
                 </div>
 
                 <div class="info-card">
                     <i class="fa-solid fa-location-dot"></i>
-                    <h3>Address</h3>
-                    <p>1234 Peachtree St, Atlanta, GA</p>
+                    <h3 id="addressTitle">Address</h3>
+                    <p id="addressText">1234 Peachtree St, Atlanta, GA</p>
                 </div>
 
                 <div class="info-card">
                     <i class="fa-solid fa-clock"></i>
-                    <h3>Working Hours</h3>
-                    <p>Mon - Fri | 8:00 AM - 6:00 PM</p>
+                    <h3 id="hoursTitle">Working Hours</h3>
+                    <p id="hoursText">Mon - Fri | 8:00 AM - 6:00 PM</p>
                 </div>
 
             </div>
@@ -474,33 +516,33 @@ textarea{
 
             <div class="contact-form-box">
 
-                <h2 class="form-title">
+                <h2 class="form-title" id="formTitle">
                     Send us a message
                 </h2>
 
-                <p class="form-subtitle">
+                <p class="form-subtitle" id="formSubtitle">
                     Fill out the form below and we’ll get back to you as soon as possible.
                 </p>
 
                 <form id="contact-form">
 
                     <div class="input-group">
-                        <input type="text" placeholder="Your Name" required>
+                        <input type="text" id="nameInput" placeholder="Your Name" required>
                     </div>
 
                     <div class="input-group">
-                        <input type="email" placeholder="Your Email" required>
+                        <input type="email" id="emailInput" placeholder="Your Email" required>
                     </div>
 
                     <div class="input-group">
-                        <input type="text" placeholder="Subject">
+                        <input type="text" id="subjectInput" placeholder="Subject">
                     </div>
 
                     <div class="input-group">
-                        <textarea placeholder="Tell us about your project..."></textarea>
+                        <textarea id="messageInput" placeholder="Tell us about your project..."></textarea>
                     </div>
 
-                    <button class="send-btn">
+                    <button type="button" class="send-btn" id="sendBtn">
                         Send Message
                     </button>
 
@@ -518,7 +560,7 @@ textarea{
 <section class="map-section">
 
     <div class="map-box">
-        <img src="/components/Images/mapa.png" alt="Map">
+        <img id="mapImage" src="/components/images/mapa.png" alt="Map">
     </div>
 
 </section>
@@ -527,6 +569,11 @@ textarea{
 <div class="floating-contact">
     <i class="fa-solid fa-paper-plane"></i>
 </div>
+
+<!-- LANGUAGE BUTTON -->
+<button class="language-toggle" id="languageToggle">
+    <i class="fa fa-language"></i>
+</button>
 
 <!-- FOOTER -->
 <div id="footer-placeholder"></div>
@@ -537,10 +584,12 @@ textarea{
 fetch("/header/header.html")
 .then(res => res.text())
 .then(data => {
+
     document.getElementById("header-placeholder").innerHTML = data;
 
     const script = document.createElement("script");
     script.src = "../header/header.js";
+
     document.body.appendChild(script);
 });
 
@@ -554,11 +603,143 @@ fetch("../footer/footer.html")
     const link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = "../footer/footer.css";
+
     document.head.appendChild(link);
 
     const script = document.createElement("script");
     script.src = "../footer/footer.js";
+
     document.body.appendChild(script);
+});
+
+/* =========================
+   LANGUAGE TOGGLE
+========================= */
+
+let currentLanguage = "en";
+
+const languageButton = document.getElementById("languageToggle");
+
+languageButton.addEventListener("click", () => {
+
+    if(currentLanguage === "en"){
+
+        currentLanguage = "es";
+
+        /* TEXTOS */
+
+        document.getElementById("contactTag").innerHTML =
+        "CREEMOS ALGO INCREÍBLE";
+
+        document.getElementById("contactTitle").innerHTML =
+        'Contácta<span>nos</span>';
+
+        document.getElementById("contactDescription").innerHTML =
+        "¿Tienes un proyecto en mente o necesitas un letrero personalizado para tu negocio? Nuestro equipo está listo para ayudarte a transformar tus ideas en experiencias visuales de alto impacto.";
+
+        document.getElementById("phoneTitle").innerHTML =
+        "Teléfono";
+
+        document.getElementById("emailTitle").innerHTML =
+        "Correo";
+
+        document.getElementById("addressTitle").innerHTML =
+        "Dirección";
+
+        document.getElementById("addressText").innerHTML =
+        "1234 Peachtree St, Atlanta, GA";
+
+        document.getElementById("hoursTitle").innerHTML =
+        "Horario";
+
+        document.getElementById("hoursText").innerHTML =
+        "Lun - Vie | 8:00 AM - 6:00 PM";
+
+        document.getElementById("formTitle").innerHTML =
+        "Envíanos un mensaje";
+
+        document.getElementById("formSubtitle").innerHTML =
+        "Completa el formulario y nos pondremos en contacto contigo lo antes posible.";
+
+        document.getElementById("nameInput").placeholder =
+        "Tu Nombre";
+
+        document.getElementById("emailInput").placeholder =
+        "Tu Correo";
+
+        document.getElementById("subjectInput").placeholder =
+        "Asunto";
+
+        document.getElementById("messageInput").placeholder =
+        "Cuéntanos sobre tu proyecto...";
+
+        document.getElementById("sendBtn").innerHTML =
+        "Enviar Mensaje";
+
+        /* IMAGEN ESPAÑOL */
+
+        document.getElementById("mapImage").src =
+        "/components/images/mes.png";
+
+    }else{
+
+        currentLanguage = "en";
+
+        /* TEXTOS */
+
+        document.getElementById("contactTag").innerHTML =
+        "LET'S CREATE SOMETHING AMAZING";
+
+        document.getElementById("contactTitle").innerHTML =
+        'Contact <span>Us</span>';
+
+        document.getElementById("contactDescription").innerHTML =
+        "Have a project in mind or need a custom sign for your business? Our team is ready to help you transform your ideas into high-impact visual experiences.";
+
+        document.getElementById("phoneTitle").innerHTML =
+        "Phone";
+
+        document.getElementById("emailTitle").innerHTML =
+        "Email";
+
+        document.getElementById("addressTitle").innerHTML =
+        "Address";
+
+        document.getElementById("addressText").innerHTML =
+        "1234 Peachtree St, Atlanta, GA";
+
+        document.getElementById("hoursTitle").innerHTML =
+        "Working Hours";
+
+        document.getElementById("hoursText").innerHTML =
+        "Mon - Fri | 8:00 AM - 6:00 PM";
+
+        document.getElementById("formTitle").innerHTML =
+        "Send us a message";
+
+        document.getElementById("formSubtitle").innerHTML =
+        "Fill out the form below and we’ll get back to you as soon as possible.";
+
+        document.getElementById("nameInput").placeholder =
+        "Your Name";
+
+        document.getElementById("emailInput").placeholder =
+        "Your Email";
+
+        document.getElementById("subjectInput").placeholder =
+        "Subject";
+
+        document.getElementById("messageInput").placeholder =
+        "Tell us about your project...";
+
+        document.getElementById("sendBtn").innerHTML =
+        "Send Message";
+
+        /* IMAGEN INGLES */
+
+        document.getElementById("mapImage").src =
+        "/components/images/mapa.png";
+    }
 });
 
 </script>
