@@ -111,6 +111,8 @@ body{
     margin-bottom:25px;
     background:rgba(255,255,255,0.03);
     backdrop-filter:blur(8px);
+
+    transition-delay:.02s;
 }
 
 .contact-title{
@@ -118,6 +120,8 @@ body{
     line-height:1;
     font-weight:700;
     margin-bottom:25px;
+
+    transition-delay:.08s;
 }
 
 .contact-title span{
@@ -130,6 +134,8 @@ body{
     line-height:1.9;
     max-width:580px;
     margin-bottom:40px;
+
+    transition-delay:.16s;
 }
 
 /* =========================
@@ -159,6 +165,24 @@ body{
     backdrop-filter:blur(10px);
 
     -webkit-tap-highlight-color:transparent;
+
+    transform-style:preserve-3d;
+}
+
+.info-card:nth-child(1){
+    transition-delay:.10s;
+}
+
+.info-card:nth-child(2){
+    transition-delay:.18s;
+}
+
+.info-card:nth-child(3){
+    transition-delay:.26s;
+}
+
+.info-card:nth-child(4){
+    transition-delay:.34s;
 }
 
 .info-card::before{
@@ -231,6 +255,8 @@ body{
 .form-wrapper{
     position:relative;
     animation:fadeRight 1s ease;
+
+    transition-delay:.15s;
 }
 
 .form-glow{
@@ -251,6 +277,8 @@ body{
     backdrop-filter:blur(16px);
 
     transition:.4s ease;
+
+    transform-style:preserve-3d;
 }
 
 .contact-form-box:hover{
@@ -378,6 +406,10 @@ textarea{
     background:#050505;
 
     transition:.4s ease;
+
+    transition-delay:.12s;
+
+    transform-style:preserve-3d;
 }
 
 .map-box:hover{
@@ -484,21 +516,40 @@ textarea{
 }
 
 /* =========================
-   REVEAL ANIMATION
+   ULTRA SMOOTH REVEAL
 ========================= */
 
 .reveal{
     opacity:0;
-    transform:translateY(60px) scale(.96);
+
+    transform:
+    translate3d(0,90px,0)
+    scale(.985);
+
+    filter:blur(10px);
 
     transition:
-    opacity .9s ease,
-    transform .9s ease;
+    opacity 1.2s cubic-bezier(.16,1,.3,1),
+    transform 1.2s cubic-bezier(.16,1,.3,1),
+    filter 1.2s cubic-bezier(.16,1,.3,1);
+
+    will-change:
+    transform,
+    opacity,
+    filter;
+
+    backface-visibility:hidden;
+    perspective:1000px;
 }
 
 .reveal.active{
     opacity:1;
-    transform:translateY(0) scale(1);
+
+    transform:
+    translate3d(0,0,0)
+    scale(1);
+
+    filter:blur(0);
 }
 
 /* =========================
@@ -570,6 +621,19 @@ textarea{
 }
 
 @media(max-width:768px){
+
+    .reveal{
+        transform:
+        translate3d(0,70px,0)
+        scale(.99);
+
+        filter:blur(6px);
+
+        transition:
+        opacity .95s cubic-bezier(.16,1,.3,1),
+        transform .95s cubic-bezier(.16,1,.3,1),
+        filter .95s cubic-bezier(.16,1,.3,1);
+    }
 
     .background-glow{
         position:fixed;
@@ -647,7 +711,6 @@ textarea{
 }
 
 </style>
-
 </head>
 
 <body>
