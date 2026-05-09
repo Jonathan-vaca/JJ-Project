@@ -1,1193 +1,341 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&display=swap" rel="stylesheet">
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J.Jr Signs</title>
+    <link rel="icon" type="image/png" href="../components/Logos/logo blanco.png">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Header styles -->
+    <link rel="stylesheet" href="../header/header.css">
 
-<title>J.Jr Signs</title>
+    <!-- Font Awesome icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
-<link rel="icon" type="image/png" href="../components/Logos/logo blanco.png">
+    <style>
+        /* Fondo principal con imagen repetida (PC / tablet) */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            min-height: 100vh;
+            color: #fff;
+            background-color: #000000; /* Fondo base */
+            background-image: url('/components/Images/Signs\ Fondo.jpeg');
+            background-repeat: repeat;   
+            background-size: contain;    
+            background-position: center;
+            position: relative;
+        }
 
-<!-- Header styles -->
-<link rel="stylesheet" href="../header/header.css">
-
-<!-- Font Awesome -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-
-<style>
-
-/* ===== RESET ===== */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+        /* Overlay semitransparente sobre el fondo (PC / tablet) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            pointer-events: none;
+            z-index: -1;
+        }
+@media screen and (max-width: 768px) {
+body {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), /* capa oscura */
+    url('/components/fonts/10.jpeg') !important;
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: #000 !important;
 }
 
-/* ===== BODY ===== */
-body{
-    font-family:'Poppins',sans-serif;
-    background-color:#000;
-    background-repeat:repeat;
-    background-size:contain;
-    background-position:center;
-    color:#fff;
-    overflow-x:hidden;
-}
-
-/* overlay oscuro */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    z-index:-1;
-}
-
-/* ===== HEADER ===== */
-#header-placeholder{
-    margin:0 !important;
-    padding:0 !important;
-}
-
-#header-placeholder *{
-    margin-top:0 !important;
-}
-
-/* ===== HERO ===== */
-.hero{
-    min-height:100vh;
-    width:100%;
-    display:flex;
-    align-items:center;
-
-    background:
-linear-gradient(
-    to bottom,
-    rgba(0,0,0,0) 75%,
-    rgba(0,0,0,.55) 88%,
-    rgba(0,0,0,.88) 100%
-),
-linear-gradient(
-    to right,
-    rgba(0,0,0,.88) 0%,
-    rgba(0,0,0,.65) 40%,
-    rgba(0,0,0,.45) 100%
-),
-url('/components/Images/banner.png');
-
-    background-size:cover;
-    background-repeat:no-repeat;
-    background-position:center top 0px;
-
-    margin:0;
-    padding-top:0px;
-    padding-bottom:80px;
-
-    position:relative;
-    overflow:hidden;
-}
-
-/* ===== CONTENT ===== */
-.hero-content{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    z-index:2;
-}
-
-/* ===== ANIMATIONS ===== */
-
-.fade-up{
-    opacity:0;
-    transform:translateY(60px);
-    animation:fadeUp 1s ease forwards;
-}
-
-.fade-left{
-    opacity:0;
-    transform:translateX(-80px);
-    animation:fadeLeft 1s ease forwards;
-}
-
-.fade-right{
-    opacity:0;
-    transform:translateX(80px);
-    animation:fadeRight 1s ease forwards;
-}
-
-.zoom-in{
-    opacity:0;
-    transform:scale(.7);
-    animation:zoomIn .9s ease forwards;
-}
-
-.float-animation{
-    animation:floaty 3s ease-in-out infinite;
-}
-
-.delay-1{
-    animation-delay:.2s;
-}
-
-.delay-2{
-    animation-delay:.4s;
-}
-
-.delay-3{
-    animation-delay:.6s;
-}
-
-.delay-4{
-    animation-delay:.8s;
-}
-
-.delay-5{
-    animation-delay:1s;
-}
-
-@keyframes fadeUp{
-    to{
-        opacity:1;
-        transform:translateY(0);
+    body::before {
+        display: none !important; /* ❌ Quita overlay en móvil */
     }
 }
-
-@keyframes fadeLeft{
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-}
-
-@keyframes fadeRight{
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-}
-
-@keyframes zoomIn{
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-@keyframes floaty{
-    0%{
-        transform:translateY(0px);
-    }
-
-    50%{
-        transform:translateY(-8px);
-    }
-
-    100%{
-        transform:translateY(0px);
-    }
-}
-
-/* ===== TITLE ===== */
-.hero h1{
-    font-size:48px;
-    line-height:1.05;
-    font-weight:700;
-    max-width:500px;
-    margin-bottom:30px;
-    letter-spacing:1px;
-}
-
-/* red line */
-.hero h1::before{
-    content:"";
-    display:block;
-    width:120px;
-    height:5px;
-    background:#ff1e1e;
-    margin-bottom:25px;
-    border-radius:20px;
-}
-
-/* ===== TEXT ===== */
-.hero p{
-    color:#d8d8d8;
-    max-width:500px;
-    font-size:17px;
-    line-height:1.7;
-    margin-bottom:45px;
-}
-
-/* ===== BUTTONS ===== */
-.hero-buttons{
-    display:flex;
-    gap:20px;
-}
-
-/* button base */
-.btn{
-    padding:12px 34px;
-    border-radius:8px;
-    border:none;
-    cursor:pointer;
-    font-size:17px;
-    font-weight:600;
-    transition:.3s ease;
-}
-
-/* red */
-.btn-primary{
-    background:#ff1e1e;
-    color:#fff;
-}
-
-.btn-primary:hover{
-    background:#d10000;
-    transform:translateY(-3px) scale(1.03);
-}
-
-/* transparent */
-.btn-outline{
-    background:transparent;
-    border:1px solid rgba(255,255,255,.8);
-    color:#fff;
-}
-
-.btn-outline:hover{
-    background:#fff;
-    color:#000;
-    transform:translateY(-3px) scale(1.03);
-}
-
-/* ===== HERO ICONS ===== */
-.hero-icons{
-    display:flex;
-    gap:55px;
-    margin-top:70px;
-    flex-wrap:wrap;
-}
-
-/* item */
-.hero-icon-card{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:18px;
-    cursor:pointer;
-    position:relative;
-    -webkit-tap-highlight-color:transparent;
-}
-
-/* remove blue tap */
-.hero-icon-card,
-.hero-icon-card *{
-    outline:none;
-    -webkit-tap-highlight-color:transparent;
-}
-
-.hero-icon-card:focus,
-.hero-icon-card:active{
-    outline:none;
-}
-
-/* icon container */
-.hero-icon-image{
-    width:95px;
-    height:95px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    transition:.35s ease;
-}
-
-/* hover */
-.hero-icon-card:hover .hero-icon-image{
-    background:rgba(255,0,0,.12);
-
-    box-shadow:
-    0 0 15px rgba(255,0,0,.35),
-    0 0 35px rgba(255,0,0,.15);
-
-    transform:scale(1.08);
-}
-
-/* active */
-.hero-icon-card.active .hero-icon-image{
-    background:rgba(255,0,0,.14);
-
-    box-shadow:
-    0 0 18px rgba(255,0,0,.45),
-    0 0 40px rgba(255,0,0,.18);
-
-    transform:scale(1.08);
-}
-
-/* image */
-.hero-icon-image img{
-    width:178px;
-    height:178px;
-    object-fit:contain;
-    pointer-events:none;
-}
-
-/* text */
-.hero-icon-card span{
-    font-size:14px;
-    font-weight:600;
-    letter-spacing:1px;
-    color:#fff;
-    text-align:center;
-    transition:.3s ease;
-}
-
-/* hover text */
-.hero-icon-card:hover span{
-    color:#ff3a3a;
-}
-
-/* active text */
-.hero-icon-card.active span{
-    color:#ff3a3a;
-}
-
-/* ===== HERO INFO BOX ===== */
-
-.hero-info{
-    width:100%;
-    max-width:220px;
-    margin-top:18px;
-
-    background:rgba(15,15,15,.92);
-
-    border:1px solid rgba(255,0,0,.35);
-
-    border-radius:18px;
-
-    padding:0 18px;
-
-    overflow:hidden;
-
-    max-height:0;
-
-    opacity:0;
-
-    transform:translateY(-10px);
-
-    transition:
-    max-height .45s ease,
-    opacity .35s ease,
-    transform .35s ease,
-    padding .35s ease;
-
-    box-shadow:
-    0 0 20px rgba(255,0,0,.12);
-
-    position:relative;
-}
-
-/* top arrow */
-.hero-info::before{
-    content:"";
-    position:absolute;
-    top:-10px;
-    left:50%;
-    transform:translateX(-50%);
-    width:20px;
-    height:20px;
-
-    background:rgba(15,15,15,.95);
-
-    border-left:1px solid rgba(255,0,0,.35);
-    border-top:1px solid rgba(255,0,0,.35);
-
-    rotate:45deg;
-}
-
-/* active */
-.hero-icon-card.active .hero-info{
-    max-height:220px;
-    opacity:1;
-    transform:translateY(0);
-    padding:20px 18px;
-}
-
-.hero-info h4{
-    color:#ff2d2d;
-    font-size:15px;
-    margin-bottom:10px;
-    text-align:center;
-    letter-spacing:1px;
-}
-
-.hero-info p{
-    margin:0;
-    font-size:13px;
-    line-height:1.6;
-    color:#d7d7d7;
-    text-align:center;
-}
-
-/* ===== SERVICES ===== */
-
-.services-preview{
-    width:100%;
-    padding:80px 5%;
-    position:relative;
-
-    background:
-linear-gradient(
-    to bottom,
-    rgba(0,0,0,.88) 0%,
-    rgba(0,0,0,.55) 12%,
-    rgba(0,0,0,.78) 25%,
-    rgba(0,0,0,.82) 100%
-),
-url('/components/Images/bp.png');
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    overflow:hidden;
-}
-
-/* title */
-.services-top-title{
-    text-align:center;
-    margin-bottom:45px;
-}
-
-.services-top-title span{
-    color:#ff1e1e;
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:2px;
-    display:block;
-    margin-bottom:10px;
-}
-
-.services-top-title h2{
-    font-size:42px;
-    font-weight:700;
-    letter-spacing:1px;
-}
-
-/* grid */
-.services-preview-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
-}
-
-/* cards */
-.preview-card{
-    background:#0b0b0b;
-
-    border:1px solid rgba(255,255,255,.05);
-
-    padding:11px 13px;
-
-    text-align:center;
-
-    transition:.35s ease;
-
-    position:relative;
-
-    overflow:hidden;
-
-    min-height:170px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-}
-
-/* hover */
-.preview-card:hover{
-    transform:translateY(-8px) scale(1.02);
-
-    border-color:rgba(255,0,0,.4);
-
-    background:#111;
-}
-
-/* glow */
-.preview-card::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:3px;
-    background:#ff1e1e;
-    transform:scaleX(0);
-    transition:.4s ease;
-}
-
-.preview-card:hover::before{
-    transform:scaleX(1);
-}
-
-/* icon */
-.preview-card i{
-    font-size:42px;
-    color:#ff1e1e;
-    margin-bottom:25px;
-    transition:.3s ease;
-}
-
-.preview-card:hover i{
-    transform:scale(1.15) rotate(5deg);
-}
-
-/* title */
-.preview-card h3{
-    font-size:18px;
-    margin-bottom:15px;
-    font-weight:700;
-    line-height:1.4;
-}
-
-/* desc */
-.preview-card p{
-    font-size:14px;
-    line-height:1.7;
-    color:#bdbdbd;
-}
-
-/* ===== LANGUAGE BUTTON ===== */
-
-.language-toggle{
-    position:fixed;
-    left:20px;
-    bottom:20px;
-    width:58px;
-    height:58px;
-    border-radius:50%;
-    background:#ff1e1e;
-    border:none;
-    color:#fff;
-    font-size:22px;
-    cursor:pointer;
-    z-index:9999;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    box-shadow:
-    0 0 20px rgba(255,0,0,.35);
-
-    transition:.3s ease;
-}
-
-.language-toggle:hover{
-    transform:scale(1.08);
-    background:#d10000;
-}
-
-/* ===== MAIN ===== */
-main{
-    margin:0;
-    padding:0;
-}
-
-/* ===== FOOTER ===== */
-#footer-placeholder{
-    margin:0;
-    padding:0;
-}
-
-/* ===== BACK TO TOP ===== */
-.back-to-top{
-    position:fixed;
-    right:20px;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:32px;
-    color:#ff1e1e;
-    cursor:pointer;
-    z-index:999;
-    display:none;
-}
-
-.back-to-top.show{
-    display:block;
-}
-
-.back-to-top i{
-    animation:bounce 1.5s infinite;
-}
-
-@keyframes bounce{
-    0%,20%,50%,80%,100%{
-        transform:translateY(0);
-    }
-
-    40%{
-        transform:translateY(-15px);
-    }
-
-    60%{
-        transform:translateY(-8px);
-    }
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media(max-width:1200px){
-
-.services-preview-grid{
-    grid-template-columns:repeat(2,1fr);
-}
-
-}
-
-@media(max-width:1100px){
-
-    .hero{
-        background-size:cover;
-        background-position:center;
-        padding-top:150px;
-    }
-
-    .hero h1{
-        font-size:56px;
-    }
-}
-
-@media(max-width:768px){
-
-    .hero{
-        min-height:auto;
-
-        padding-top:140px;
-        padding-bottom:100px;
-
-        background:
-linear-gradient(
-    to bottom,
-    rgba(0,0,0,.35) 0%,
-    rgba(0,0,0,.55) 45%,
-    rgba(0,0,0,.88) 100%
-),
-url('/components/Images/bt.png');
-
-        background-size:cover;
-        background-position:center;
-        background-repeat:no-repeat;
-    }
-
-    .hero h1{
-        font-size:42px;
-        max-width:100%;
-    }
-
-    .hero p{
-        font-size:17px;
-        max-width:100%;
-    }
-
-    .hero-buttons{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .btn{
-        width:100%;
-    }
-
-    .hero-icons{
-        justify-content:center;
-        gap:25px;
-    }
-
-    .hero-info{
-        max-width:160px;
-    }
-
-    .hero-info h4{
-        font-size:13px;
-    }
-
-    .hero-info p{
-        font-size:12px;
-    }
-
-    .services-preview{
-        background:
-linear-gradient(
-    to bottom,
-    rgba(0,0,0,.92) 0%,
-    rgba(0,0,0,.72) 15%,
-    rgba(0,0,0,.82) 40%,
-    rgba(0,0,0,.96) 100%
-),
-url('/components/Images/pa.png');
-
-        background-size:cover;
-        background-position:center;
-        background-repeat:no-repeat;
-    }
-
-    .services-preview{
-        padding:70px 20px;
-    }
-
-    .services-top-title h2{
-        font-size:30px;
-    }
-
-    .services-preview-grid{
-        grid-template-columns:1fr;
-    }
-
-    .preview-card{
-        padding:35px 25px;
-        min-height:auto;
-    }
-
-    .language-toggle{
-        width:52px;
-        height:52px;
-        font-size:20px;
-        left:15px;
-        bottom:15px;
-    }
-}
-
-</style>
+        /* Animaciones y estilos de secciones */
+        @keyframes zoomPan {
+            0% { transform: scale(1) translateX(0); }
+            50% { transform: scale(1.05) translateX(-3%); }
+            100% { transform: scale(1.1) translateX(0); }
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        section {
+            display: flex;
+            align-items: center;
+            margin: 60px 0;
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .section-left {
+            flex-direction: row;
+            text-align: left;
+            transform: translateX(-50px);
+        }
+
+        .section-right {
+            flex-direction: row-reverse;
+            text-align: right;
+            transform: translateX(50px);
+        }
+
+        .section-content {
+            max-width: 600px;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Textos */
+        #about h2, #services h2, #contact h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-style: italic;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.253);
+        }
+
+        #about p, #services p, #contact p {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-style: italic;
+            color: #fff;
+            line-height: 1.7;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.253);
+        }
+
+        #about h2 { font-size: 38px; margin-bottom: 20px; }
+        #about p { font-size: 18px; }
+        #services h2 { font-size: 42px; margin-bottom: 22px; }
+        #services p { font-size: 20px; }
+        #contact h2 { font-size: 36px; margin-bottom: 18px; }
+        #contact p { font-size: 17px; }
+
+        /* Flecha volver arriba */
+        .back-to-top {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 32px;
+            color: red;
+            cursor: pointer;
+            z-index: 999;
+            display: none; 
+        }
+
+        .back-to-top.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .back-to-top i {
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-8px); }
+        }
+
+        /* Responsive secciones */
+        @media screen and (max-width: 1024px) {
+            section {
+                flex-direction: column !important;
+                text-align: center !important;
+                transform: translateX(0);
+            }
+            .section-content { max-width: 90%; }
+        }
+                @media screen and (max-width: 1340px) {
+            main { max-width: 1200px; }
+        }
+        @media screen and (max-width: 1120px) {
+            main { max-width: 1000px; }
+        }
+        @media screen and (max-width: 960px) {
+            main { max-width: 850px; }
+        }
+        @media screen and (max-width: 720px) {
+            main { max-width: 650px; padding: 30px 15px; }
+            section { margin: 40px 0; }
+            #about h2, #services h2, #contact h2 { font-size: 28px; }
+            #about p, #services p, #contact p { font-size: 16px; }
+        }
+        @media screen and (max-width: 540px) {
+            main { max-width: 500px; padding: 20px 10px; }
+            section { margin: 30px 0; }
+            #about h2, #services h2, #contact h2 { font-size: 24px; }
+            #about p, #services p, #contact p { font-size: 14px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
-<div id="header-placeholder"></div>
+    <!-- Header -->
+    <div id="header-placeholder"></div>
 
-<!-- HERO -->
-<section class="hero">
+    <!-- Main Content -->
+    <main>
+        <section id="about" class="section-left">
+            <div class="section-content">
+<h2 
+  data-en="About Us" 
+  data-es="Sobre Nosotros"
+>
+  About Us
+</h2>
 
-    <div class="hero-content">
-
-        <h1 class="fade-left" id="heroTitle">
-            SIGNAGE THAT
-            DRIVES YOUR BRAND
-        </h1>
-
-        <p class="fade-right delay-1" id="heroText">
-            We create visual solutions that communicate,
-            stand out and leave a lasting impression.
-        </p>
-
-        <div class="hero-buttons fade-up delay-2">
-
-            <button class="btn btn-primary" id="quoteBtn">
-                GET A QUOTE
-            </button>
-
-            <button class="btn btn-outline" id="servicesBtn">
-                VIEW SERVICES
-            </button>
-
-        </div>
-
-        <!-- ICONS -->
-        <div class="hero-icons">
-
-            <!-- ABOUT -->
-            <div class="hero-icon-card zoom-in delay-1">
-
-                <div class="hero-icon-image float-animation">
-                    <img src="/components/Images/au.png" alt="About">
-                </div>
-
-                <span id="aboutSpan">ABOUT US</span>
-
-                <div class="hero-info">
-
-                    <h4 id="aboutTitle">ABOUT US</h4>
-
-                    <p id="aboutText">
-                        Professional signage solutions designed
-                        to elevate your brand and create impact.
-                    </p>
-
-                </div>
-
+<p
+  data-en="In our About Us section, you can discover the story behind J.Jr Signs — who we are, how we started, and what drives our passion for creativity. Learn about our commitment to quality, innovation, and customer satisfaction that defines every project we create."
+  data-es="En nuestra sección Sobre Nosotros, puedes descubrir la historia detrás de J.Jr Signs: quiénes somos, cómo comenzamos y qué impulsa nuestra pasión por la creatividad. Conoce nuestro compromiso con la calidad, la innovación y la satisfacción del cliente que define cada proyecto que realizamos."
+>
+  In our About Us section, you can discover the story behind J.Jr Signs — who we are, how we started, and what drives our passion for creativity. Learn about our commitment to quality, innovation, and customer satisfaction that defines every project we create.
+</p>
             </div>
+        </section>
 
-            <!-- SERVICES -->
-            <div class="hero-icon-card zoom-in delay-2">
+        <section id="services" class="section-right">
+            <div class="section-content">
+<h2 
+  data-en="Services" 
+  data-es="Servicios"
+>
+  Services
+</h2>
 
-                <div class="hero-icon-image float-animation">
-                    <img src="/components/Images/s.png" alt="Services">
-                </div>
+<p
+  data-en="In Services, you’ll find the full range of what we offer — from signage and vinyl installations to printing, banners, graphic design, and branding. We focus on delivering professional results in each of these areas, so you can explore the one that fits your needs best. Each service includes examples and real projects for reference."
+  data-es="En Servicios encontrarás toda la gama de lo que ofrecemos, desde letreros e instalaciones de vinilo hasta impresión, banners, diseño gráfico y branding. Nos enfocamos en entregar resultados profesionales en cada área, para que puedas elegir la opción que mejor se adapte a tus necesidades. Cada servicio incluye ejemplos y proyectos reales como referencia."
+>
+  In Services, you’ll find the full range of what we offer — from signage and vinyl installations to printing, banners, graphic design, and branding. We focus on delivering professional results in each of these areas, so you can explore the one that fits your needs best. Each service includes examples and real projects for reference.
+</p>
+        </section>
 
-                <span id="servicesSpan">SERVICES</span>
+        <section id="contact" class="section-left">
+            <div class="section-content">
+<h2 
+  data-en="Contact Us" 
+  data-es="Contáctanos"
+>
+  Contact Us
+</h2>
 
-                <div class="hero-info">
-
-                    <h4 id="servicesTitle">SERVICES</h4>
-
-                    <p id="servicesText">
-                        Custom fabrication, LED signs,
-                        wraps and large format printing.
-                    </p>
-
-                </div>
-
+<p
+  data-en="Through our Contact Us page, you can easily reach us directly via email or WhatsApp. Our main office is located in Atlanta, and we’ll soon be expanding to Bogotá. This section allows you to communicate with our team, request quotes, or schedule a consultation quickly and easily."
+  data-es="A través de nuestra página de Contacto, puedes comunicarte fácilmente con nosotros por correo electrónico o WhatsApp. Nuestra oficina principal está ubicada en Atlanta y pronto nos expandiremos a Bogotá. Esta sección te permite contactar a nuestro equipo, solicitar cotizaciones o programar una consulta de manera rápida y sencilla."
+>
+  Through our Contact Us page, you can easily reach us directly via email or WhatsApp. Our main office is located in Atlanta, and we’ll soon be expanding to Bogotá. This section allows you to communicate with our team, request quotes, or schedule a consultation quickly and easily.
+</p>
             </div>
+        </section>
+        <section id="services" class="section-right">
+            <div class="section-content">
+<h2 
+  data-en="Gallery" 
+  data-es="Galería"
+>
+  Gallery
+</h2>
 
-            <!-- CONTACT -->
-            <div class="hero-icon-card zoom-in delay-3">
-
-                <div class="hero-icon-image float-animation">
-                    <img src="/components/Images/cu.png" alt="Contact">
-                </div>
-
-                <span id="contactSpan">CONTACT US</span>
-
-                <div class="hero-info">
-
-                    <h4 id="contactTitle">CONTACT US</h4>
-
-                    <p id="contactText">
-                        Reach out for quotes, consultations
-                        and project planning.
-                    </p>
-
-                </div>
-
+<p
+  data-en="Visit our Gallery to explore our creative work and past projects. Here you can see the quality of our designs, finished signs, and installations for different clients. You’ll also find options to request a quote for any of the products or services you’re interested in."
+  data-es="Visita nuestra Galería para explorar nuestro trabajo creativo y proyectos anteriores. Aquí podrás ver la calidad de nuestros diseños, letreros terminados e instalaciones para diferentes clientes. También encontrarás opciones para solicitar una cotización de cualquier producto o servicio que te interese."
+>
+  Visit our Gallery to explore our creative work and past projects. Here you can see the quality of our designs, finished signs, and installations for different clients. You’ll also find options to request a quote for any of the products or services you’re interested in.
+</p>
             </div>
+        </section>
 
-            <!-- GALLERY -->
-            <div class="hero-icon-card zoom-in delay-4">
+    </main>
 
-                <div class="hero-icon-image float-animation">
-                    <img src="/components/Images/glr.png" alt="Gallery">
-                </div>
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
 
-                <span id="gallerySpan">GALLERY</span>
-
-                <div class="hero-info">
-
-                    <h4 id="galleryTitle">GALLERY</h4>
-
-                    <p id="galleryText">
-                        Explore our latest signage and
-                        branding projects.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
+    <!-- Flecha volver arriba -->
+    <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
     </div>
 
-</section>
-
-<!-- SERVICES -->
-<section class="services-preview fade-up">
-
-    <div class="services-top-title fade-up">
-
-        <span id="servicesMiniTitle">SERVICES</span>
-
-        <h2 id="servicesMainTitle">WHAT WE DO</h2>
-
-    </div>
-
-    <div class="services-preview-grid">
-
-        <div class="preview-card fade-up delay-1">
-            <i class="fa fa-industry"></i>
-            <h3>CUSTOM SIGN FABRICATION</h3>
-            <p>
-                Tailor-made signage using CNC routing,
-                laser cutting and premium finishes.
-            </p>
-        </div>
-
-        <div class="preview-card fade-up delay-2">
-            <i class="fa fa-car"></i>
-            <h3>VEHICLE WRAPS & FLEET GRAPHICS</h3>
-            <p>
-                Full and partial wraps using premium
-                vinyl for long-lasting branding.
-            </p>
-        </div>
-
-        <div class="preview-card fade-up delay-3">
-            <i class="fa fa-building"></i>
-            <h3>ARCHITECTURAL GRAPHICS</h3>
-            <p>
-                Wall murals, window films and
-                environmental branding solutions.
-            </p>
-        </div>
-
-        <div class="preview-card fade-up delay-1">
-            <i class="fa fa-lightbulb"></i>
-            <h3>ILLUMINATED & LED SIGNAGE</h3>
-            <p>
-                Energy-efficient illuminated signs
-                for maximum visibility.
-            </p>
-        </div>
-
-        <div class="preview-card fade-up delay-2">
-            <i class="fa fa-font"></i>
-            <h3>CHANNEL LETTERS</h3>
-            <p>
-                Dimensional letters with acrylic,
-                aluminum and LED options.
-            </p>
-        </div>
-
-        <div class="preview-card fade-up delay-3">
-            <i class="fa fa-print"></i>
-            <h3>LARGE FORMAT PRINTING</h3>
-            <p>
-                High-resolution prints for banners
-                and large-scale graphics.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- MAIN -->
-<main></main>
-
-<!-- FOOTER -->
-<div id="footer-placeholder"></div>
-
-<!-- BACK TO TOP -->
-<div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-</div>
-
-<!-- LANGUAGE BUTTON -->
-<button class="language-toggle" id="languageToggle">
-    <i class="fa fa-language"></i>
-</button>
-
-<script>
-
-/* ===== HEADER ===== */
-fetch("/Header/header.html")
-.then(res => res.text())
-.then(data => {
-
-    document.getElementById("header-placeholder").innerHTML = data;
-
-    const script = document.createElement("script");
-
-    script.src = "../header/header.js";
-
-    document.body.appendChild(script);
-});
-
-/* ===== FOOTER ===== */
-fetch("../footer/footer.html")
-.then(res => res.text())
-.then(data => {
-
-    document.getElementById("footer-placeholder").innerHTML = data;
-
-    const link = document.createElement("link");
-
-    link.rel = "stylesheet";
-    link.href = "../footer/footer.css";
-
-    document.head.appendChild(link);
-
-    const script = document.createElement("script");
-
-    script.src = "../footer/footer.js";
-
-    document.body.appendChild(script);
-});
-
-/* ===== BACK TO TOP ===== */
-
-const backToTopBtn = document.querySelector(".back-to-top");
-
-window.addEventListener("scroll", function(){
-
-    if(window.scrollY > 200){
-        backToTopBtn.classList.add("show");
-    }else{
-        backToTopBtn.classList.remove("show");
-    }
-});
-
-backToTopBtn.addEventListener("click", function(){
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-});
-
-/* ===== HERO INFO TOGGLE ===== */
-
-const heroCards = document.querySelectorAll(".hero-icon-card");
-
-heroCards.forEach(card => {
-
-    card.addEventListener("click", () => {
-
-        if(card.classList.contains("active")){
-
-            card.classList.remove("active");
-
-        }else{
-
-            heroCards.forEach(c => {
-                c.classList.remove("active");
+    <!-- Scripts -->
+    <script>
+        // Cargar header
+        fetch("/Header/header.html")
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+                const script = document.createElement("script");
+                script.src = "../header/header.js";
+                document.body.appendChild(script);
             });
 
-            card.classList.add("active");
-        }
-    });
-});
+        // Cargar footer
+// Cargar footer
+fetch("../footer/footer.html")
+  .then(res => res.text())
+  .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
 
-/* ===== LANGUAGE TOGGLE ===== */
+      // Agregar CSS del footer
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "../footer/footer.css";
+      document.head.appendChild(link);
 
-let currentLanguage = "en";
+      // Agregar JS del footer y ejecutar cuando cargue
+      const script = document.createElement("script");
+      script.src = "../footer/footer.js";
+      script.onload = () => {
+        if (typeof initFooterForm === "function") initFooterForm();
+      };
+      document.body.appendChild(script);
+  });
+        // Animación secciones al aparecer
+        const sections = document.querySelectorAll("section");
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        }, { threshold: 0.2 });
 
-const languageButton = document.getElementById("languageToggle");
+        sections.forEach(sec => observer.observe(sec));
 
-languageButton.addEventListener("click", () => {
+        // Flecha volver arriba
+        const backToTopBtn = document.querySelector(".back-to-top");
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 200) {
+                backToTopBtn.classList.add("show");
+            } else {
+                backToTopBtn.classList.remove("show");
+            }
+        });
+        backToTopBtn.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
 
-    if(currentLanguage === "en"){
-
-        currentLanguage = "es";
-
-        document.getElementById("heroTitle").innerHTML =
-        "SEÑALIZACIÓN QUE<br>IMPULSA TU MARCA";
-
-        document.getElementById("heroText").innerHTML =
-        "Creamos soluciones visuales que comunican, destacan y dejan huella.";
-
-        document.getElementById("quoteBtn").innerHTML =
-        "COTIZAR AHORA";
-
-        document.getElementById("servicesBtn").innerHTML =
-        "VER SERVICIOS";
-
-        document.getElementById("aboutSpan").innerHTML =
-        "NOSOTROS";
-
-        document.getElementById("servicesSpan").innerHTML =
-        "SERVICIOS";
-
-        document.getElementById("contactSpan").innerHTML =
-        "CONTACTO";
-
-        document.getElementById("gallerySpan").innerHTML =
-        "GALERÍA";
-
-        document.getElementById("aboutTitle").innerHTML =
-        "NOSOTROS";
-
-        document.getElementById("aboutText").innerHTML =
-        "Soluciones profesionales de señalización para elevar tu marca.";
-
-        document.getElementById("servicesTitle").innerHTML =
-        "SERVICIOS";
-
-        document.getElementById("servicesText").innerHTML =
-        "Fabricación personalizada, letreros LED y gran formato.";
-
-        document.getElementById("contactTitle").innerHTML =
-        "CONTACTO";
-
-        document.getElementById("contactText").innerHTML =
-        "Contáctanos para cotizaciones y planeación de proyectos.";
-
-        document.getElementById("galleryTitle").innerHTML =
-        "GALERÍA";
-
-        document.getElementById("galleryText").innerHTML =
-        "Explora nuestros proyectos recientes de branding y señalización.";
-
-        document.getElementById("servicesMiniTitle").innerHTML =
-        "SERVICIOS";
-
-        document.getElementById("servicesMainTitle").innerHTML =
-        "LO QUE HACEMOS";
-
-    }else{
-
-        currentLanguage = "en";
-
-        document.getElementById("heroTitle").innerHTML =
-        "SIGNAGE THAT<br>DRIVES YOUR BRAND";
-
-        document.getElementById("heroText").innerHTML =
-        "We create visual solutions that communicate, stand out and leave a lasting impression.";
-
-        document.getElementById("quoteBtn").innerHTML =
-        "GET A QUOTE";
-
-        document.getElementById("servicesBtn").innerHTML =
-        "VIEW SERVICES";
-
-        document.getElementById("aboutSpan").innerHTML =
-        "ABOUT US";
-
-        document.getElementById("servicesSpan").innerHTML =
-        "SERVICES";
-
-        document.getElementById("contactSpan").innerHTML =
-        "CONTACT US";
-
-        document.getElementById("gallerySpan").innerHTML =
-        "GALLERY";
-
-        document.getElementById("aboutTitle").innerHTML =
-        "ABOUT US";
-
-        document.getElementById("aboutText").innerHTML =
-        "Professional signage solutions designed to elevate your brand and create impact.";
-
-        document.getElementById("servicesTitle").innerHTML =
-        "SERVICES";
-
-        document.getElementById("servicesText").innerHTML =
-        "Custom fabrication, LED signs, wraps and large format printing.";
-
-        document.getElementById("contactTitle").innerHTML =
-        "CONTACT US";
-
-        document.getElementById("contactText").innerHTML =
-        "Reach out for quotes, consultations and project planning.";
-
-        document.getElementById("galleryTitle").innerHTML =
-        "GALLERY";
-
-        document.getElementById("galleryText").innerHTML =
-        "Explore our latest signage and branding projects.";
-
-        document.getElementById("servicesMiniTitle").innerHTML =
-        "SERVICES";
-
-        document.getElementById("servicesMainTitle").innerHTML =
-        "WHAT WE DO";
-    }
-});
-
-</script>
+        window.onbeforeunload = () => window.scrollTo(0,0);
+    </script>
 
 </body>
 </html>
