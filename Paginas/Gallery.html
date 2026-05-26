@@ -418,6 +418,162 @@ color:white;
 }
 
 /* =========================================
+CATEGORY VIEW
+========================================= */
+
+.category-view{
+display:none;
+padding:30px 24px 50px;
+
+border-left:1px solid rgba(255,255,255,.08);
+border-right:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
+
+background:rgba(255,255,255,.015);
+
+animation:fadeIn .5s ease;
+}
+
+.category-view.active{
+display:block;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* =========================================
+BACK BUTTON
+========================================= */
+
+.back-btn{
+height:50px;
+padding:0 24px;
+
+border:none;
+border-radius:14px;
+
+background:#111;
+color:white;
+
+display:flex;
+align-items:center;
+gap:12px;
+
+font-size:12px;
+font-weight:700;
+letter-spacing:1px;
+
+cursor:pointer;
+
+margin-bottom:35px;
+
+transition:.35s ease;
+}
+
+.back-btn:hover{
+background:#ff1010;
+transform:translateY(-2px);
+}
+
+/* =========================================
+CATEGORY HEADER
+========================================= */
+
+.category-header{
+margin-bottom:40px;
+}
+
+.category-header h2{
+font-family:'Bebas Neue',sans-serif;
+font-size:90px;
+line-height:.9;
+letter-spacing:3px;
+margin-bottom:10px;
+}
+
+.category-header p{
+max-width:600px;
+color:rgba(255,255,255,.7);
+line-height:1.8;
+}
+
+/* =========================================
+MASONRY
+========================================= */
+
+.masonry-gallery{
+columns:3 320px;
+column-gap:18px;
+}
+
+.masonry-item{
+position:relative;
+margin-bottom:18px;
+
+overflow:hidden;
+border-radius:22px;
+
+break-inside:avoid;
+
+cursor:pointer;
+
+background:#111;
+}
+
+.masonry-item img{
+width:100%;
+display:block;
+
+transition:
+transform .8s ease,
+filter .5s ease;
+}
+
+.masonry-item:hover img{
+transform:scale(1.05);
+filter:brightness(.7);
+}
+
+.masonry-overlay{
+position:absolute;
+inset:0;
+
+display:flex;
+align-items:flex-end;
+
+padding:22px;
+
+background:
+linear-gradient(
+to top,
+rgba(0,0,0,.92),
+transparent
+);
+
+opacity:0;
+
+transition:.4s ease;
+}
+
+.masonry-item:hover .masonry-overlay{
+opacity:1;
+}
+
+.masonry-overlay span{
+font-size:13px;
+font-weight:600;
+letter-spacing:1px;
+}
+
+/* =========================================
 CTA
 ========================================= */
 
@@ -695,6 +851,14 @@ padding:22px;
 font-size:46px;
 }
 
+.category-header h2{
+font-size:58px;
+}
+
+.masonry-gallery{
+columns:1;
+}
+
 .cta-box{
 grid-template-columns:1fr;
 
@@ -727,15 +891,12 @@ font-size:48px;
 
 <body>
 
-<!-- HEADER -->
 <div id="header-placeholder"></div>
 
-<!-- PAGE -->
 <section class="gallery-page">
 
 <div class="container">
 
-<!-- HERO -->
 <div class="gallery-top">
 
 <div class="hero-left">
@@ -770,28 +931,24 @@ see how we bring ideas to life through premium signage.
 ALL CATEGORIES
 </button>
 
-<button class="filter-btn" data-filter="custom">
-CUSTOM SIGNS
-</button>
-
-<button class="filter-btn" data-filter="vehicle">
-VEHICLE WRAPS
-</button>
-
 <button class="filter-btn" data-filter="architectural">
-ARCHITECTURAL
+ARCHITECTURAL GRAPHICS
+</button>
+
+<button class="filter-btn" data-filter="vinyl">
+VYNIL GRAPHICS
 </button>
 
 <button class="filter-btn" data-filter="led">
-LED SIGNAGE
+ILLUMINATED SIGNAGE
 </button>
 
 <button class="filter-btn" data-filter="channel">
 CHANNEL LETTERS
 </button>
 
-<button class="filter-btn" data-filter="printing">
-PRINTING
+<button class="filter-btn" data-filter="interior">
+INTERIOR SIGNS
 </button>
 
 </div>
@@ -799,10 +956,10 @@ PRINTING
 <!-- GRID -->
 <div class="gallery-grid">
 
-<!-- CARD -->
-<div class="gallery-card custom">
+<!-- ARCHITECTURAL -->
+<div class="gallery-card architectural" data-category="architectural">
 
-<img src="../gallery/custom.jpg">
+<img src="../components/Gallery/Architec/a1.jpeg">
 
 <div class="card-overlay">
 
@@ -811,25 +968,23 @@ PRINTING
 </div>
 
 <h3>
-CUSTOM SIGN FABRICATION
+ARCHITECTURAL
+GRAPHICS
 </h3>
 
 <div class="card-link">
-
 VIEW GALLERY
-
 <i class="fa-solid fa-arrow-right"></i>
-
 </div>
 
 </div>
 
 </div>
 
-<!-- CARD -->
-<div class="gallery-card vehicle">
+<!-- VYNIL -->
+<div class="gallery-card vinyl" data-category="vinyl">
 
-<img src="../gallery/vehicle.jpg">
+<img src="../components/Gallery/vinyl/v4.webp">
 
 <div class="card-overlay">
 
@@ -838,26 +993,23 @@ VIEW GALLERY
 </div>
 
 <h3>
-VEHICLE WRAPS &
-FLEET GRAPHICS
+VYNIL
+GRAPHICS
 </h3>
 
 <div class="card-link">
-
 VIEW GALLERY
-
 <i class="fa-solid fa-arrow-right"></i>
-
 </div>
 
 </div>
 
 </div>
 
-<!-- CARD -->
-<div class="gallery-card architectural">
+<!-- LED -->
+<div class="gallery-card led" data-category="led">
 
-<img src="../gallery/architectural.jpg">
+<img src="../components/Gallery/Iluminated/i3.jpeg">
 
 <div class="card-overlay">
 
@@ -866,26 +1018,23 @@ VIEW GALLERY
 </div>
 
 <h3>
-ARCHITECTURAL
-GRAPHICS
+ILLUMINATED
+SIGNAGE
 </h3>
 
 <div class="card-link">
-
 VIEW GALLERY
-
 <i class="fa-solid fa-arrow-right"></i>
-
 </div>
 
 </div>
 
 </div>
 
-<!-- CARD -->
-<div class="gallery-card led">
+<!-- CHANNEL -->
+<div class="gallery-card channel" data-category="channel">
 
-<img src="../gallery/led.jpg">
+<img src="../components/Gallery/Channel/c10.webp">
 
 <div class="card-overlay">
 
@@ -894,26 +1043,23 @@ VIEW GALLERY
 </div>
 
 <h3>
-ILLUMINATED &
-LED SIGNAGE
+CHANNEL
+LETTERS
 </h3>
 
 <div class="card-link">
-
 VIEW GALLERY
-
 <i class="fa-solid fa-arrow-right"></i>
-
 </div>
 
 </div>
 
 </div>
 
-<!-- CARD -->
-<div class="gallery-card channel">
+<!-- INTERIOR -->
+<div class="gallery-card interior" data-category="interior">
 
-<img src="../gallery/channel.jpg">
+<img src="../components/Gallery/interior/i6.webp">
 
 <div class="card-overlay">
 
@@ -922,48 +1068,43 @@ VIEW GALLERY
 </div>
 
 <h3>
-CHANNEL
-LETTERS
+INTERIOR
+SIGNS
 </h3>
 
 <div class="card-link">
-
 VIEW GALLERY
-
 <i class="fa-solid fa-arrow-right"></i>
-
 </div>
 
 </div>
 
 </div>
 
-<!-- CARD -->
-<div class="gallery-card printing">
-
-<img src="../gallery/printing.jpg">
-
-<div class="card-overlay">
-
-<div class="card-number">
-06
 </div>
 
-<h3>
-LARGE FORMAT
-PRINTING
-</h3>
+<!-- CATEGORY VIEW -->
 
-<div class="card-link">
+<div class="category-view">
 
-VIEW GALLERY
+<button class="back-btn">
+<i class="fa-solid fa-arrow-left"></i>
+BACK TO GALLERY
+</button>
 
-<i class="fa-solid fa-arrow-right"></i>
+<div class="category-header">
 
-</div>
+<h2 id="categoryTitle">
+CATEGORY
+</h2>
+
+<p id="categoryDesc">
+Explore our latest work.
+</p>
 
 </div>
 
+<div class="masonry-gallery" id="masonryGallery">
 </div>
 
 </div>
@@ -1007,10 +1148,8 @@ CONTACT US
 
 </section>
 
-<!-- FOOTER -->
 <div id="footer-placeholder"></div>
 
-<!-- TOP -->
 <div class="back-to-top">
 <i class="fa-solid fa-arrow-up"></i>
 </div>
@@ -1126,6 +1265,145 @@ card.style.display = "none";
 });
 
 });
+
+});
+
+/* =========================================
+CATEGORY DATA
+========================================= */
+
+const galleryData = {
+
+architectural: [
+
+"../components/Gallery/Architec/a1.jpeg",
+"../components/Gallery/Architec/a2.jpeg",
+"../components/Gallery/Architec/a3.jpeg",
+"../components/Gallery/Architec/a4.wepb",
+"../components/Gallery/Architec/a5.jpeg"
+
+],
+
+vinyl: [
+
+"../components/Gallery/vinyl/v1.jpeg",
+"../components/Gallery/vinyl/v2.webp",
+"../components/Gallery/vinyl/v3.webp",
+"../components/Gallery/vinyl/v4.webp"
+
+],
+
+led: [
+
+"../components/Gallery/Iluminated/i1.webp",
+"../components/Gallery/Iluminated/i2.png",
+"../components/Gallery/Iluminated/i3.jpeg",
+"../components/Gallery/Iluminated/i4.jpg"
+
+],
+
+channel: [
+
+"../components/Gallery/Channel/c1.jpeg",
+"../components/Gallery/Channel/c2.jpeg",
+"../components/Gallery/Channel/c3.jpg",
+"../components/Gallery/Channel/c4.jpeg",
+"../components/Gallery/Channel/c5.jpeg",
+"../components/Gallery/Channel/c6.jpg",
+"../components/Gallery/Channel/c7.jpeg",
+"../components/Gallery/Channel/c8.jpg",
+"../components/Gallery/Channel/c9.jpeg",
+"../components/Gallery/Channel/c10.webp",
+"../components/Gallery/Channel/c11.jpeg"
+
+],
+
+interior: [
+
+"../components/Gallery/interior/i1.webp",
+"../components/Gallery/interior/i2.webp",
+"../components/Gallery/interior/i3.webp",
+"../components/Gallery/interior/i4.webp",
+"../components/Gallery/interior/i5.webp",
+"../components/Gallery/interior/i6.webp",
+"../components/Gallery/interior/i7.webp",
+"../components/Gallery/interior/i8.webp",
+"../components/Gallery/interior/i9.webp"
+
+]
+
+};
+
+/* =========================================
+ELEMENTS
+========================================= */
+
+const galleryGrid = document.querySelector(".gallery-grid");
+
+const categoryView = document.querySelector(".category-view");
+
+const masonryGallery = document.getElementById("masonryGallery");
+
+const title = document.getElementById("categoryTitle");
+
+const desc = document.getElementById("categoryDesc");
+
+const backBtn = document.querySelector(".back-btn");
+
+/* =========================================
+OPEN CATEGORY
+========================================= */
+
+cards.forEach(card=>{
+
+card.addEventListener("click", ()=>{
+
+const category = [...card.classList]
+.find(c => galleryData[c]);
+
+if(!category) return;
+
+galleryGrid.style.display = "none";
+
+categoryView.classList.add("active");
+
+title.innerText = category.toUpperCase();
+
+desc.innerText =
+"Explore our latest " + category + " projects.";
+
+masonryGallery.innerHTML = "";
+
+galleryData[category].forEach((image,index)=>{
+
+const item = document.createElement("div");
+
+item.className = "masonry-item";
+
+item.innerHTML = `
+<img src="${image}">
+<div class="masonry-overlay">
+<span>PROJECT ${index + 1}</span>
+</div>
+`;
+
+masonryGallery.appendChild(item);
+
+});
+
+});
+
+});
+
+/* =========================================
+BACK
+========================================= */
+
+backBtn.addEventListener("click", ()=>{
+
+categoryView.classList.remove("active");
+
+galleryGrid.style.display = "grid";
 
 });
 
