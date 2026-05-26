@@ -1365,6 +1365,10 @@ if(!category) return;
 galleryGrid.style.display = "none";
 
 categoryView.classList.add("active");
+window.scrollTo({
+top: galleryGrid.offsetTop - 20,
+behavior: "smooth"
+});
 
 title.innerText = category.toUpperCase();
 
