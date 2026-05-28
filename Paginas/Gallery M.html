@@ -746,6 +746,82 @@ pointer-events:auto;
 }
 
 /* =========================================
+CONTACT BUTTON
+========================================= */
+
+.contact-button{
+position:fixed;
+right:18px;
+bottom:18px;
+
+width:58px;
+height:58px;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:#ff1010;
+color:white;
+
+font-size:22px;
+
+cursor:pointer;
+
+z-index:9999;
+
+transition:.35s ease;
+
+box-shadow:
+0 10px 30px rgba(255,0,0,.35);
+}
+
+.contact-button:hover{
+transform:scale(1.08);
+}
+
+/* =========================================
+LANGUAGE BUTTON
+========================================= */
+
+.language-toggle{
+position:fixed;
+left:20px;
+bottom:20px;
+
+width:58px;
+height:58px;
+
+border-radius:50%;
+
+background:#ff1010;
+
+border:none;
+color:#fff;
+
+font-size:22px;
+cursor:pointer;
+
+z-index:9999;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+box-shadow:
+0 0 20px rgba(255,0,0,.35);
+
+transition:.3s ease;
+}
+
+.language-toggle:hover{
+transform:scale(1.08);
+background:#d10000;
+}
+
+/* =========================================
 TABLET
 ========================================= */
 
@@ -882,6 +958,22 @@ height:120px;
 font-size:48px;
 }
 
+.language-toggle{
+width:52px;
+height:52px;
+font-size:20px;
+left:15px;
+bottom:15px;
+}
+
+.contact-button{
+width:52px;
+height:52px;
+font-size:20px;
+right:15px;
+bottom:80px;
+}
+
 }
 
 </style>
@@ -900,15 +992,15 @@ font-size:48px;
 
 <div class="hero-left">
 
-<div class="hero-label">
+<div class="hero-label" id="heroLabel">
 OUR WORK
 </div>
 
-<h1 class="hero-title">
+<h1 class="hero-title" id="heroTitle">
 GALL<span>ERY</span>
 </h1>
 
-<p class="hero-description">
+<p class="hero-description" id="heroDescription">
 Explore a selection of our latest projects and
 see how we bring ideas to life through premium signage.
 </p>
@@ -917,7 +1009,7 @@ see how we bring ideas to life through premium signage.
 
 <div class="hero-right">
 
-<img src="../gallery/hero.jpg">
+<img src="/components/Gallery/Architec/a5.jpeg">
 
 </div>
 
@@ -926,27 +1018,27 @@ see how we bring ideas to life through premium signage.
 <!-- FILTERS -->
 <div class="category-bar">
 
-<button class="filter-btn active" data-filter="all">
+<button class="filter-btn active" data-filter="all" id="filterAll">
 ALL CATEGORIES
 </button>
 
-<button class="filter-btn" data-filter="architectural">
+<button class="filter-btn" data-filter="architectural" id="filterArchitectural">
 ARCHITECTURAL GRAPHICS
 </button>
 
-<button class="filter-btn" data-filter="vinyl">
+<button class="filter-btn" data-filter="vinyl" id="filterVinyl">
 VYNIL GRAPHICS
 </button>
 
-<button class="filter-btn" data-filter="led">
+<button class="filter-btn" data-filter="led" id="filterLed">
 ILLUMINATED SIGNAGE
 </button>
 
-<button class="filter-btn" data-filter="channel">
+<button class="filter-btn" data-filter="channel" id="filterChannel">
 CHANNEL LETTERS
 </button>
 
-<button class="filter-btn" data-filter="interior">
+<button class="filter-btn" data-filter="interior" id="filterInterior">
 INTERIOR SIGNS
 </button>
 
@@ -955,7 +1047,6 @@ INTERIOR SIGNS
 <!-- GRID -->
 <div class="gallery-grid">
 
-<!-- ARCHITECTURAL -->
 <div class="gallery-card architectural" data-category="architectural">
 
 <img src="../components/Gallery/Architec/a1.jpeg">
@@ -966,12 +1057,12 @@ INTERIOR SIGNS
 01
 </div>
 
-<h3>
+<h3 id="architecturalTitle">
 ARCHITECTURAL
 GRAPHICS
 </h3>
 
-<div class="card-link">
+<div class="card-link" id="viewGallery1">
 VIEW GALLERY
 <i class="fa-solid fa-arrow-right"></i>
 </div>
@@ -980,7 +1071,6 @@ VIEW GALLERY
 
 </div>
 
-<!-- VYNIL -->
 <div class="gallery-card vinyl" data-category="vinyl">
 
 <img src="../components/Gallery/vinyl/v4.webp">
@@ -991,12 +1081,12 @@ VIEW GALLERY
 02
 </div>
 
-<h3>
+<h3 id="vinylTitle">
 VYNIL
 GRAPHICS
 </h3>
 
-<div class="card-link">
+<div class="card-link" id="viewGallery2">
 VIEW GALLERY
 <i class="fa-solid fa-arrow-right"></i>
 </div>
@@ -1005,7 +1095,6 @@ VIEW GALLERY
 
 </div>
 
-<!-- LED -->
 <div class="gallery-card led" data-category="led">
 
 <img src="../components/Gallery/Iluminated/i3.jpeg">
@@ -1016,12 +1105,12 @@ VIEW GALLERY
 03
 </div>
 
-<h3>
+<h3 id="ledTitle">
 ILLUMINATED
 SIGNAGE
 </h3>
 
-<div class="card-link">
+<div class="card-link" id="viewGallery3">
 VIEW GALLERY
 <i class="fa-solid fa-arrow-right"></i>
 </div>
@@ -1030,7 +1119,6 @@ VIEW GALLERY
 
 </div>
 
-<!-- CHANNEL -->
 <div class="gallery-card channel" data-category="channel">
 
 <img src="../components/Gallery/Channel/c10.webp">
@@ -1041,12 +1129,12 @@ VIEW GALLERY
 04
 </div>
 
-<h3>
+<h3 id="channelTitle">
 CHANNEL
 LETTERS
 </h3>
 
-<div class="card-link">
+<div class="card-link" id="viewGallery4">
 VIEW GALLERY
 <i class="fa-solid fa-arrow-right"></i>
 </div>
@@ -1055,7 +1143,6 @@ VIEW GALLERY
 
 </div>
 
-<!-- INTERIOR -->
 <div class="gallery-card interior" data-category="interior">
 
 <img src="../components/Gallery/interior/i6.webp">
@@ -1066,12 +1153,12 @@ VIEW GALLERY
 05
 </div>
 
-<h3>
+<h3 id="interiorTitle">
 INTERIOR
 SIGNS
 </h3>
 
-<div class="card-link">
+<div class="card-link" id="viewGallery5">
 VIEW GALLERY
 <i class="fa-solid fa-arrow-right"></i>
 </div>
@@ -1086,7 +1173,7 @@ VIEW GALLERY
 
 <div class="category-view">
 
-<button class="back-btn">
+<button class="back-btn" id="backBtnText">
 <i class="fa-solid fa-arrow-left"></i>
 BACK TO GALLERY
 </button>
@@ -1113,21 +1200,21 @@ Explore our latest work.
 
 <div class="cta-left">
 
-<div class="cta-small">
+<div class="cta-small" id="ctaSmall">
 LET'S WORK TOGETHER
 </div>
 
-<h2 class="cta-title">
+<h2 class="cta-title" id="ctaTitle">
 HAVE A PROJECT<br>
 IN MIND?
 </h2>
 
-<p class="cta-text">
+<p class="cta-text" id="ctaText">
 Let's bring your vision to life with high-impact
 signage and graphics.
 </p>
 
-<button class="cta-btn">
+<button class="cta-btn" onclick="window.location.href='/Paginas/Contact Us.html'" id="ctaButton">
 CONTACT US
 </button>
 
@@ -1148,6 +1235,16 @@ CONTACT US
 </section>
 
 <div id="footer-placeholder"></div>
+
+<!-- CONTACT BUTTON -->
+<div class="contact-button" onclick="window.location.href='/Paginas/Contact Us.html'">
+<i class="fa-solid fa-envelope"></i>
+</div>
+
+<!-- LANGUAGE BUTTON -->
+<button class="language-toggle" id="languageToggle">
+<i class="fa fa-language"></i>
+</button>
 
 <div class="back-to-top">
 <i class="fa-solid fa-arrow-up"></i>
@@ -1274,35 +1371,28 @@ CATEGORY DATA
 const galleryData = {
 
 architectural: [
-
 "../components/Gallery/Architec/a1.jpeg",
 "../components/Gallery/Architec/a2.jpeg",
 "../components/Gallery/Architec/a3.jpeg",
 "../components/Gallery/Architec/a4.webp",
 "../components/Gallery/Architec/a5.jpeg"
-
 ],
 
 vinyl: [
-
 "../components/Gallery/vinyl/v1.jpeg",
 "../components/Gallery/vinyl/v2.webp",
 "../components/Gallery/vinyl/v3.webp",
 "../components/Gallery/vinyl/v4.webp"
-
 ],
 
 led: [
-
 "../components/Gallery/Iluminated/i1.webp",
 "../components/Gallery/Iluminated/i2.png",
 "../components/Gallery/Iluminated/i3.jpeg",
 "../components/Gallery/Iluminated/i4.jpg"
-
 ],
 
 channel: [
-
 "../components/Gallery/Channel/c1.jpeg",
 "../components/Gallery/Channel/c2.jpeg",
 "../components/Gallery/Channel/c3.jpg",
@@ -1314,11 +1404,9 @@ channel: [
 "../components/Gallery/Channel/c9.jpeg",
 "../components/Gallery/Channel/c10.webp",
 "../components/Gallery/Channel/c11.jpeg"
-
 ],
 
 interior: [
-
 "../components/Gallery/interior/i1.webp",
 "../components/Gallery/interior/i2.webp",
 "../components/Gallery/interior/i3.webp",
@@ -1328,7 +1416,6 @@ interior: [
 "../components/Gallery/interior/i7.webp",
 "../components/Gallery/interior/i8.webp",
 "../components/Gallery/interior/i9.webp"
-
 ]
 
 };
@@ -1365,6 +1452,7 @@ if(!category) return;
 galleryGrid.style.display = "none";
 
 categoryView.classList.add("active");
+
 window.scrollTo({
 top: galleryGrid.offsetTop - 20,
 behavior: "smooth"
@@ -1436,6 +1524,142 @@ window.scrollTo({
 top:0,
 behavior:"smooth"
 });
+
+});
+
+/* =========================================
+LANGUAGE TOGGLE
+========================================= */
+
+let currentLanguage = "en";
+
+const languageButton = document.getElementById("languageToggle");
+
+languageButton.addEventListener("click", () => {
+
+if(currentLanguage === "en"){
+
+currentLanguage = "es";
+
+document.getElementById("heroLabel").innerHTML =
+"NUESTRO TRABAJO";
+
+document.getElementById("heroTitle").innerHTML =
+'GAL<span>ERÍA</span>';
+
+document.getElementById("heroDescription").innerHTML =
+"Explora una selección de nuestros últimos proyectos y descubre cómo damos vida a las ideas mediante señalización premium.";
+
+document.getElementById("filterAll").innerHTML =
+"TODAS LAS CATEGORÍAS";
+
+document.getElementById("filterArchitectural").innerHTML =
+"GRÁFICOS ARQUITECTÓNICOS";
+
+document.getElementById("filterVinyl").innerHTML =
+"GRÁFICOS EN VINILO";
+
+document.getElementById("filterLed").innerHTML =
+"SEÑALIZACIÓN ILUMINADA";
+
+document.getElementById("filterChannel").innerHTML =
+"LETRAS CANAL";
+
+document.getElementById("filterInterior").innerHTML =
+"SEÑALES INTERIORES";
+
+document.getElementById("viewGallery1").innerHTML =
+'VER GALERÍA <i class="fa-solid fa-arrow-right"></i>';
+
+document.getElementById("viewGallery2").innerHTML =
+'VER GALERÍA <i class="fa-solid fa-arrow-right"></i>';
+
+document.getElementById("viewGallery3").innerHTML =
+'VER GALERÍA <i class="fa-solid fa-arrow-right"></i>';
+
+document.getElementById("viewGallery4").innerHTML =
+'VER GALERÍA <i class="fa-solid fa-arrow-right"></i>';
+
+document.getElementById("viewGallery5").innerHTML =
+'VER GALERÍA <i class="fa-solid fa-arrow-right"></i>';
+
+document.getElementById("backBtnText").innerHTML =
+'<i class="fa-solid fa-arrow-left"></i> VOLVER A LA GALERÍA';
+
+document.getElementById("ctaSmall").innerHTML =
+"TRABAJEMOS JUNTOS";
+
+document.getElementById("ctaTitle").innerHTML =
+'¿TIENES UN<br>PROYECTO?';
+
+document.getElementById("ctaText").innerHTML =
+"Demos vida a tu visión con señalización y gráficos de alto impacto.";
+
+document.getElementById("ctaButton").innerHTML =
+"CONTÁCTANOS";
+
+}else{
+
+currentLanguage = "en";
+
+document.getElementById("heroLabel").innerHTML =
+"OUR WORK";
+
+document.getElementById("heroTitle").innerHTML =
+'GALL<span>ERY</span>';
+
+document.getElementById("heroDescription").innerHTML =
+"Explore a selection of our latest projects and see how we bring ideas to life through premium signage.";
+
+document.getElementById("filterAll").innerHTML =
+"ALL CATEGORIES";
+
+document.getElementById("filterArchitectural").innerHTML =
+"ARCHITECTURAL GRAPHICS";
+
+document.getElementById("filterVinyl").innerHTML =
+"VYNIL GRAPHICS";
+
+document.getElementById("filterLed").innerHTML =
+"ILLUMINATED SIGNAGE";
+
+document.getElementById("filterChannel").innerHTML =
+"CHANNEL LETTERS";
+
+document.getElementById("filterInterior").innerHTML =
+"INTERIOR SIGNS";
+
+document.getElementById("viewGallery1").innerHTML =
+'VIEW GALLERY <i class="fa-solid fa-arrow-right"></i>';
+
+document.getElementById("viewGallery2").innerHTML =
+'VIEW GALLERY <i class="fa-solid fa-arrow-right"></i>';
+
+document.getElementById("viewGallery3").innerHTML =
+'VIEW GALLERY <i class="fa-solid fa-arrow-right"></i>';
+
+document.getElementById("viewGallery4").innerHTML =
+'VIEW GALLERY <i class="fa-solid fa-arrow-right"></i>';
+
+document.getElementById("viewGallery5").innerHTML =
+'VIEW GALLERY <i class="fa-solid fa-arrow-right"></i>';
+
+document.getElementById("backBtnText").innerHTML =
+'<i class="fa-solid fa-arrow-left"></i> BACK TO GALLERY';
+
+document.getElementById("ctaSmall").innerHTML =
+"LET'S WORK TOGETHER";
+
+document.getElementById("ctaTitle").innerHTML =
+'HAVE A PROJECT<br>IN MIND?';
+
+document.getElementById("ctaText").innerHTML =
+"Let's bring your vision to life with high-impact signage and graphics.";
+
+document.getElementById("ctaButton").innerHTML =
+"CONTACT US";
+
+}
 
 });
 
